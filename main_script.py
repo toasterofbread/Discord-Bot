@@ -825,7 +825,7 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138"):
             userdata7 = file.read()
         if mode == "11381138":
             if str(ctx.message.author.id) in userdata9:
-                await ctx.send("Today is " + Day() + " the " + Date() + " of " + Month() + " " + str(time.localtime()[0] + Time(ctx.message.author.id)) + "\n\nG9")
+                await ctx.send("Today is " + Day() + " the " + Date() + " of " + Month() + " " + str(time.localtime()[0] + Time()) + "\n\nG9")
                 if SetCurrentPeriod("9") == sp_NULL or SetCurrentPeriod("9") == sp_NUCL:
                     await ctx.send("There is nothing scheduled for the current period")
                 else:
