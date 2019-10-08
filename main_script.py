@@ -720,10 +720,15 @@ def ViewPeriod():
 
 def Time():
     if len(str(time.localtime()[3])) == 1:
-        return "0" + str(time.localtime()[3]) + ":" + str(time.localtime()[4])
+        if len(str(time.localtime()[4])) == 1:
+            return "0" + str(time.localtime()[3]) + ":0" + str(time.localtime()[4])
+        else:
+            return "0" + str(time.localtime()[3]) + ":" + str(time.localtime()[4])
     else:
-        return str(time.localtime()[3]) + ":" + str(time.localtime()[4])
-
+        if len(str(time.localtime()[4])) == 1:
+            return str(time.localtime()[3]) + ":0" + str(time.localtime()[4])
+        else:
+            return str(time.localtime()[3]) + ":" + str(time.localtime()[4])
 def Day():
     if time.localtime()[6] == 0:
         return "Monday"
@@ -826,24 +831,21 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138"):
             userdata7 = file.read()
         if mode == "11381138":
             if str(ctx.message.author.id) in userdata9:
-                await ctx.send(ctx.message.author.mention + "  (G9)")
-                await ctx.send("Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()))
+                await ctx.send(ctx.message.author.mention + "  (G9)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()))
                 if SetCurrentPeriod("9") == sp_NULL or SetCurrentPeriod("9") == sp_NUCL:
                     await ctx.send("There is nothing scheduled for the current period")
                 else:
                     await ctx.send("The current period is " + SetCurrentPeriod("9"))
                 await ctx.send("The next sceduled period is " + SetNextPeriod("9"))
             elif str(ctx.message.author.id) in userdata8:
-                await ctx.send(ctx.message.author.mention + "  (G8)")
-                await ctx.send("Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()))
+                await ctx.send(ctx.message.author.mention + "  (G8)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()))
                 if SetCurrentPeriod("8") == sp_NULL or SetCurrentPeriod("8") == sp_NUCL:
                     await ctx.send("There is nothing scheduled for the current period")
                 else:
                     await ctx.send("The current period is " + SetCurrentPeriod("8"))
                 await ctx.send("The next sceduled period is " + SetNextPeriod("8"))
             elif str(ctx.message.author.id) in userdata7:
-                await ctx.send(ctx.message.author.mention + "  (G7)")
-                await ctx.send("Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()))
+                await ctx.send(ctx.message.author.mention + "  (G7)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()))
                 if SetCurrentPeriod("7") == sp_NULL or SetCurrentPeriod("7") == sp_NUCL:
                     await ctx.send("There is nothing scheduled for the current period")
                 else:
