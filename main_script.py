@@ -1,7 +1,6 @@
 import time
 import discord
-from discord.ext import commands
-BOT_TOKEN = "NjI3MDk5ODk3MjIwNDMxODcy.XY3v5Q.Q19bNJrTqvFa1eDTPEmfJjvd4HE"
+from discord.ext import commands, tasks
 
 club_CHI = "MYP Chilled Out Zone"
 club_IMP = "Imperial Assault campaign club"
@@ -768,7 +767,6 @@ with open("users7.txt", "r") as file:
 
 @client.event
 async def on_ready():
-    await client.change_presence(status=discord.Status.idle, activity=discord.Game("Creeper, Aw Man!"))
     print("TimeTableBot is now running")
 
 
@@ -1098,5 +1096,12 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138"):
         else:
             await ctx.send("Hello " + ctx.message.author.mention + ". You have not yet been registered in my database\nPlease tell me what grade you are in by typing **.tt setgrade X**, where **X** is your grade number\n*(You can always change this later if needed by using **.tt config**)*")
 
+from itertools import cycle
+status = ["Creeper?", "Aw Man!"]
 
-client.run(BOT_TOKEN)
+
+@tasks.loop(seconds=1)
+async def statusloop():
+    await client.change_presence(activity=discord.Game(next(status)))
+
+client.run("NjI3MDk5ODk3MjIwNDMxODcy.XY3v5Q.Q19bNJrTqvFa1eDTPEmfJjvd4HE")
