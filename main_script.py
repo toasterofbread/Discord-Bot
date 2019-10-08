@@ -780,7 +780,7 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138"):
                                                         "**.tt config**  -  Allows you to configure various user settings for this bot\n"
                                                         "**.tt viewday G D**  -  Displays the timetable of the specified day   **G** = Grade    **D** = Day\n"
                                                         "*|     (If no grade is inputted, your grade will be used. If no day is inputted, the current day will be used)*\n"
-                                                        "**.tt viewperiod P D G**  -  Displays a specified period of a specified day   **P** = Period number   **D** = Day   **G** = Grade"
+                                                        "**.tt viewperiod P D G**  -  Displays a specified period of a specified day   **P** = Period number   **D** = Day   **G** = Grade\n"
                                                         "*|     (If no day or period is specified, the current ones will be used. If no grade is inputted, your grade will be used. Use 'x' to force the default value)*\n")
         elif mode == "setgrade":
             if str(ctx.message.author.id) in userdata9:
