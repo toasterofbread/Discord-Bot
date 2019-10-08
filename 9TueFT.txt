@@ -1,1 +1,1 @@
-['Science', 'Design', 'Math', 'Library', 'English', 'MYP chill out club']
+['Science', 'Design', 'Math', 'Library', 'English']

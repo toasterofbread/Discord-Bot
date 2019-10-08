@@ -2,59 +2,23 @@ import time
 from discord.ext import commands
 BOT_TOKEN = "NjI3MDk5ODk3MjIwNDMxODcy.XY3v5Q.Q19bNJrTqvFa1eDTPEmfJjvd4HE"
 
+club_CHI = "MYP chill out club"
+club_IMP = "Imperial Assault campaign club"
 
-#  Lessons
-sub_INS = "Individuals & societies"
-sub_ENG = "English"
-sub_MTH = "Math"
-sub_SCI = "Science"
-sub_JPN = "Japanese"
-sub_MUS = "Music"
-sub_DES = "Design"
-sub_LIB = "Library"
-sub_PHY = "Physical education"
-sub_HEA = "Health"
-#  Homeroom
+sp_NULL = "No class"
+sp_NUCL = "No club"
 sp_HMRM = "Homeroom"
-sp_EXHR = "Extended homeroom"
-#  Recess
+
 sp_AMRE = "Morning recess"
 sp_LNCH = "Lunch"
 sp_LNRE = "Lunch recess"
 sp_PMRE = "Afternoon recess"
-#  Clubs
-clu_CHI = "MYP chill out club"
-clu_IMP = "Imperial Assault campaign club"
-#  Other
-sp_NULL = "No class"
-sp_NUCL = "No club"
-sp_ERR = "ERROR"
-a = "a"
 
-TemTT = [a, a, a, a, a, a]
-Tem2T = [a, a, a, a, a]
+id_CHI = ("chi", "myp chill out club", "myp chill out", "chill", "chill out", "chill out club", "chill club", "myp chill club")
+id_IMP = ("imp", "imperial assault", "star wars imperial assault", "star wars: imperial assault")
 
-Asub_INS = ("individuals & societies", "individuals and societies", "i&s", "ins")
-Asub_ENG = ("english", "eng", "lal", "l&l", "language and literature", "language & literature", "ela", "eal")
-Asub_MTH = ("math", "maths", "mathematics", "mth")
-Asub_SCI = ("science", "sci")
-Asub_JPN = ("jpn", "jap", "japanese", "japan")
-Asub_MUS = ("mus", "music")
-Asub_DES = ("des", "design")
-Asub_LIB = ("lib", "library")
-Asub_PHY = ("pe", "phy", "physical education", "phys ed")
-Asub_HEA = ("hea", "health")
-Asp_HMRM = ("hmrm", "homeroom", "hr")
-Asp_EXHR = ("exhr", "extended homeroom")
-Aclu_CHI = ("chi", "myp chill out club", "myp chill out", "chill", "chill out", "chill out club", "chill club", "myp chill club")
-Aclu_IMP = ("imp", "imperial assault", "star wars imperial assault", "star wars: imperial assault")
-Asp_NULL = ("null", "none", "no class", "nothing")
-
-periodnumbers = (0, 1, 2, 3, 4, 5)
-periodnumberswed = (0, 1, 2, 3, 4)
-
-CurrentPeriod = sp_ERR
-NextPeriod = sp_ERR
+CurrentPeriod =  "customerror"
+NextPeriod = "customerror"
 
 
 def SetNextPeriod(grade):
@@ -613,45 +577,6 @@ def SetCurrentPeriod(grade):
     return CurrentPeriod
 
 
-def ViewDay():
-    with open("9MonFT.txt", "r") as file:
-        MonTT = eval(file.readline())
-    with open("9TueFT.txt", "r") as file:
-        TueTT = eval(file.readline())
-    with open("9WedFT.txt", "r") as file:
-        WedTT = eval(file.readline())
-    with open("9ThuFT.txt", "r") as file:
-        ThuTT = eval(file.readline())
-    with open("9FriFT.txt", "r") as file:
-        FriTT = eval(file.readline())
-
-    DayToView = str.lower(input("\nInput day to view the timetable of:  "))
-    if DayToView == "monday" or DayToView == "mon":
-        print("\nMonday's timetable is:")
-        for period in MonTT:
-            print(period)
-    elif DayToView == "tuesday" or DayToView == "tue":
-        print("\nTuesday's timetable is:")
-        for period in TueTT:
-            print(period)
-    elif DayToView == "wednesday" or DayToView == "wed":
-        print("\nWednesday's timetable is:")
-        for period in WedTT:
-            print(period)
-    elif DayToView == "thursday" or DayToView == "thu":
-        print("\nThursday's timetable is:")
-        for period in ThuTT:
-            print(period)
-    elif DayToView == "friday" or DayToView == "fri":
-        print("\nFriday's timetable is:")
-        for period in FriTT:
-            print(period)
-    elif DayToView == "saturday" or DayToView == "sat" or DayToView == "sunday" or DayToView == "sun":
-        print("There is no school during the weekend.")
-    else:
-        print("Invalid input")
-
-    AskAction()
 
 
 def ViewPeriod():
@@ -716,7 +641,7 @@ def ViewPeriod():
         print("There is no school during the weekend.")
     else:
         print("Invalid input")
-    AskAction()
+
 
 def Time():
     if len(str(time.localtime()[3])) == 1:
@@ -807,10 +732,6 @@ async def on_ready():
     print("TimeTableBot is now running")
 
 
-# with open("users9.txt", "w") as file:
-#    file.writelines(str(TemTT))
-
-
 @client.command(pass_context=True)
 async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138"):
     with open("users9.txt", "r") as file:
@@ -851,27 +772,28 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138"):
                 else:
                     await ctx.send("The current period is " + SetCurrentPeriod("7"))
                 await ctx.send("The next sceduled period is " + SetNextPeriod("7"))
-
+        
         elif mode == "help" or mode == "?":
-            await ctx.send("*Command List:*")
-            await ctx.send("**.tt**  -  Provides key information about current and upcoming periods, etc.")
-            await ctx.send("**.tt help**  -  Gives information on bot functions")
-            await ctx.send("**.tt config**  -  Allows you to configure various user settings for this bot")
-            await ctx.send("**.tt viewday G D**  -  Displays the timetable of the specified day   **G** = Grade    **D** = First letter of the day to view")
-            await ctx.send(
-                "If no grade is inputted, your grade will be used. If no day is inputted, the current day will be used.")
+            await ctx.send(ctx.message.author.mention + "  |  *Command List:*\n"
+                                                        "**.tt**  -  Provides key information about current and upcoming periods, etc.\n"
+                                                        "**.tt help**  -  Gives information on bot functions\n"
+                                                        "**.tt config**  -  Allows you to configure various user settings for this bot\n"
+                                                        "**.tt viewday G D**  -  Displays the timetable of the specified day   **G** = Grade    **D** = Day\n"
+                                                        "*|     (If no grade is inputted, your grade will be used. If no day is inputted, the current day will be used)*\n"
+                                                        "**.tt viewperiod P D G**  -  Displays a specified period of a specified day   **P** = Period number   **D** = Day   **G** = Grade"
+                                                        "*|     (If no day or period is specified, the current ones will be used. If no grade is inputted, your grade will be used. Use 'x' to force the default value)*\n")
         elif mode == "setgrade":
             if str(ctx.message.author.id) in userdata9:
                 await ctx.send(str(
-                    ctx.message.author.mention) + " Your grade has already been set to 9. Use **.tt config** to change it.")
+                    ctx.message.author.mention) + "  |  Your grade has already been set to 9. Use **.tt config** to change it.")
             elif str(ctx.message.author.id) in userdata8:
                 await ctx.send(str(
-                    ctx.message.author.mention) + " Your grade has already been set to 8. Use **.tt config** to change it.")
+                    ctx.message.author.mention) + "  |  Your grade has already been set to 8. Use **.tt config** to change it.")
             elif str(ctx.message.author.id) in userdata7:
                 await ctx.send(str(
-                    ctx.message.author.mention) + " Your grade has already been set to 7. Use **.tt config** to change it.")
+                    ctx.message.author.mention) + "  |  Your grade has already been set to 7. Use **.tt config** to change it.")
         elif mode == "viewday":
-            if inp1 == "9":
+            if inp1 == "9" or (inp1 == "11381138" and str(ctx.message.author.id) in userdata9):
                 with open("9MonFT.txt", "r") as file:
                     MonTT = eval(file.readline())
                 with open("9TueFT.txt", "r") as file:
@@ -883,30 +805,30 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138"):
                 with open("9FriFT.txt", "r") as file:
                     FriTT = eval(file.readline())
                 if str.lower(inp2) == "mon" or str.lower(inp2) == "monday":
-                    await ctx.send("G9's Monday timetable is:")
+                    await ctx.send(ctx.message.author.mention + "  |  G9's Monday timetable is:")
                     for period in MonTT:
                         await ctx.send(period)
                 elif str.lower(inp2) == "tue" or str.lower(inp2) == "tues" or str.lower(inp2) == "tuesday":
-                    await ctx.send("G9's Tuesday timetable is:")
+                    await ctx.send(ctx.message.author.mention + "  |  G9's Tuesday timetable is:")
                     for period in TueTT:
                         await ctx.send(period)
                 elif str.lower(inp2) == "wed" or str.lower(inp2) == "wednesday":
-                    await ctx.send("G9's Wednesday timetable is:")
+                    await ctx.send(ctx.message.author.mention + "  |  G9's Wednesday timetable is:")
                     for period in WedTT:
                         await ctx.send(period)
                 elif str.lower(inp2) == "thu" or str.lower(inp2) == "thur" or str.lower(inp2) == "thurs" or str.lower(inp2) == "thursday":
-                    await ctx.send("G9's Thursday timetable is:")
+                    await ctx.send(ctx.message.author.mention + "  |  G9's Thursday timetable is:")
                     for period in ThuTT:
                         await ctx.send(period)
                 elif str.lower(inp2) == "fri" or str.lower(inp2) == "friday":
-                    await ctx.send("G9's Friday timetable is:")
+                    await ctx.send(ctx.message.author.mention + "  |  G9's Friday timetable is:")
                     for period in FriTT:
                         await ctx.send(period)
                 elif str.lower(inp2) == "sat" or str.lower(inp2) == "saturday" or str.lower(inp2) == "sun" or str.lower(inp2) == "sunday":
-                    await ctx.send("There is no timetable set on the weekend")
+                    await ctx.send(ctx.message.author.mention + "  |  There is no timetable set on the weekend")
                 else:
-                    await ctx.send("That is not the correct usage of that command.\n**.tt viewday G D**  -  Displays the timetable of the specified day   **G** = Grade    **D** = First letter of the day to view")
-            elif inp1 == "8":
+                    await ctx.send(ctx.message.author.mention + "  |  That is not the correct usage of that command.\n**.tt viewday G D**  -  Displays the timetable of the specified day   **G** = Grade    **D** = First letter of the day to view")
+            elif inp1 == "8" or (inp1 == "11381138" and str(ctx.message.author.id) in userdata8):
                 with open("8MonFT.txt", "r") as file:
                     MonTT = eval(file.readline())
                 with open("8TueFT.txt", "r") as file:
@@ -918,30 +840,30 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138"):
                 with open("8FriFT.txt", "r") as file:
                     FriTT = eval(file.readline())
                 if str.lower(inp2) == "mon" or str.lower(inp2) == "monday":
-                    await ctx.send("G8's Monday timetable is:")
+                    await ctx.send(ctx.message.author.mention + "  |  G8's Monday timetable is:")
                     for period in MonTT:
                         await ctx.send(period)
                 elif str.lower(inp2) == "tue" or str.lower(inp2) == "tues" or str.lower(inp2) == "tuesday":
-                    await ctx.send("G8's Tuesday timetable is:")
+                    await ctx.send(ctx.message.author.mention + "  |  G8's Tuesday timetable is:")
                     for period in TueTT:
                         await ctx.send(period)
                 elif str.lower(inp2) == "wed" or str.lower(inp2) == "wednesday":
-                    await ctx.send("G8's Wednesday timetable is:")
+                    await ctx.send(ctx.message.author.mention + "  |  G8's Wednesday timetable is:")
                     for period in WedTT:
                         await ctx.send(period)
                 elif str.lower(inp2) == "thu" or str.lower(inp2) == "thur" or str.lower(inp2) == "thurs" or str.lower(inp2) == "thursday":
-                    await ctx.send("G8's Thursday timetable is:")
+                    await ctx.send(ctx.message.author.mention + "  |  G8's Thursday timetable is:")
                     for period in ThuTT:
                         await ctx.send(period)
                 elif str.lower(inp2) == "fri" or str.lower(inp2) == "friday":
-                    await ctx.send("G8's Friday timetable is:")
+                    await ctx.send(ctx.message.author.mention + "  |  G8's Friday timetable is:")
                     for period in FriTT:
                         await ctx.send(period)
                 elif str.lower(inp2) == "sat" or str.lower(inp2) == "saturday" or str.lower(inp2) == "sun" or str.lower(inp2) == "sunday":
-                    await ctx.send("There is no timetable set on the weekend")
+                    await ctx.send(ctx.message.author.mention + "  |  There is no timetable set on the weekend")
                 else:
                     await ctx.send("That is not the correct usage of that command.\n**.tt viewday G D**  -  Displays the timetable of the specified day   **G** = Grade    **D** = First letter of the day to view")
-            elif inp1 == "7":
+            elif inp1 == "7" or (inp1 == "11381138" and str(ctx.message.author.id) in userdata7):
                 with open("7MonFT.txt", "r") as file:
                     MonTT = eval(file.readline())
                 with open("7TueFT.txt", "r") as file:
@@ -953,27 +875,27 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138"):
                 with open("7FriFT.txt", "r") as file:
                     FriTT = eval(file.readline())
                 if str.lower(inp2) == "mon" or str.lower(inp2) == "monday":
-                    await ctx.send("G7's Monday timetable is:")
+                    await ctx.send(ctx.message.author.mention + "G7's Monday timetable is:")
                     for period in MonTT:
                         await ctx.send(period)
                 elif str.lower(inp2) == "tue" or str.lower(inp2) == "tues" or str.lower(inp2) == "tuesday":
-                    await ctx.send("G7's Tuesday timetable is:")
+                    await ctx.send(ctx.message.author.mention + "G7's Tuesday timetable is:")
                     for period in TueTT:
                         await ctx.send(period)
                 elif str.lower(inp2) == "wed" or str.lower(inp2) == "wednesday":
-                    await ctx.send("G7's Wednesday timetable is:")
+                    await ctx.send(ctx.message.author.mention + "G7's Wednesday timetable is:")
                     for period in WedTT:
                         await ctx.send(period)
                 elif str.lower(inp2) == "thu" or str.lower(inp2) == "thur" or str.lower(inp2) == "thurs" or str.lower(inp2) == "thursday":
-                    await ctx.send("G7's Thursday timetable is:")
+                    await ctx.send(ctx.message.author.mention + "G7's Thursday timetable is:")
                     for period in ThuTT:
                         await ctx.send(period)
                 elif str.lower(inp2) == "fri" or str.lower(inp2) == "friday":
-                    await ctx.send("G7's Friday timetable is:")
+                    await ctx.send(ctx.message.author.mention + "G7's Friday timetable is:")
                     for period in FriTT:
                         await ctx.send(period)
                 elif str.lower(inp2) == "sat" or str.lower(inp2) == "saturday" or str.lower(inp2) == "sun" or str.lower(inp2) == "sunday":
-                    await ctx.send("There is no timetable set on the weekend")
+                    await ctx.send(ctx.message.author.mention + "  |  There is no timetable set on the weekend")
                 else:
                     await ctx.send("That is not the correct usage of that command.\n**.tt viewday G D**  -  Displays the timetable of the specified day   **G** = Grade    **D** = First letter of the day to view")
         elif mode == "config":
@@ -992,7 +914,7 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138"):
                     userdata7 = file.read()
                 if inp2 == "9":
                     if str(ctx.message.author.id) in userdata9:
-                        await ctx.send("You are already set as Grade 9")
+                        await ctx.send(ctx.message.author.mention + "  |  You are already set as Grade 9")
                     elif str(ctx.message.author.id) in userdata8:
                         with open("users8.txt", "r") as file:
                             tempdata = file.readlines()
@@ -1004,7 +926,7 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138"):
                                     file.write(str(value))
                         with open("users9.txt", "a") as file:
                             file.write(str(ctx.message.author.id) + "\n")
-                        await ctx.send(ctx.message.author.mention + "  |  You have been set to Grade 9")
+                        await ctx.send(ctx.message.author.mention + "  |  You have been set as Grade 9")
                     elif str(ctx.message.author.id) in userdata7:
                         with open("users7.txt", "r") as file:
                             tempdata = file.readlines()
@@ -1016,10 +938,10 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138"):
                                     file.write(str(value))
                         with open("users9.txt", "a") as file:
                             file.write(str(ctx.message.author.id) + "\n")
-                        await ctx.send(ctx.message.author.mention + "  |  You have been set to Grade 9")
+                        await ctx.send(ctx.message.author.mention + "  |  You have been set as Grade 9")
                 elif inp2 == "8":
                     if str(ctx.message.author.id) in userdata8:
-                        await ctx.send("You are already set as Grade 8")
+                        await ctx.send(ctx.message.author.mention + "  |  You are already set as Grade 8")
                     elif str(ctx.message.author.id) in userdata9:
                         with open("users9.txt", "r") as file:
                             tempdata = file.readlines()
@@ -1031,7 +953,7 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138"):
                                     file.write(str(value))
                         with open("users8.txt", "a") as file:
                             file.write(str(ctx.message.author.id) + "\n")
-                        await ctx.send(ctx.message.author.mention + "  |  You have been set to Grade 8")
+                        await ctx.send(ctx.message.author.mention + "  |  You have been set as Grade 8")
                     elif str(ctx.message.author.id) in userdata7:
                         with open("users7.txt", "r") as file:
                             tempdata = file.readlines()
@@ -1043,10 +965,10 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138"):
                                     file.write(str(value))
                         with open("users8.txt", "a") as file:
                             file.write(str(ctx.message.author.id) + "\n")
-                        await ctx.send(ctx.message.author.mention + "  |  You have been set to Grade 8")
+                        await ctx.send(ctx.message.author.mention + "  |  You have been set as Grade 8")
                 elif inp2 == "7":
                     if str(ctx.message.author.id) in userdata7:
-                        await ctx.send("You are already set as Grade 7")
+                        await ctx.send(ctx.message.author.mention + "  |  You are already set as Grade 7")
                     elif str(ctx.message.author.id) in userdata8:
                         with open("users8.txt", "r") as file:
                             tempdata = file.readlines()
@@ -1058,7 +980,7 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138"):
                                     file.write(str(value))
                         with open("users7.txt", "a") as file:
                             file.write(str(ctx.message.author.id) + "\n")
-                        await ctx.send(ctx.message.author.mention + "  |  You have been set to Grade 7")
+                        await ctx.send(ctx.message.author.mention + "  |  You have been set as Grade 7")
                     elif str(ctx.message.author.id) in userdata9:
                         with open("users9.txt", "r") as file:
                             tempdata = file.readlines()
@@ -1070,7 +992,7 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138"):
                                     file.write(str(value))
                         with open("users7.txt", "a") as file:
                             file.write(str(ctx.message.author.id) + "\n")
-                        await ctx.send(ctx.message.author.mention + "  |  You have been set to Grade 7")
+                        await ctx.send(ctx.message.author.mention + "  |  You have been set as Grade 7")
     else:
         if mode == "setgrade":
             if inp1 == "7" or inp1 == "8" or inp1 == "9":
@@ -1084,14 +1006,11 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138"):
                     with open("users9.txt", "a") as file:
                         file.write(str(ctx.message.author.id) + "\n")
                 await ctx.send(
-                    "Thanks, " + ctx.message.author.mention + "!" + " You have been set to Grade " + inp1 + ".")
+                    ctx.message.author.mention + "  |  You have been set as Grade " + inp1)
             else:
-                await ctx.send("Please tell me what grade you are in by typing **.tt setgrade X**, where **X** is your grade number.")
+                await ctx.send(ctx.message.author.mention + "  |  Please set your grade by typing **.tt setgrade X**, where **X** is your grade number.")
         else:
-            await ctx.send("Hello " + ctx.message.author.mention + ". You have not yet been registered in my database.")
-            await ctx.send("Please tell me what grade you are in by typing **.tt setgrade X**, where **X** is your grade number.")
-            await ctx.send("You can always change this later if needed by using **.tt config**")
-
+            await ctx.send("Hello " + ctx.message.author.mention + ". You have not yet been registered in my database\nPlease tell me what grade you are in by typing **.tt setgrade X**, where **X** is your grade number\n*(You can always change this later if needed by using **.tt config**)*")
 
 
 client.run(BOT_TOKEN)

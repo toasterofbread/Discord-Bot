@@ -1,1 +1,1 @@
-['Japanese', 'English', 'Individuals & societies', 'Design', 'Music', 'No club']
+['Japanese', 'English', 'Individuals & societies', 'Design', 'Music']

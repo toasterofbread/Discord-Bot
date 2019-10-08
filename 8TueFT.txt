@@ -1,1 +1,1 @@
-['Library', 'Design', 'Science', 'Individuals & societies', 'English', 'No club']
+['Library', 'Design', 'Science', 'Individuals & societies', 'English']

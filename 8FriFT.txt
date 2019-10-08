@@ -1,1 +1,1 @@
-['English', 'Math', 'Physical education', 'Individuals & societies', 'Extended homeroom', 'No club']
+['English', 'Math', 'Physical education', 'Individuals & societies', 'Extended homeroom']

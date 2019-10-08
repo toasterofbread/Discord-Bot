@@ -1,1 +1,1 @@
-['Math', 'Science', 'Japanese', 'Health', 'Music', 'No club']
+['Math', 'Science', 'Japanese', 'Health', 'Music']
