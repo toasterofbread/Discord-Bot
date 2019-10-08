@@ -1,6 +1,8 @@
-from discord.ext import commands
-BOT_TOKEN = "NjI3MDk5ODk3MjIwNDMxODcy.XY3v5Q.Q19bNJrTqvFa1eDTPEmfJjvd4HE"
 import time
+from discord.ext import commands
+from userconfig import idconfig
+BOT_TOKEN = "NjI3MDk5ODk3MjIwNDMxODcy.XY3v5Q.Q19bNJrTqvFa1eDTPEmfJjvd4HE"
+
 
 #  Lessons
 sub_INS = "Individuals & societies"
@@ -54,6 +56,7 @@ periodnumberswed = (0, 1, 2, 3, 4)
 
 CurrentPeriod = sp_ERR
 NextPeriod = sp_ERR
+
 
 def SetNextPeriod(grade):
     if grade == "9":
@@ -276,6 +279,8 @@ def SetNextPeriod(grade):
     else:
         NextPeriod = MonTT[0]
     return NextPeriod
+
+
 def SetCurrentPeriod(grade):
     if grade == "9":
         with open("Data9\MonFT.txt", "r") as file:
@@ -337,11 +342,11 @@ def SetCurrentPeriod(grade):
             CurrentPeriod = MonTT[2]
 
         #  12:30 to 1:00
-        elif (time.localtime()[3] == 12 and time.localtime()[4] >= 30):
+        elif time.localtime()[3] == 12 and time.localtime()[4] >= 30:
             CurrentPeriod = sp_LNCH
 
         #  1:00 to 1:30
-        elif (time.localtime()[3] == 13 and time.localtime()[4] < 30):
+        elif time.localtime()[3] == 13 and time.localtime()[4] < 30:
             CurrentPeriod = sp_LNRE
 
         #  1:30 to 2:30
@@ -395,11 +400,11 @@ def SetCurrentPeriod(grade):
             CurrentPeriod = TueTT[2]
 
         #  12:30 to 1:00
-        elif (time.localtime()[3] == 12 and time.localtime()[4] >= 30):
+        elif time.localtime()[3] == 12 and time.localtime()[4] >= 30:
             CurrentPeriod = sp_LNCH
 
         #  1:00 to 1:30
-        elif (time.localtime()[3] == 13 and time.localtime()[4] < 30):
+        elif time.localtime()[3] == 13 and time.localtime()[4] < 30:
             CurrentPeriod = sp_LNRE
 
         #  1:30 to 2:30
@@ -453,11 +458,11 @@ def SetCurrentPeriod(grade):
             CurrentPeriod = WedTT[2]
 
         #  12:30 to 1:00
-        elif (time.localtime()[3] == 12 and time.localtime()[4] >= 30):
+        elif time.localtime()[3] == 12 and time.localtime()[4] >= 30:
             CurrentPeriod = sp_LNCH
 
         #  1:00 to 1:30
-        elif (time.localtime()[3] == 13 and time.localtime()[4] < 30):
+        elif time.localtime()[3] == 13 and time.localtime()[4] < 30:
             CurrentPeriod = sp_LNRE
 
         #  1:30 to 2:30
@@ -511,11 +516,11 @@ def SetCurrentPeriod(grade):
             CurrentPeriod = ThuTT[2]
 
         #  12:30 to 1:00
-        elif (time.localtime()[3] == 12 and time.localtime()[4] >= 30):
+        elif time.localtime()[3] == 12 and time.localtime()[4] >= 30:
             CurrentPeriod = sp_LNCH
 
         #  1:00 to 1:30
-        elif (time.localtime()[3] == 13 and time.localtime()[4] < 30):
+        elif time.localtime()[3] == 13 and time.localtime()[4] < 30:
             CurrentPeriod = sp_LNRE
 
         #  1:30 to 2:30
@@ -569,11 +574,11 @@ def SetCurrentPeriod(grade):
             CurrentPeriod = FriTT[2]
 
         #  12:30 to 1:00
-        elif (time.localtime()[3] == 12 and time.localtime()[4] >= 30):
+        elif time.localtime()[3] == 12 and time.localtime()[4] >= 30:
             CurrentPeriod = sp_LNCH
 
         #  1:00 to 1:30
-        elif (time.localtime()[3] == 13 and time.localtime()[4] < 30):
+        elif time.localtime()[3] == 13 and time.localtime()[4] < 30:
             CurrentPeriod = sp_LNRE
 
         #  1:30 to 2:30
@@ -608,8 +613,8 @@ def SetCurrentPeriod(grade):
 
     return CurrentPeriod
 
-def ViewDay():
 
+def ViewDay():
     with open("Data9\MonFT.txt", "r") as file:
         MonTT = eval(file.readline())
     with open("Data9\TueFT.txt", "r") as file:
@@ -642,14 +647,15 @@ def ViewDay():
         print("\nFriday's timetable is:")
         for period in FriTT:
             print(period)
-    elif DayToView == "saturday" or DayToView == "sat" or DayToView == "sunday"or DayToView == "sun":
+    elif DayToView == "saturday" or DayToView == "sat" or DayToView == "sunday" or DayToView == "sun":
         print("There is no school during the weekend.")
     else:
         print("Invalid input")
 
     AskAction()
-def ViewPeriod():
 
+
+def ViewPeriod():
     with open("Data9\MonFT.txt", "r") as file:
         MonTT = eval(file.readline())
     with open("Data9\TueFT.txt", "r") as file:
@@ -669,7 +675,8 @@ def ViewPeriod():
         elif PeriodToView == "club" or "6":
             if MonTT[5] == sp_NUCL:
                 print("\nThere is no club on Monday")
-            else: print("\nMonday's club is: " + MonTT[5])
+            else:
+                print("\nMonday's club is: " + MonTT[5])
     elif PDayToView == "tuesday" or PDayToView == "tue":
         PeriodToView = str.lower(input("Select the period to view:  "))
         if PeriodToView == "1" or PeriodToView == "2" or PeriodToView == "3" or PeriodToView == "4" or PeriodToView == "5":
@@ -677,7 +684,8 @@ def ViewPeriod():
         elif PeriodToView == "club" or "6":
             if TueTT[5] == sp_NUCL:
                 print("\nThere is no club on Tuesday")
-            else: print("\nTuesday's club is: " + TueTT[5])
+            else:
+                print("\nTuesday's club is: " + TueTT[5])
     elif PDayToView == "wednesday" or PDayToView == "wed":
         PeriodToView = str.lower(input("Select the period to view:  "))
         if PeriodToView == "1" or PeriodToView == "2" or PeriodToView == "3" or PeriodToView == "4":
@@ -685,7 +693,8 @@ def ViewPeriod():
         elif PeriodToView == "club" or "5":
             if WedTT[4] == sp_NUCL:
                 print("\nThere is no club on Wednesdau")
-            else: print("\nWednesday's club is: " + WedTT[4])
+            else:
+                print("\nWednesday's club is: " + WedTT[4])
     elif PDayToView == "thursday" or PDayToView == "thu":
         PeriodToView = str.lower(input("Select the period to view:  "))
         if PeriodToView == "1" or PeriodToView == "2" or PeriodToView == "3" or PeriodToView == "4" or PeriodToView == "5":
@@ -693,7 +702,8 @@ def ViewPeriod():
         elif PeriodToView == "club" or "6":
             if ThuTT[5] == sp_NUCL:
                 print("\nThere is no club on Thursday")
-            else: print("\nThursday's club is: " + ThuTT[5])
+            else:
+                print("\nThursday's club is: " + ThuTT[5])
     elif PDayToView == "friday" or PDayToView == "fri":
         PeriodToView = str.lower(input("Select the period to view:  "))
         if PeriodToView == "1" or PeriodToView == "2" or PeriodToView == "3" or PeriodToView == "4" or PeriodToView == "5":
@@ -701,78 +711,84 @@ def ViewPeriod():
         elif PeriodToView == "club" or "6":
             if FriTT[5] == sp_NUCL:
                 print("\nThere is no club on Friday")
-            else: print("\nFriday's club is: " + FriTT[5])
-    elif PDayToView == "saturday" or PDayToView == "sat" or PDayToView == "sunday"or PDayToView == "sun":
+            else:
+                print("\nFriday's club is: " + FriTT[5])
+    elif PDayToView == "saturday" or PDayToView == "sat" or PDayToView == "sunday" or PDayToView == "sun":
         print("There is no school during the weekend.")
     else:
         print("Invalid input")
     AskAction()
 
+def Time(id):
+    if len(str(time.localtime()[3])) == 1:
+        return "0" + str(time.localtime()[3]) + ":" + str(time.localtime()[4])
+    else:
+        return str(time.localtime()[3]) + ":" + str(time.localtime()[4])
+
 def Day():
     if time.localtime()[6] == 0:
-        return("Monday")
+        return "Monday"
     elif time.localtime()[6] == 1:
-        return("Tuesday")
+        return "Tuesday"
     elif time.localtime()[6] == 2:
-        return("Wednesday")
+        return "Wednesday"
     elif time.localtime()[6] == 3:
-        return("Thursday")
+        return "Thursday"
     elif time.localtime()[6] == 4:
-        return("Friday")
+        return "Friday"
     elif time.localtime()[6] == 5:
-        return("Saturday")
+        return "Saturday"
     elif time.localtime()[6] == 6:
-        return ("Sunday")
+        return "Sunday"
 def Date():
     if len(str(time.localtime()[2])) == 2 and str(time.localtime()[2])[0] == "1":
-        return(str(time.localtime()[2]) + "th")
+        return str(time.localtime()[2]) + "th"
     elif len(str(time.localtime()[2])) == 2:
         if str(time.localtime()[2])[1] == "1":
-            return (str(time.localtime()[2]) + "st")
+            return str(time.localtime()[2]) + "st"
         elif str(time.localtime()[2])[1] == "2":
-            return (str(time.localtime()[2]) + "nd")
+            return str(time.localtime()[2]) + "nd"
         elif str(time.localtime()[2])[1] == "3":
-            return (str(time.localtime()[2]) + "rd")
+            return str(time.localtime()[2]) + "rd"
         else:
-            return (str(time.localtime()[2]) + "th")
+            return str(time.localtime()[2]) + "th"
     elif len(str(time.localtime()[2])) == 1:
         if str(time.localtime()[2]) == "1":
-            return (str(time.localtime()[2]) + "st")
+            return str(time.localtime()[2]) + "st"
         elif str(time.localtime()[2]) == "2":
-            return (str(time.localtime()[2]) + "nd")
+            return str(time.localtime()[2]) + "nd"
         elif str(time.localtime()[2]) == "3":
-            return (str(time.localtime()[2]) + "rd")
+            return str(time.localtime()[2]) + "rd"
         else:
-            return (str(time.localtime()[2]) + "th")
+            return str(time.localtime()[2]) + "th"
 def Month():
     if str(time.localtime()[1]) == "1":
-        return("January")
+        return "January"
     elif str(time.localtime()[1]) == "2":
-        return("February")
+        return "February"
     elif str(time.localtime()[1]) == "3":
-        return("March")
+        return "March"
     elif str(time.localtime()[1]) == "4":
-        return("April")
+        return "April"
     elif str(time.localtime()[1]) == "5":
-        return("May")
+        return "May"
     elif str(time.localtime()[1]) == "6":
-        return("June")
+        return "June"
     elif str(time.localtime()[1]) == "7":
-        return("July")
+        return "July"
     elif str(time.localtime()[1]) == "8":
-        return("August")
+        return "August"
     elif str(time.localtime()[1]) == "9":
-        return("September")
+        return "September"
     elif str(time.localtime()[1]) == "10":
-        return("October")
+        return "October"
     elif str(time.localtime()[1]) == "11":
-        return("November")
+        return "November"
     elif str(time.localtime()[1]) == "12":
-        return("December")
+        return "December"
 
 
-
-client = commands.Bot(command_prefix = ".")
+client = commands.Bot(command_prefix=".")
 
 with open("users9.txt", "r") as file:
     userdata9 = file.read()
@@ -782,20 +798,17 @@ with open("users7.txt", "r") as file:
     userdata7 = file.read()
 
 
-
 @client.event
 async def on_ready():
     print("TimeTableBot is now running")
 
 
-#with open("users9.txt", "w") as file:
+# with open("users9.txt", "w") as file:
 #    file.writelines(str(TemTT))
 
 
-
 @client.command(pass_context=True)
-async def tt(ctx, inp1 = "11381138", inp2 = "11381138"):
-
+async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138"):
     with open("users9.txt", "r") as file:
         userdata9 = file.read()
     with open("users8.txt", "r") as file:
@@ -803,8 +816,7 @@ async def tt(ctx, inp1 = "11381138", inp2 = "11381138"):
     with open("users7.txt", "r") as file:
         userdata7 = file.read()
 
-    mode = str.lower(inp1)
-
+    mode = str.lower(modeinp)
     if str(ctx.message.author.id) in userdata9 or str(ctx.message.author.id) in userdata8 or str(ctx.message.author.id) in userdata7:
         with open("users9.txt", "r") as file:
             userdata9 = file.read()
@@ -814,36 +826,33 @@ async def tt(ctx, inp1 = "11381138", inp2 = "11381138"):
             userdata7 = file.read()
         if mode == "11381138":
             if str(ctx.message.author.id) in userdata9:
-                await ctx.send("Today is " + Day() + " the " + Date() + " of " + Month() + " " + str(time.localtime()[0]) + "\n\nG9")
+                await ctx.send("Today is " + Day() + " the " + Date() + " of " + Month() + " " + str(time.localtime()[0] + Time(ctx.message.author.id)) + "\n\nG9")
                 if SetCurrentPeriod("9") == sp_NULL or SetCurrentPeriod("9") == sp_NUCL:
                     await ctx.send("There is nothing scheduled for the current period")
                 else:
                     await ctx.send("The current period is " + SetCurrentPeriod("9"))
                 await ctx.send("The next sceduled period is " + SetNextPeriod("9"))
             elif str(ctx.message.author.id) in userdata8:
-                await ctx.send("Today is " + Day() + " the " + Date() + " of " + Month() + " " + str(time.localtime()[0]) + "\n\nG8")
+                await ctx.send("Today is " + Day() + " the " + Date() + " of " + Month() + " " + str(time.localtime()[0] + Time(ctx.message.author.id)) + "\n\nG8")
                 if SetCurrentPeriod("8") == sp_NULL or SetCurrentPeriod("8") == sp_NUCL:
                     await ctx.send("There is nothing scheduled for the current period")
                 else:
                     await ctx.send("The current period is " + SetCurrentPeriod("8"))
                 await ctx.send("The next sceduled period is " + SetNextPeriod("8"))
             elif str(ctx.message.author.id) in userdata7:
-                await ctx.send("Today is " + Day() + " the " + Date() + " of " + Month() + " " + str(time.localtime()[0]) + "\n\nG7")
+                await ctx.send("Today is " + Day() + " the " + Date() + " of " + Month() + " " + str(time.localtime()[0] + Time(ctx.message.author.id)) + "\n\nG7")
                 if SetCurrentPeriod("7") == sp_NULL or SetCurrentPeriod("7") == sp_NUCL:
                     await ctx.send("There is nothing scheduled for the current period")
                 else:
                     await ctx.send("The current period is " + SetCurrentPeriod("7"))
                 await ctx.send("The next sceduled period is " + SetNextPeriod("7"))
 
-
-
-
         elif mode == "help" or mode == "?":
             await ctx.send("*Command List:*")
             await ctx.send("**.tt**  -  Provides key information about current and upcoming periods, etc.")
             await ctx.send("**.tt help**  -  Gives information on bot functions")
-            await ctx.send(
-                "**.tt viewday X Y**  -  Displays the timetable of the specified day   **X** = First letter of the day   **Y** = Grade")
+            await ctx.send("**.tt config**  -  Allows you to configure various user settings for this bot")
+            await ctx.send("**.tt viewday G D**  -  Displays the timetable of the specified day   **G** = Grade    **D** = First letter of the day to view")
             await ctx.send(
                 "If no grade is inputted, your grade will be used. If no day is inputted, the current day will be used.")
         elif mode == "setgrade":
@@ -856,20 +865,215 @@ async def tt(ctx, inp1 = "11381138", inp2 = "11381138"):
             elif str(ctx.message.author.id) in userdata7:
                 await ctx.send(str(
                     ctx.message.author.mention) + " Your grade has already been set to 7. Use **.tt config** to change it.")
+        elif mode == "viewday":
+            if inp1 == "9":
+                with open("Data9\MonFT.txt", "r") as file:
+                    MonTT = eval(file.readline())
+                with open("Data9\TueFT.txt", "r") as file:
+                    TueTT = eval(file.readline())
+                with open("Data9\WedFT.txt", "r") as file:
+                    WedTT = eval(file.readline())
+                with open("Data9\ThuFT.txt", "r") as file:
+                    ThuTT = eval(file.readline())
+                with open("Data9\FriFT.txt", "r") as file:
+                    FriTT = eval(file.readline())
+                if str.lower(inp2) == "mon" or str.lower(inp2) == "monday":
+                    await ctx.send("G9's Monday timetable is:")
+                    for period in MonTT:
+                        await ctx.send(period)
+                elif str.lower(inp2) == "tue" or str.lower(inp2) == "tues" or str.lower(inp2) == "tuesday":
+                    await ctx.send("G9's Tuesday timetable is:")
+                    for period in TueTT:
+                        await ctx.send(period)
+                elif str.lower(inp2) == "wed" or str.lower(inp2) == "wednesday":
+                    await ctx.send("G9's Wednesday timetable is:")
+                    for period in WedTT:
+                        await ctx.send(period)
+                elif str.lower(inp2) == "thu" or str.lower(inp2) == "thur" or str.lower(inp2) == "thurs" or str.lower(inp2) == "thursday":
+                    await ctx.send("G9's Thursday timetable is:")
+                    for period in ThuTT:
+                        await ctx.send(period)
+                elif str.lower(inp2) == "fri" or str.lower(inp2) == "friday":
+                    await ctx.send("G9's Friday timetable is:")
+                    for period in FriTT:
+                        await ctx.send(period)
+                elif str.lower(inp2) == "sat" or str.lower(inp2) == "saturday" or str.lower(inp2) == "sun" or str.lower(inp2) == "sunday":
+                    await ctx.send("There is no timetable set on the weekend")
+                else:
+                    await ctx.send("That is not the correct usage of that command.\n**.tt viewday G D**  -  Displays the timetable of the specified day   **G** = Grade    **D** = First letter of the day to view")
+            elif inp1 == "8":
+                with open("Data8\MonFT.txt", "r") as file:
+                    MonTT = eval(file.readline())
+                with open("Data8\TueFT.txt", "r") as file:
+                    TueTT = eval(file.readline())
+                with open("Data8\WedFT.txt", "r") as file:
+                    WedTT = eval(file.readline())
+                with open("Data8\ThuFT.txt", "r") as file:
+                    ThuTT = eval(file.readline())
+                with open("Data8\FriFT.txt", "r") as file:
+                    FriTT = eval(file.readline())
+                if str.lower(inp2) == "mon" or str.lower(inp2) == "monday":
+                    await ctx.send("G8's Monday timetable is:")
+                    for period in MonTT:
+                        await ctx.send(period)
+                elif str.lower(inp2) == "tue" or str.lower(inp2) == "tues" or str.lower(inp2) == "tuesday":
+                    await ctx.send("G8's Tuesday timetable is:")
+                    for period in TueTT:
+                        await ctx.send(period)
+                elif str.lower(inp2) == "wed" or str.lower(inp2) == "wednesday":
+                    await ctx.send("G8's Wednesday timetable is:")
+                    for period in WedTT:
+                        await ctx.send(period)
+                elif str.lower(inp2) == "thu" or str.lower(inp2) == "thur" or str.lower(inp2) == "thurs" or str.lower(inp2) == "thursday":
+                    await ctx.send("G8's Thursday timetable is:")
+                    for period in ThuTT:
+                        await ctx.send(period)
+                elif str.lower(inp2) == "fri" or str.lower(inp2) == "friday":
+                    await ctx.send("G8's Friday timetable is:")
+                    for period in FriTT:
+                        await ctx.send(period)
+                elif str.lower(inp2) == "sat" or str.lower(inp2) == "saturday" or str.lower(inp2) == "sun" or str.lower(inp2) == "sunday":
+                    await ctx.send("There is no timetable set on the weekend")
+                else:
+                    await ctx.send("That is not the correct usage of that command.\n**.tt viewday G D**  -  Displays the timetable of the specified day   **G** = Grade    **D** = First letter of the day to view")
+            elif inp1 == "7":
+                with open("Data7\MonFT.txt", "r") as file:
+                    MonTT = eval(file.readline())
+                with open("Data7\TueFT.txt", "r") as file:
+                    TueTT = eval(file.readline())
+                with open("Data7\WedFT.txt", "r") as file:
+                    WedTT = eval(file.readline())
+                with open("Data7\ThuFT.txt", "r") as file:
+                    ThuTT = eval(file.readline())
+                with open("Data7\FriFT.txt", "r") as file:
+                    FriTT = eval(file.readline())
+                if str.lower(inp2) == "mon" or str.lower(inp2) == "monday":
+                    await ctx.send("G7's Monday timetable is:")
+                    for period in MonTT:
+                        await ctx.send(period)
+                elif str.lower(inp2) == "tue" or str.lower(inp2) == "tues" or str.lower(inp2) == "tuesday":
+                    await ctx.send("G7's Tuesday timetable is:")
+                    for period in TueTT:
+                        await ctx.send(period)
+                elif str.lower(inp2) == "wed" or str.lower(inp2) == "wednesday":
+                    await ctx.send("G7's Wednesday timetable is:")
+                    for period in WedTT:
+                        await ctx.send(period)
+                elif str.lower(inp2) == "thu" or str.lower(inp2) == "thur" or str.lower(inp2) == "thurs" or str.lower(inp2) == "thursday":
+                    await ctx.send("G7's Thursday timetable is:")
+                    for period in ThuTT:
+                        await ctx.send(period)
+                elif str.lower(inp2) == "fri" or str.lower(inp2) == "friday":
+                    await ctx.send("G7's Friday timetable is:")
+                    for period in FriTT:
+                        await ctx.send(period)
+                elif str.lower(inp2) == "sat" or str.lower(inp2) == "saturday" or str.lower(inp2) == "sun" or str.lower(inp2) == "sunday":
+                    await ctx.send("There is no timetable set on the weekend")
+                else:
+                    await ctx.send("That is not the correct usage of that command.\n**.tt viewday G D**  -  Displays the timetable of the specified day   **G** = Grade    **D** = First letter of the day to view")
+        elif mode == "config":
+            if inp1 == "11381138":
+                await ctx.send("*User configuartion*\n"
+                               "**.tt config clubs**  -  Allows you to view, set, and edit school clubs\n"
+                               "**.tt config grade X** Allows you to change your grade if you set it incorrectly  X = The grade you want to be set as\n"
+                               "**.tt config reset** Resets all of your settings to their default values\n"
+                               "**.tt config reset all** Completely resets your settings, and also removes your ID from this bot's database (debug, not recommended)")
+            elif inp1 == "grade":
+                with open("users9.txt", "r") as file:
+                    userdata9 = file.read()
+                with open("users8.txt", "r") as file:
+                    userdata8 = file.read()
+                with open("users7.txt", "r") as file:
+                    userdata7 = file.read()
+                if inp2 == "9":
+                    if str(ctx.message.author.id) in userdata9:
+                        await ctx.send("You are already set as Grade 9")
+                    elif str(ctx.message.author.id) in userdata8:
+                        with open("users8.txt", "r") as file:
+                            tempdata = file.readlines()
+                        with open("users8.txt", "w") as file:
+                            file.write("\n")
+                        for value in tempdata:
+                            if str(ctx.message.author.id) not in str(value):
+                                with open("users8.txt", "a") as file:
+                                    file.write(str(value))
+                        with open("users9.txt", "a") as file:
+                            file.write(str(ctx.message.author.id) + "\n")
+                    elif str(ctx.message.author.id) in userdata7:
+                        with open("users7.txt", "r") as file:
+                            tempdata = file.readlines()
+                        with open("users7.txt", "w") as file:
+                            file.write("\n")
+                        for value in tempdata:
+                            if str(ctx.message.author.id) not in str(value):
+                                with open("users7.txt", "a") as file:
+                                    file.write(str(value))
+                        with open("users9.txt", "a") as file:
+                            file.write(str(ctx.message.author.id) + "\n")
+                elif inp2 == "8":
+                    if str(ctx.message.author.id) in userdata8:
+                        await ctx.send("You are already set as Grade 8")
+                    elif str(ctx.message.author.id) in userdata9:
+                        with open("users9.txt", "r") as file:
+                            tempdata = file.readlines()
+                        with open("users9.txt", "w") as file:
+                            file.write("\n")
+                        for value in tempdata:
+                            if str(ctx.message.author.id) not in str(value):
+                                with open("users9.txt", "a") as file:
+                                    file.write(str(value))
+                        with open("users8.txt", "a") as file:
+                            file.write(str(ctx.message.author.id) + "\n")
+                    elif str(ctx.message.author.id) in userdata7:
+                        with open("users7.txt", "r") as file:
+                            tempdata = file.readlines()
+                        with open("users7.txt", "w") as file:
+                            file.write("\n")
+                        for value in tempdata:
+                            if str(ctx.message.author.id) not in str(value):
+                                with open("users7.txt", "a") as file:
+                                    file.write(str(value))
+                        with open("users8.txt", "a") as file:
+                            file.write(str(ctx.message.author.id) + "\n")
+                elif inp2 == "7":
+                    if str(ctx.message.author.id) in userdata7:
+                        await ctx.send("You are already set as Grade 7")
+                    elif str(ctx.message.author.id) in userdata8:
+                        with open("users8.txt", "r") as file:
+                            tempdata = file.readlines()
+                        with open("users8.txt", "w") as file:
+                            file.write("\n")
+                        for value in tempdata:
+                            if str(ctx.message.author.id) not in str(value):
+                                with open("users8.txt", "a") as file:
+                                    file.write(str(value))
+                        with open("users7.txt", "a") as file:
+                            file.write(str(ctx.message.author.id) + "\n")
+                    elif str(ctx.message.author.id) in userdata9:
+                        with open("users9.txt", "r") as file:
+                            tempdata = file.readlines()
+                        with open("users9.txt", "w") as file:
+                            file.write("\n")
+                        for value in tempdata:
+                            if str(ctx.message.author.id) not in str(value):
+                                with open("users9.txt", "a") as file:
+                                    file.write(str(value))
+                        with open("users7.txt", "a") as file:
+                            file.write(str(ctx.message.author.id) + "\n")
     else:
         if mode == "setgrade":
-            if inp2 == "7" or inp2 == "8" or inp2 == "9":
-                if inp2 == "7":
+            if inp1 == "7" or inp1 == "8" or inp1 == "9":
+                if inp1 == "7":
                     with open("users7.txt", "a") as file:
                         file.write(str(ctx.message.author.id) + "\n")
-                elif inp2 == "8":
+                elif inp1 == "8":
                     with open("users8.txt", "a") as file:
                         file.write(str(ctx.message.author.id) + "\n")
-                elif inp2 == "9":
+                elif inp1 == "9":
                     with open("users9.txt", "a") as file:
                         file.write(str(ctx.message.author.id) + "\n")
                 await ctx.send(
-                    "Thanks, " + ctx.message.author.mention + "!" + " You have been set to Grade " + inp2 + ".")
+                    "Thanks, " + ctx.message.author.mention + "!" + " You have been set to Grade " + inp1 + ".")
             else:
                 await ctx.send("Please tell me what grade you are in by typing **.tt setgrade X**, where **X** is your grade number.")
         else:
@@ -880,4 +1084,3 @@ async def tt(ctx, inp1 = "11381138", inp2 = "11381138"):
 
 
 client.run(BOT_TOKEN)
-
