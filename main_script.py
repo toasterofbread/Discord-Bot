@@ -1,6 +1,5 @@
 import time
 from discord.ext import commands
-from userconfig import idconfig
 BOT_TOKEN = "NjI3MDk5ODk3MjIwNDMxODcy.XY3v5Q.Q19bNJrTqvFa1eDTPEmfJjvd4HE"
 
 
