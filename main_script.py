@@ -774,14 +774,14 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138"):
                 await ctx.send("The next sceduled period is " + SetNextPeriod("7"))
         
         elif mode == "help" or mode == "?":
-            await ctx.send(ctx.message.author.mention + "  |  *Command List:*\n"
+            await ctx.send(ctx.message.author.mention + "  |  **Command List:**\n"
                                                         "**.tt**  -  Provides key information about current and upcoming periods, etc.\n"
                                                         "**.tt help**  -  Gives information on bot functions\n"
                                                         "**.tt config**  -  Allows you to configure various user settings for this bot\n"
                                                         "**.tt viewday G D**  -  Displays the timetable of the specified day   **G** = Grade    **D** = Day\n"
-                                                        "*|     (If no grade is inputted, your grade will be used. If no day is inputted, the current day will be used)*\n"
+                                                        "|     *(If no grade is inputted, your grade will be used. If no day is inputted, the current day will be used)*\n"
                                                         "**.tt viewperiod P D G**  -  Displays a specified period of a specified day   **P** = Period number   **D** = Day   **G** = Grade\n"
-                                                        "*|     (If no day or period is specified, the current ones will be used. If no grade is inputted, your grade will be used. Use 'x' to force the default value)*\n")
+                                                        "|     *(If no day or period is specified, the current ones will be used. If no grade is inputted, your grade will be used. Use 'x' to force the default value)*\n")
         elif mode == "setgrade":
             if str(ctx.message.author.id) in userdata9:
                 await ctx.send(str(
