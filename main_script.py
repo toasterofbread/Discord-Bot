@@ -1,4 +1,6 @@
 import time
+import datetime
+datetime.timezone
 from discord.ext import commands
 BOT_TOKEN = "NjI3MDk5ODk3MjIwNDMxODcy.XY3v5Q.Q19bNJrTqvFa1eDTPEmfJjvd4HE"
 
@@ -832,14 +834,14 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138"):
                     await ctx.send("The current period is " + SetCurrentPeriod("9"))
                 await ctx.send("The next sceduled period is " + SetNextPeriod("9"))
             elif str(ctx.message.author.id) in userdata8:
-                await ctx.send("Today is " + Day() + " the " + Date() + " of " + Month() + " " + str(time.localtime()[0] + Time(ctx.message.author.id)) + "\n\nG8")
+                await ctx.send("Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + ".\n\nG8")
                 if SetCurrentPeriod("8") == sp_NULL or SetCurrentPeriod("8") == sp_NUCL:
                     await ctx.send("There is nothing scheduled for the current period")
                 else:
                     await ctx.send("The current period is " + SetCurrentPeriod("8"))
                 await ctx.send("The next sceduled period is " + SetNextPeriod("8"))
             elif str(ctx.message.author.id) in userdata7:
-                await ctx.send("Today is " + Day() + " the " + Date() + " of " + Month() + " " + str(time.localtime()[0] + Time(ctx.message.author.id)) + "\n\nG7")
+                await ctx.send("Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + ".\n\nG7")
                 if SetCurrentPeriod("7") == sp_NULL or SetCurrentPeriod("7") == sp_NUCL:
                     await ctx.send("There is nothing scheduled for the current period")
                 else:
