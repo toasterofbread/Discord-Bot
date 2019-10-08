@@ -1,1 +1,0 @@
-['Library', 'Science', 'Japanese', 'Design', 'English', 'No club']

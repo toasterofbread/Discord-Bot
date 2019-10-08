@@ -59,37 +59,37 @@ NextPeriod = sp_ERR
 
 def SetNextPeriod(grade):
     if grade == "9":
-        with open("Data9\MonFT.txt", "r") as file:
+        with open("9MonFT.txt", "r") as file:
             MonTT = eval(file.readline())
-        with open("Data9\TueFT.txt", "r") as file:
+        with open("9TueFT.txt", "r") as file:
             TueTT = eval(file.readline())
-        with open("Data9\WedFT.txt", "r") as file:
+        with open("9WedFT.txt", "r") as file:
             WedTT = eval(file.readline())
-        with open("Data9\ThuFT.txt", "r") as file:
+        with open("9ThuFT.txt", "r") as file:
             ThuTT = eval(file.readline())
-        with open("Data9\FriFT.txt", "r") as file:
+        with open("9FriFT.txt", "r") as file:
             FriTT = eval(file.readline())
     elif grade == "8":
-        with open("Data8\MonFT.txt", "r") as file:
+        with open("8MonFT.txt", "r") as file:
             MonTT = eval(file.readline())
-        with open("Data8\TueFT.txt", "r") as file:
+        with open("8TueFT.txt", "r") as file:
             TueTT = eval(file.readline())
-        with open("Data8\WedFT.txt", "r") as file:
+        with open("8WedFT.txt", "r") as file:
             WedTT = eval(file.readline())
-        with open("Data8\ThuFT.txt", "r") as file:
+        with open("8ThuFT.txt", "r") as file:
             ThuTT = eval(file.readline())
-        with open("Data8\FriFT.txt", "r") as file:
+        with open("8FriFT.txt", "r") as file:
             FriTT = eval(file.readline())
     elif grade == "7":
-        with open("Data7\MonFT.txt", "r") as file:
+        with open("7MonFT.txt", "r") as file:
             MonTT = eval(file.readline())
-        with open("Data7\TueFT.txt", "r") as file:
+        with open("7TueFT.txt", "r") as file:
             TueTT = eval(file.readline())
-        with open("Data7\WedFT.txt", "r") as file:
+        with open("7WedFT.txt", "r") as file:
             WedTT = eval(file.readline())
-        with open("Data7\ThuFT.txt", "r") as file:
+        with open("7ThuFT.txt", "r") as file:
             ThuTT = eval(file.readline())
-        with open("Data7\FriFT.txt", "r") as file:
+        with open("7FriFT.txt", "r") as file:
             FriTT = eval(file.readline())
 
     global NextPeriod
@@ -282,37 +282,37 @@ def SetNextPeriod(grade):
 
 def SetCurrentPeriod(grade):
     if grade == "9":
-        with open("Data9\MonFT.txt", "r") as file:
+        with open("9MonFT.txt", "r") as file:
             MonTT = eval(file.readline())
-        with open("Data9\TueFT.txt", "r") as file:
+        with open("9TueFT.txt", "r") as file:
             TueTT = eval(file.readline())
-        with open("Data9\WedFT.txt", "r") as file:
+        with open("9WedFT.txt", "r") as file:
             WedTT = eval(file.readline())
-        with open("Data9\ThuFT.txt", "r") as file:
+        with open("9ThuFT.txt", "r") as file:
             ThuTT = eval(file.readline())
-        with open("Data9\FriFT.txt", "r") as file:
+        with open("9FriFT.txt", "r") as file:
             FriTT = eval(file.readline())
     elif grade == "8":
-        with open("Data8\MonFT.txt", "r") as file:
+        with open("8MonFT.txt", "r") as file:
             MonTT = eval(file.readline())
-        with open("Data8\TueFT.txt", "r") as file:
+        with open("8TueFT.txt", "r") as file:
             TueTT = eval(file.readline())
-        with open("Data8\WedFT.txt", "r") as file:
+        with open("8WedFT.txt", "r") as file:
             WedTT = eval(file.readline())
-        with open("Data8\ThuFT.txt", "r") as file:
+        with open("8ThuFT.txt", "r") as file:
             ThuTT = eval(file.readline())
-        with open("Data8\FriFT.txt", "r") as file:
+        with open("8FriFT.txt", "r") as file:
             FriTT = eval(file.readline())
     elif grade == "7":
-        with open("Data7\MonFT.txt", "r") as file:
+        with open("7MonFT.txt", "r") as file:
             MonTT = eval(file.readline())
-        with open("Data7\TueFT.txt", "r") as file:
+        with open("7TueFT.txt", "r") as file:
             TueTT = eval(file.readline())
-        with open("Data7\WedFT.txt", "r") as file:
+        with open("7WedFT.txt", "r") as file:
             WedTT = eval(file.readline())
-        with open("Data7\ThuFT.txt", "r") as file:
+        with open("7ThuFT.txt", "r") as file:
             ThuTT = eval(file.readline())
-        with open("Data7\FriFT.txt", "r") as file:
+        with open("7FriFT.txt", "r") as file:
             FriTT = eval(file.readline())
 
     global CurrentPeriod
@@ -614,15 +614,15 @@ def SetCurrentPeriod(grade):
 
 
 def ViewDay():
-    with open("Data9\MonFT.txt", "r") as file:
+    with open("9MonFT.txt", "r") as file:
         MonTT = eval(file.readline())
-    with open("Data9\TueFT.txt", "r") as file:
+    with open("9TueFT.txt", "r") as file:
         TueTT = eval(file.readline())
-    with open("Data9\WedFT.txt", "r") as file:
+    with open("9WedFT.txt", "r") as file:
         WedTT = eval(file.readline())
-    with open("Data9\ThuFT.txt", "r") as file:
+    with open("9ThuFT.txt", "r") as file:
         ThuTT = eval(file.readline())
-    with open("Data9\FriFT.txt", "r") as file:
+    with open("9FriFT.txt", "r") as file:
         FriTT = eval(file.readline())
 
     DayToView = str.lower(input("\nInput day to view the timetable of:  "))
@@ -655,15 +655,15 @@ def ViewDay():
 
 
 def ViewPeriod():
-    with open("Data9\MonFT.txt", "r") as file:
+    with open("9MonFT.txt", "r") as file:
         MonTT = eval(file.readline())
-    with open("Data9\TueFT.txt", "r") as file:
+    with open("9TueFT.txt", "r") as file:
         TueTT = eval(file.readline())
-    with open("Data9\WedFT.txt", "r") as file:
+    with open("9WedFT.txt", "r") as file:
         WedTT = eval(file.readline())
-    with open("Data9\ThuFT.txt", "r") as file:
+    with open("9ThuFT.txt", "r") as file:
         ThuTT = eval(file.readline())
-    with open("Data9\FriFT.txt", "r") as file:
+    with open("9FriFT.txt", "r") as file:
         FriTT = eval(file.readline())
 
     PDayToView = str.lower(input("\nInput day to view a period of:  "))
@@ -825,7 +825,7 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138"):
             userdata7 = file.read()
         if mode == "11381138":
             if str(ctx.message.author.id) in userdata9:
-                await ctx.send("Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + str(Time()) + "\n\nG9")
+                await ctx.send("Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + ".\n\nG9")
                 if SetCurrentPeriod("9") == sp_NULL or SetCurrentPeriod("9") == sp_NUCL:
                     await ctx.send("There is nothing scheduled for the current period")
                 else:
@@ -866,15 +866,15 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138"):
                     ctx.message.author.mention) + " Your grade has already been set to 7. Use **.tt config** to change it.")
         elif mode == "viewday":
             if inp1 == "9":
-                with open("Data9\MonFT.txt", "r") as file:
+                with open("9MonFT.txt", "r") as file:
                     MonTT = eval(file.readline())
-                with open("Data9\TueFT.txt", "r") as file:
+                with open("9TueFT.txt", "r") as file:
                     TueTT = eval(file.readline())
-                with open("Data9\WedFT.txt", "r") as file:
+                with open("9WedFT.txt", "r") as file:
                     WedTT = eval(file.readline())
-                with open("Data9\ThuFT.txt", "r") as file:
+                with open("9ThuFT.txt", "r") as file:
                     ThuTT = eval(file.readline())
-                with open("Data9\FriFT.txt", "r") as file:
+                with open("9FriFT.txt", "r") as file:
                     FriTT = eval(file.readline())
                 if str.lower(inp2) == "mon" or str.lower(inp2) == "monday":
                     await ctx.send("G9's Monday timetable is:")
@@ -901,15 +901,15 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138"):
                 else:
                     await ctx.send("That is not the correct usage of that command.\n**.tt viewday G D**  -  Displays the timetable of the specified day   **G** = Grade    **D** = First letter of the day to view")
             elif inp1 == "8":
-                with open("Data8\MonFT.txt", "r") as file:
+                with open("8MonFT.txt", "r") as file:
                     MonTT = eval(file.readline())
-                with open("Data8\TueFT.txt", "r") as file:
+                with open("8TueFT.txt", "r") as file:
                     TueTT = eval(file.readline())
-                with open("Data8\WedFT.txt", "r") as file:
+                with open("8WedFT.txt", "r") as file:
                     WedTT = eval(file.readline())
-                with open("Data8\ThuFT.txt", "r") as file:
+                with open("8ThuFT.txt", "r") as file:
                     ThuTT = eval(file.readline())
-                with open("Data8\FriFT.txt", "r") as file:
+                with open("8FriFT.txt", "r") as file:
                     FriTT = eval(file.readline())
                 if str.lower(inp2) == "mon" or str.lower(inp2) == "monday":
                     await ctx.send("G8's Monday timetable is:")
@@ -936,15 +936,15 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138"):
                 else:
                     await ctx.send("That is not the correct usage of that command.\n**.tt viewday G D**  -  Displays the timetable of the specified day   **G** = Grade    **D** = First letter of the day to view")
             elif inp1 == "7":
-                with open("Data7\MonFT.txt", "r") as file:
+                with open("7MonFT.txt", "r") as file:
                     MonTT = eval(file.readline())
-                with open("Data7\TueFT.txt", "r") as file:
+                with open("7TueFT.txt", "r") as file:
                     TueTT = eval(file.readline())
-                with open("Data7\WedFT.txt", "r") as file:
+                with open("7WedFT.txt", "r") as file:
                     WedTT = eval(file.readline())
-                with open("Data7\ThuFT.txt", "r") as file:
+                with open("7ThuFT.txt", "r") as file:
                     ThuTT = eval(file.readline())
-                with open("Data7\FriFT.txt", "r") as file:
+                with open("7FriFT.txt", "r") as file:
                     FriTT = eval(file.readline())
                 if str.lower(inp2) == "mon" or str.lower(inp2) == "monday":
                     await ctx.send("G7's Monday timetable is:")

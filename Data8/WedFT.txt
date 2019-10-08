@@ -1,1 +1,0 @@
-['Japanese', 'Math', 'Science', 'Physical education', 'No club']
