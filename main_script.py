@@ -773,7 +773,7 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138"):
                                                         "**.tt help**  -  Gives information on bot functions\n \n"
                                                         "**.tt config**  -  Allows you to configure various user settings for this bot\n \n"
                                                         "**.tt day G D**  -  Displays the timetable of the specified day   **G** = Grade    **D** = Day\n"
-                                                        "If no grade is inputted, your grade will be used. If no day is inputted, the current day will be used\n \n"
+                                                        "If no grade is inputted, your grade will be used. If no day is inputted, the current day will be used. Use 'x' to force the default value\n \n"
                                                         "**.tt period P D G**  -  Displays a specified period of a specified day   **P** = Period number   **D** = Day   **G** = Grade\n"
                                                         "If no day or period is specified, the current ones will be used. If no grade is inputted, your grade will be used. Use 'x' to force the default value\n")
         elif mode == "setgrade":
@@ -821,7 +821,7 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138"):
                 elif str.lower(inp2) == "sat" or str.lower(inp2) == "saturday" or str.lower(inp2) == "sun" or str.lower(inp2) == "sunday":
                     await ctx.send(ctx.message.author.mention + "  |  There is no timetable set on the weekend")
                 else:
-                    await ctx.send(ctx.message.author.mention + "  |  That is not the correct usage of that command.\n**.tt day G D**  -  Displays the timetable of the specified day   **G** = Grade    **D** = First letter of the day to view")
+                    await ctx.send(ctx.message.author.mention + "  |  That is not the correct usage of that command.\n**.tt day G D**  -  Displays the timetable of the specified day   **G** = Grade    **D** = First letter of the day to view\nIf no grade is inputted, your grade will be used. If no day is inputted, the current day will be used. Use 'x' to force the default value")
             elif inp1 == "8" or (inp1 == "11381138" and str(ctx.message.author.id) in userdata8):
                 with open("8MonFT.txt", "r") as file:
                     MonTT = eval(file.readline())
@@ -856,7 +856,7 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138"):
                 elif str.lower(inp2) == "sat" or str.lower(inp2) == "saturday" or str.lower(inp2) == "sun" or str.lower(inp2) == "sunday":
                     await ctx.send(ctx.message.author.mention + "  |  There is no timetable set on the weekend")
                 else:
-                    await ctx.send("That is not the correct usage of that command.\n**.tt day G D**  -  Displays the timetable of the specified day   **G** = Grade    **D** = First letter of the day to view")
+                    await ctx.send("That is not the correct usage of that command.\n**.tt day G D**  -  Displays the timetable of the specified day   **G** = Grade    **D** = First letter of the day to view\nIf no grade is inputted, your grade will be used. If no day is inputted, the current day will be used. Use 'x' to force the default value")
             elif inp1 == "7" or (inp1 == "11381138" and str(ctx.message.author.id) in userdata7):
                 with open("7MonFT.txt", "r") as file:
                     MonTT = eval(file.readline())
@@ -891,7 +891,7 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138"):
                 elif str.lower(inp2) == "sat" or str.lower(inp2) == "saturday" or str.lower(inp2) == "sun" or str.lower(inp2) == "sunday":
                     await ctx.send(ctx.message.author.mention + "  |  There is no timetable set on the weekend")
                 else:
-                    await ctx.send("That is not the correct usage of that command.\n**.tt day G D**  -  Displays the timetable of the specified day   **G** = Grade    **D** = First letter of the day to view")
+                    await ctx.send("That is not the correct usage of that command.\n**.tt day G D**  -  Displays the timetable of the specified day   **G** = Grade    **D** = First letter of the day to view\nIf no grade is inputted, your grade will be used. If no day is inputted, the current day will be used. Use 'x' to force the default value")
         elif mode == "config":
             if inp1 == "11381138":
                 await ctx.send("*User configuartion*\n"
