@@ -1004,6 +1004,7 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138"):
                                     file.write(str(value))
                         with open("users9.txt", "a") as file:
                             file.write(str(ctx.message.author.id) + "\n")
+                        await ctx.send(ctx.message.author.mention + "  |  You have been set to Grade 9")
                     elif str(ctx.message.author.id) in userdata7:
                         with open("users7.txt", "r") as file:
                             tempdata = file.readlines()
@@ -1015,6 +1016,7 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138"):
                                     file.write(str(value))
                         with open("users9.txt", "a") as file:
                             file.write(str(ctx.message.author.id) + "\n")
+                        await ctx.send(ctx.message.author.mention + "  |  You have been set to Grade 9")
                 elif inp2 == "8":
                     if str(ctx.message.author.id) in userdata8:
                         await ctx.send("You are already set as Grade 8")
@@ -1029,6 +1031,7 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138"):
                                     file.write(str(value))
                         with open("users8.txt", "a") as file:
                             file.write(str(ctx.message.author.id) + "\n")
+                        await ctx.send(ctx.message.author.mention + "  |  You have been set to Grade 8")
                     elif str(ctx.message.author.id) in userdata7:
                         with open("users7.txt", "r") as file:
                             tempdata = file.readlines()
@@ -1040,6 +1043,7 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138"):
                                     file.write(str(value))
                         with open("users8.txt", "a") as file:
                             file.write(str(ctx.message.author.id) + "\n")
+                        await ctx.send(ctx.message.author.mention + "  |  You have been set to Grade 8")
                 elif inp2 == "7":
                     if str(ctx.message.author.id) in userdata7:
                         await ctx.send("You are already set as Grade 7")
@@ -1054,6 +1058,7 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138"):
                                     file.write(str(value))
                         with open("users7.txt", "a") as file:
                             file.write(str(ctx.message.author.id) + "\n")
+                        await ctx.send(ctx.message.author.mention + "  |  You have been set to Grade 7")
                     elif str(ctx.message.author.id) in userdata9:
                         with open("users9.txt", "r") as file:
                             tempdata = file.readlines()
@@ -1065,6 +1070,7 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138"):
                                     file.write(str(value))
                         with open("users7.txt", "a") as file:
                             file.write(str(ctx.message.author.id) + "\n")
+                        await ctx.send(ctx.message.author.mention + "  |  You have been set to Grade 7")
     else:
         if mode == "setgrade":
             if inp1 == "7" or inp1 == "8" or inp1 == "9":
