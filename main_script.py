@@ -815,7 +815,6 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138"):
     with open("users7.txt", "r") as file:
         userdata7 = file.read()
 
-    await ctx.send("Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + ".\n\nG9")
 
     mode = str.lower(modeinp)
     if str(ctx.message.author.id) in userdata9 or str(ctx.message.author.id) in userdata8 or str(ctx.message.author.id) in userdata7:
