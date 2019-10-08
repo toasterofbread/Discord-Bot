@@ -1100,7 +1100,7 @@ from itertools import cycle
 status = ["Creeper?", "Aw Man!"]
 
 
-@tasks.loop(seconds=1)
+@tasks.loop(seconds=5)
 async def statusloop():
     await client.change_presence(activity=discord.Game(next(status)))
 
