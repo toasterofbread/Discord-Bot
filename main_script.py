@@ -1,24 +1,63 @@
 import time
+import discord
 from discord.ext import commands
 BOT_TOKEN = "NjI3MDk5ODk3MjIwNDMxODcy.XY3v5Q.Q19bNJrTqvFa1eDTPEmfJjvd4HE"
 
-club_CHI = "MYP chill out club"
+club_CHI = "MYP Chilled Out Zone"
 club_IMP = "Imperial Assault campaign club"
+club_TTR = "Tinker Thinker Reader"
+club_BND = "Advanced Band"
+club_LGA = "Let's Get Active"
+club_CAL = "Calligraphy"
+club_FTY = "Touch Footy"
+club_R20 = "Role 20"
+club_MUS = "Music Video Club"
+club_MKC = "Model Kit Construction"
+club_IKE = "Ikebana"
+club_MSS = "Modern Survival Skills"
+club_BSK = "Basketball"
+
+id_CHI = ("chi", "myp chill out club", "myp chill out", "chill", "chill out", "chill out club", "chill club", "myp chill club")
+id_IMP = ("imp", "imperial assault", "star wars imperial assault", "star wars: imperial assault")
+id_TTR = ("ttr", "tinker", "thinker", "reader", "homework", "hw", "tinker thinker", "tinker thinker reader")
+id_BND = ("bnd", "band", "advanced band", "adv", "adv band")
+id_LGA = ("lga", "let's get active", "active", "get active")
+id_CAL = ("cal", "calligraphy")
+id_FTY = ("fty", "footy", "touch footy")
+id_R20 = ("r20", "role 20", "rp", "roleplay")
+id_MUS = ("mus", "music video", "music video club")
+id_MKC = ("mkc", "mdl", "model", "model kit", "kit construction", "model kit construction", "kit", "model construction", "construction")
+id_IKE = ("ike", "ikebana", "ikebana club")
+id_MSS = ("mss", "survival", "survival skills", "modern survival", "modern survival skills")
+id_BSK = ("bsk", "basketball", "basketball club")
+
+
+
+
+
 
 sp_NULL = "No class"
 sp_NUCL = "No club"
 sp_HMRM = "Homeroom"
-
 sp_AMRE = "Morning recess"
 sp_LNCH = "Lunch"
 sp_LNRE = "Lunch recess"
 sp_PMRE = "Afternoon recess"
-
-id_CHI = ("chi", "myp chill out club", "myp chill out", "chill", "chill out", "chill out club", "chill club", "myp chill club")
-id_IMP = ("imp", "imperial assault", "star wars imperial assault", "star wars: imperial assault")
-
-CurrentPeriod =  "customerror"
+CurrentPeriod = "customerror"
 NextPeriod = "customerror"
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 def SetNextPeriod(grade):
@@ -729,7 +768,9 @@ with open("users7.txt", "r") as file:
 
 @client.event
 async def on_ready():
+    await client.change_presence(status=discord.Status.idle, activity=discord.Game("Creeper, Aw Man!"))
     print("TimeTableBot is now running")
+
 
 
 @client.command(pass_context=True)
