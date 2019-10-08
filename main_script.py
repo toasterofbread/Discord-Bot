@@ -752,27 +752,21 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138"):
             userdata7 = file.read()
         if mode == "11381138":
             if str(ctx.message.author.id) in userdata9:
-                await ctx.send(ctx.message.author.mention + "  (G9)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()))
                 if SetCurrentPeriod("9") == sp_NULL or SetCurrentPeriod("9") == sp_NUCL:
-                    await ctx.send("There is nothing scheduled for the current period")
+                    await ctx.send(ctx.message.author.mention + "  (G9)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nThere is nothing scheduled for the current period\nThe next sceduled period is " + SetNextPeriod("9"))
                 else:
-                    await ctx.send("The current period is " + SetCurrentPeriod("9"))
-                await ctx.send("The next sceduled period is " + SetNextPeriod("9"))
+                    await ctx.send(ctx.message.author.mention + "  (G9)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nThe current period is " + SetCurrentPeriod("9") + "\nThe next sceduled period is " + SetNextPeriod("9"))
             elif str(ctx.message.author.id) in userdata8:
-                await ctx.send(ctx.message.author.mention + "  (G8)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()))
                 if SetCurrentPeriod("8") == sp_NULL or SetCurrentPeriod("8") == sp_NUCL:
-                    await ctx.send("There is nothing scheduled for the current period")
+                    await ctx.send(ctx.message.author.mention + "  (G8)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nThere is nothing scheduled for the current period\nThe next sceduled period is " + SetNextPeriod("8"))
                 else:
-                    await ctx.send("The current period is " + SetCurrentPeriod("8"))
-                await ctx.send("The next sceduled period is " + SetNextPeriod("8"))
+                    await ctx.send(ctx.message.author.mention + "  (G8)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nThe current period is " + SetCurrentPeriod("8") + "\nThe next sceduled period is " + SetNextPeriod("8"))
             elif str(ctx.message.author.id) in userdata7:
-                await ctx.send(ctx.message.author.mention + "  (G7)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()))
                 if SetCurrentPeriod("7") == sp_NULL or SetCurrentPeriod("7") == sp_NUCL:
-                    await ctx.send("There is nothing scheduled for the current period")
+                    await ctx.send(ctx.message.author.mention + "  (G7)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nThere is nothing scheduled for the current period\nThe next sceduled period is " + SetNextPeriod("7"))
                 else:
-                    await ctx.send("The current period is " + SetCurrentPeriod("7"))
-                await ctx.send("The next sceduled period is " + SetNextPeriod("7"))
-        
+                    await ctx.send(ctx.message.author.mention + "  (G7)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nThe current period is " + SetCurrentPeriod("7") + "\nThe next sceduled period is " + SetNextPeriod("7"))
+
         elif mode == "help" or mode == "?":
             await ctx.send(ctx.message.author.mention + "  |  **Command List:**\n \n"
                                                         "**.tt**  -  Provides key information about current and upcoming periods, etc.\n \n"
