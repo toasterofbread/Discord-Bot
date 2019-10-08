@@ -718,7 +718,7 @@ def ViewPeriod():
         print("Invalid input")
     AskAction()
 
-def Time(id):
+def Time():
     if len(str(time.localtime()[3])) == 1:
         return "0" + str(time.localtime()[3]) + ":" + str(time.localtime()[4])
     else:
