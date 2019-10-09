@@ -5,6 +5,11 @@ from discord.ext import commands, tasks
 days = ("monday", "tuesday", "wednesday", "thursday", "friday")
 
 
+
+
+
+
+
 club_CHI = "MYP Chilled Out Zone"
 club_IMP = "Imperial Assault campaign club"
 club_TTR = "Tinker Thinker Reader"
@@ -18,23 +23,6 @@ club_MKC = "Model Kit Construction"
 club_IKE = "Ikebana"
 club_MSS = "Modern Survival Skills"
 club_BSK = "Basketball"
-
-id_CHI = ("chi", "myp chill out club", "myp chill out", "chill", "chill out", "chill out club", "chill club", "myp chill club")
-id_IMP = ("imp", "imperial assault", "star wars imperial assault", "star wars: imperial assault")
-id_TTR = ("ttr", "tinker", "thinker", "reader", "homework", "hw", "tinker thinker", "tinker thinker reader")
-id_BND = ("bnd", "band", "advanced band", "adv", "adv band")
-id_LGA = ("lga", "let's get active", "active", "get active")
-id_CAL = ("cal", "calligraphy")
-id_FTY = ("fty", "footy", "touch footy")
-id_R20 = ("r20", "role 20", "rp", "roleplay")
-id_MUS = ("mus", "music video", "music video club")
-id_MKC = ("mkc", "mdl", "model", "model kit", "kit construction", "model kit construction", "kit", "model construction", "construction")
-id_IKE = ("ike", "ikebana", "ikebana club")
-id_MSS = ("mss", "survival", "survival skills", "modern survival", "modern survival skills")
-id_BSK = ("bsk", "basketball", "basketball club")
-
-
-
 
 
 
@@ -54,6 +42,60 @@ NextPeriod = "customerror"
 
 
 
+
+id_CHI = ("chi", "myp chill out club", "myp chill out", "chill", "chill out", "chill out club", "chill club", "myp chill club")
+id_IMP = ("imp", "imperial assault", "star wars imperial assault", "star wars: imperial assault")
+id_TTR = ("ttr", "tinker", "thinker", "reader", "homework", "hw", "tinker thinker", "tinker thinker reader")
+id_BND = ("bnd", "band", "advanced band", "adv", "adv band")
+id_LGA = ("lga", "let's get active", "active", "get active")
+id_CAL = ("cal", "calligraphy")
+id_FTY = ("fty", "footy", "touch footy")
+id_R20 = ("r20", "role 20", "rp", "roleplay")
+id_MUS = ("mus", "music video", "music video club")
+id_MKC = ("mkc", "mdl", "model", "model kit", "kit construction", "model kit construction", "kit", "model construction", "construction")
+id_IKE = ("ike", "ikebana", "ikebana club")
+id_MSS = ("mss", "survival", "survival skills", "modern survival", "modern survival skills")
+id_BSK = ("bsk", "basketball", "basketball club")
+
+
+with open("club_BND_MON", "r") as file:
+    club_BND_MON = file.read()
+with open("club_LGA_MON", "r") as file:
+    club_LGA_MON = file.read()
+with open("club_TTR_MON", "r") as file:
+    club_TTR_MON = file.read()
+
+with open("club_TTR_TUE", "r") as file:
+    club_TTR_TUE = file.read()
+with open("club_CAL_TUE", "r") as file:
+    club_CAL_TUE = file.read()
+with open("club_CHI_TUE", "r") as file:
+    club_CHI_TUE = file.read()
+
+with open("club_FTY_WED", "r") as file:
+    club_FTY_WED = file.read()
+
+with open("club_TTR_THU", "r") as file:
+    club_TTR_THU = file.read()
+with open("club_IMP_THU", "r") as file:
+    club_IMP_THU = file.read()
+with open("club_MKC_THU", "r") as file:
+    club_MKC_THU = file.read()
+with open("club_MUS_THU", "r") as file:
+    club_MUS_THU = file.read()
+with open("club_R20_THU", "r") as file:
+    club_R20_THU = file.read()
+
+with open("club_TTR_FRI", "r") as file:
+    club_TTR_FRI = file.read()
+with open("club_CHI_FRI", "r") as file:
+    club_CHI_FRI = file.read()
+with open("club_IKE_FRI", "r") as file:
+    club_IKE_FRI = file.read()
+with open("club_BSK_FRI", "r") as file:
+    club_BSK_FRI = file.read()
+with open("club_MSS_FRI", "r") as file:
+    club_MSS_FRI = file.read()
 
 
 
@@ -615,11 +657,11 @@ def ViewPeriod():
     with open("9FriFT.txt", "r") as file:
         FriTT = eval(file.readline())
 
-    PDayToView = str.lower(input("\nInput day to view a period of:  "))
+    PDayToView = str.lower(input("\nInput str.lower(inp2)to view a period of:  "))
     if PDayToView == "monday" or PDayToView == "mon":
         PeriodToView = str.lower(input("Select the period to view:  "))
         if PeriodToView == "1" or PeriodToView == "2" or PeriodToView == "3" or PeriodToView == "4" or PeriodToView == "5":
-            print("\nPeriod " + str(PeriodToView) + " of Monday is: " + MonTT[int(PeriodToView) - 1])
+            print("\nPeriod " + str(PeriodToView) + " of Monstr.lower(inp2)is: " + MonTT[int(PeriodToView) - 1])
         elif PeriodToView == "club" or "6":
             if MonTT[5] == sp_NUCL:
                 print("\nThere is no club on Monday")
@@ -628,7 +670,7 @@ def ViewPeriod():
     elif PDayToView == "tuesday" or PDayToView == "tue":
         PeriodToView = str.lower(input("Select the period to view:  "))
         if PeriodToView == "1" or PeriodToView == "2" or PeriodToView == "3" or PeriodToView == "4" or PeriodToView == "5":
-            print("\nPeriod " + str(PeriodToView) + " of Tuesday is: " + TueTT[int(PeriodToView) - 1])
+            print("\nPeriod " + str(PeriodToView) + " of Tuesstr.lower(inp2)is: " + TueTT[int(PeriodToView) - 1])
         elif PeriodToView == "club" or "6":
             if TueTT[5] == sp_NUCL:
                 print("\nThere is no club on Tuesday")
@@ -637,7 +679,7 @@ def ViewPeriod():
     elif PDayToView == "wednesday" or PDayToView == "wed":
         PeriodToView = str.lower(input("Select the period to view:  "))
         if PeriodToView == "1" or PeriodToView == "2" or PeriodToView == "3" or PeriodToView == "4":
-            print("\nPeriod " + str(PeriodToView) + " of Wednesday is: " + WedTT[int(PeriodToView) - 1])
+            print("\nPeriod " + str(PeriodToView) + " of Wednesstr.lower(inp2)is: " + WedTT[int(PeriodToView) - 1])
         elif PeriodToView == "club" or "5":
             if WedTT[4] == sp_NUCL:
                 print("\nThere is no club on Wednesdau")
@@ -646,7 +688,7 @@ def ViewPeriod():
     elif PDayToView == "thursday" or PDayToView == "thu":
         PeriodToView = str.lower(input("Select the period to view:  "))
         if PeriodToView == "1" or PeriodToView == "2" or PeriodToView == "3" or PeriodToView == "4" or PeriodToView == "5":
-            print("\nPeriod " + str(PeriodToView) + " of Thursday is: " + ThuTT[int(PeriodToView) - 1])
+            print("\nPeriod " + str(PeriodToView) + " of Thursstr.lower(inp2)is: " + ThuTT[int(PeriodToView) - 1])
         elif PeriodToView == "club" or "6":
             if ThuTT[5] == sp_NUCL:
                 print("\nThere is no club on Thursday")
@@ -655,7 +697,7 @@ def ViewPeriod():
     elif PDayToView == "friday" or PDayToView == "fri":
         PeriodToView = str.lower(input("Select the period to view:  "))
         if PeriodToView == "1" or PeriodToView == "2" or PeriodToView == "3" or PeriodToView == "4" or PeriodToView == "5":
-            print("\nPeriod " + str(PeriodToView) + " of Friday is: " + FriTT[int(PeriodToView) - 1])
+            print("\nPeriod " + str(PeriodToView) + " of Fristr.lower(inp2)is: " + FriTT[int(PeriodToView) - 1])
         elif PeriodToView == "club" or "6":
             if FriTT[5] == sp_NUCL:
                 print("\nThere is no club on Friday")
@@ -754,12 +796,7 @@ with open("users7.txt", "r") as file:
 @client.event
 async def on_ready():
     print("TimeTableBot is now running")
-    await client.change_presence(activity=discord.Game("Use **.tt ?** for info"))
-
-@client.command()
-async def creeper(ctx):
-    await ctx.send("Aw, man")
-
+    await client.change_presence(activity=discord.Game("Use '.tt ?' for info"))
 
 @client.command(pass_context=True)
 async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138", inp3="11381138"):
@@ -769,7 +806,6 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138", inp3="11
         userdata8 = file.read()
     with open("users7.txt", "r") as file:
         userdata7 = file.read()
-
 
     mode = str.lower(modeinp)
     if str(ctx.message.author.id) in userdata9 or str(ctx.message.author.id) in userdata8 or str(ctx.message.author.id) in userdata7:
@@ -782,29 +818,29 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138", inp3="11
         if mode == "11381138":
             if str(ctx.message.author.id) in userdata9:
                 if SetCurrentPeriod("9") == sp_NULL or SetCurrentPeriod("9") == sp_NUCL:
-                    await ctx.send(ctx.message.author.mention + "  (G9)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nThere is nothing scheduled for the current period\nThe next sceduled period is " + SetNextPeriod("9"))
+                    await ctx.send(ctx.message.author.mention + "  (G9)  |  Tostr.lower(inp2)is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nThere is nothing scheduled for your current period\nYour next sceduled period is " + SetNextPeriod("9"))
                 else:
-                    await ctx.send(ctx.message.author.mention + "  (G9)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nThe current period is " + SetCurrentPeriod("9") + "\nThe next sceduled period is " + SetNextPeriod("9"))
+                    await ctx.send(ctx.message.author.mention + "  (G9)  |  Tostr.lower(inp2)is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nYour current period is " + SetCurrentPeriod("9") + "\nYour next sceduled period is " + SetNextPeriod("9"))
             elif str(ctx.message.author.id) in userdata8:
                 if SetCurrentPeriod("8") == sp_NULL or SetCurrentPeriod("8") == sp_NUCL:
-                    await ctx.send(ctx.message.author.mention + "  (G8)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nThere is nothing scheduled for the current period\nThe next sceduled period is " + SetNextPeriod("8"))
+                    await ctx.send(ctx.message.author.mention + "  (G8)  |  Tostr.lower(inp2)is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nThere is nothing scheduled for your current period\nYour next sceduled period is " + SetNextPeriod("8"))
                 else:
-                    await ctx.send(ctx.message.author.mention + "  (G8)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nThe current period is " + SetCurrentPeriod("8") + "\nThe next sceduled period is " + SetNextPeriod("8"))
+                    await ctx.send(ctx.message.author.mention + "  (G8)  |  Tostr.lower(inp2)is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nYour current period is " + SetCurrentPeriod("8") + "\nYour next sceduled period is " + SetNextPeriod("8"))
             elif str(ctx.message.author.id) in userdata7:
                 if SetCurrentPeriod("7") == sp_NULL or SetCurrentPeriod("7") == sp_NUCL:
-                    await ctx.send(ctx.message.author.mention + "  (G7)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nThere is nothing scheduled for the current period\nThe next sceduled period is " + SetNextPeriod("7"))
+                    await ctx.send(ctx.message.author.mention + "  (G7)  |  Tostr.lower(inp2)is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nThere is nothing scheduled for your current period\nYour next sceduled period is " + SetNextPeriod("7"))
                 else:
-                    await ctx.send(ctx.message.author.mention + "  (G7)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nThe current period is " + SetCurrentPeriod("7") + "\nThe next sceduled period is " + SetNextPeriod("7"))
+                    await ctx.send(ctx.message.author.mention + "  (G7)  |  Tostr.lower(inp2)is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nYour current period is " + SetCurrentPeriod("7") + "\nYour next sceduled period is " + SetNextPeriod("7"))
 
         elif mode == "help" or mode == "?":
             await ctx.send(ctx.message.author.mention + "  |  **Command List:**\n \n"
                                                         "**.tt**  -  Provides key information about current and upcoming periods, etc.\n \n"
                                                         "**.tt help**  -  Gives information on bot functions\n \n"
                                                         "**.tt config**  -  Allows you to configure various user settings for this bot\n \n"
-                                                        "**.tt day G D**  -  Displays the timetable of the specified day   **G** = Grade    **D** = Day\n"
-                                                        "If no grade is inputted, your grade will be used. If no day is inputted, the current day will be used. Use 'x' to force the default value\n \n"
-                                                        "**.tt period P D G**  -  Displays a specified period of a specified day   **P** = Period number   **D** = Day   **G** = Grade\n"
-                                                        "If no day or period is specified, the current ones will be used. If no grade is inputted, your grade will be used. Use 'x' to force the default value\n")
+                                                        "**.tt str.lower(inp2)G D**  -  Displays the timetable of the specified str.lower(inp2)  **G** = Grade    **D** = Day\n"
+                                                        "If no grade is inputted, your grade will be used. If no str.lower(inp2)is inputted, the current str.lower(inp2)will be used. Use 'x' to force the default value\n \n"
+                                                        "**.tt period P D G**  -  Displays a specified period of a specified str.lower(inp2)  **P** = Period number   **D** = Day   **G** = Grade\n"
+                                                        "If no str.lower(inp2)or period is specified, the current ones will be used. If no grade is inputted, your grade will be used. Use 'x' to force the default value\n")
         elif mode == "setgrade":
             if str(ctx.message.author.id) in userdata9:
                 await ctx.send(str(
@@ -828,23 +864,23 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138", inp3="11
                 with open("9FriFT.txt", "r") as file:
                     FriTT = eval(file.readline())
                 if str.lower(inp2) == "mon" or str.lower(inp2) == "monday":
-                    await ctx.send(ctx.message.author.mention + "  |  G9's Monday timetable is:")
+                    await ctx.send(ctx.message.author.mention + "  |  G9's Monstr.lower(inp2)timetable is:")
                     for period in MonTT:
                         await ctx.send(period)
                 elif str.lower(inp2) == "tue" or str.lower(inp2) == "tues" or str.lower(inp2) == "tuesday":
-                    await ctx.send(ctx.message.author.mention + "  |  G9's Tuesday timetable is:")
+                    await ctx.send(ctx.message.author.mention + "  |  G9's Tuesstr.lower(inp2)timetable is:")
                     for period in TueTT:
                         await ctx.send(period)
                 elif str.lower(inp2) == "wed" or str.lower(inp2) == "wednesday":
-                    await ctx.send(ctx.message.author.mention + "  |  G9's Wednesday timetable is:")
+                    await ctx.send(ctx.message.author.mention + "  |  G9's Wednesstr.lower(inp2)timetable is:")
                     for period in WedTT:
                         await ctx.send(period)
                 elif str.lower(inp2) == "thu" or str.lower(inp2) == "thur" or str.lower(inp2) == "thurs" or str.lower(inp2) == "thursday":
-                    await ctx.send(ctx.message.author.mention + "  |  G9's Thursday timetable is:")
+                    await ctx.send(ctx.message.author.mention + "  |  G9's Thursstr.lower(inp2)timetable is:")
                     for period in ThuTT:
                         await ctx.send(period)
                 elif str.lower(inp2) == "fri" or str.lower(inp2) == "friday":
-                    await ctx.send(ctx.message.author.mention + "  |  G9's Friday timetable is:")
+                    await ctx.send(ctx.message.author.mention + "  |  G9's Fristr.lower(inp2)timetable is:")
                     for period in FriTT:
                         await ctx.send(period)
                 elif str.lower(inp2) == "sat" or str.lower(inp2) == "saturday" or str.lower(inp2) == "sun" or str.lower(inp2) == "sunday":
@@ -867,7 +903,7 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138", inp3="11
                         for period in FriTT:
                             await ctx.send(period)
                 else:
-                    await ctx.send(ctx.message.author.mention + "  |  That is not the correct usage of that command.\n**.tt day G D**  -  Displays the timetable of the specified day   **G** = Grade    **D** = Day\nIf no grade is inputted, your grade will be used. If no day is inputted, the current day will be used. Use 'x' to force the default value")
+                    await ctx.send(ctx.message.author.mention + "  |  That is not the correct usage of that command.\n**.tt str.lower(inp2)G D**  -  Displays the timetable of the specified str.lower(inp2)  **G** = Grade    **D** = Day\nIf no grade is inputted, your grade will be used. If no str.lower(inp2)is inputted, the current str.lower(inp2)will be used. Use 'x' to force the default value")
             elif inp1 == "8" or (inp1 == "11381138" and str(ctx.message.author.id) in userdata8) or (str.lower(inp1) == "x" and str(ctx.message.author.id) in userdata8):
                 with open("8MonFT.txt", "r") as file:
                     MonTT = eval(file.readline())
@@ -880,23 +916,23 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138", inp3="11
                 with open("8FriFT.txt", "r") as file:
                     FriTT = eval(file.readline())
                 if str.lower(inp2) == "mon" or str.lower(inp2) == "monday":
-                    await ctx.send(ctx.message.author.mention + "  |  G8's Monday timetable is:")
+                    await ctx.send(ctx.message.author.mention + "  |  G8's Monstr.lower(inp2)timetable is:")
                     for period in MonTT:
                         await ctx.send(period)
                 elif str.lower(inp2) == "tue" or str.lower(inp2) == "tues" or str.lower(inp2) == "tuesday":
-                    await ctx.send(ctx.message.author.mention + "  |  G8's Tuesday timetable is:")
+                    await ctx.send(ctx.message.author.mention + "  |  G8's Tuesstr.lower(inp2)timetable is:")
                     for period in TueTT:
                         await ctx.send(period)
                 elif str.lower(inp2) == "wed" or str.lower(inp2) == "wednesday":
-                    await ctx.send(ctx.message.author.mention + "  |  G8's Wednesday timetable is:")
+                    await ctx.send(ctx.message.author.mention + "  |  G8's Wednesstr.lower(inp2)timetable is:")
                     for period in WedTT:
                         await ctx.send(period)
                 elif str.lower(inp2) == "thu" or str.lower(inp2) == "thur" or str.lower(inp2) == "thurs" or str.lower(inp2) == "thursday":
-                    await ctx.send(ctx.message.author.mention + "  |  G8's Thursday timetable is:")
+                    await ctx.send(ctx.message.author.mention + "  |  G8's Thursstr.lower(inp2)timetable is:")
                     for period in ThuTT:
                         await ctx.send(period)
                 elif str.lower(inp2) == "fri" or str.lower(inp2) == "friday":
-                    await ctx.send(ctx.message.author.mention + "  |  G8's Friday timetable is:")
+                    await ctx.send(ctx.message.author.mention + "  |  G8's Fristr.lower(inp2)timetable is:")
                     for period in FriTT:
                         await ctx.send(period)
                 elif str.lower(inp2) == "sat" or str.lower(inp2) == "saturday" or str.lower(inp2) == "sun" or str.lower(inp2) == "sunday":
@@ -919,7 +955,7 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138", inp3="11
                         for period in FriTT:
                             await ctx.send(period)
                 else:
-                    await ctx.send("That is not the correct usage of that command.\n**.tt day G D**  -  Displays the timetable of the specified day   **G** = Grade    **D** = Day\nIf no grade is inputted, your grade will be used. If no day is inputted, the current day will be used. Use 'x' to force the default value")
+                    await ctx.send("That is not the correct usage of that command.\n**.tt str.lower(inp2)G D**  -  Displays the timetable of the specified str.lower(inp2)  **G** = Grade    **D** = Day\nIf no grade is inputted, your grade will be used. If no str.lower(inp2)is inputted, the current str.lower(inp2)will be used. Use 'x' to force the default value")
             elif inp1 == "7" or (inp1 == "11381138" and str(ctx.message.author.id) in userdata7) or (str.lower(inp1) == "x" and str(ctx.message.author.id) in userdata7):
                 with open("7MonFT.txt", "r") as file:
                     MonTT = eval(file.readline())
@@ -932,23 +968,23 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138", inp3="11
                 with open("7FriFT.txt", "r") as file:
                     FriTT = eval(file.readline())
                 if str.lower(inp2) == "mon" or str.lower(inp2) == "monday":
-                    await ctx.send(ctx.message.author.mention + "G7's Monday timetable is:")
+                    await ctx.send(ctx.message.author.mention + "G7's Monstr.lower(inp2)timetable is:")
                     for period in MonTT:
                         await ctx.send(period)
                 elif str.lower(inp2) == "tue" or str.lower(inp2) == "tues" or str.lower(inp2) == "tuesday":
-                    await ctx.send(ctx.message.author.mention + "G7's Tuesday timetable is:")
+                    await ctx.send(ctx.message.author.mention + "G7's Tuesstr.lower(inp2)timetable is:")
                     for period in TueTT:
                         await ctx.send(period)
                 elif str.lower(inp2) == "wed" or str.lower(inp2) == "wednesday":
-                    await ctx.send(ctx.message.author.mention + "G7's Wednesday timetable is:")
+                    await ctx.send(ctx.message.author.mention + "G7's Wednesstr.lower(inp2)timetable is:")
                     for period in WedTT:
                         await ctx.send(period)
                 elif str.lower(inp2) == "thu" or str.lower(inp2) == "thur" or str.lower(inp2) == "thurs" or str.lower(inp2) == "thursday":
-                    await ctx.send(ctx.message.author.mention + "G7's Thursday timetable is:")
+                    await ctx.send(ctx.message.author.mention + "G7's Thursstr.lower(inp2)timetable is:")
                     for period in ThuTT:
                         await ctx.send(period)
                 elif str.lower(inp2) == "fri" or str.lower(inp2) == "friday":
-                    await ctx.send(ctx.message.author.mention + "G7's Friday timetable is:")
+                    await ctx.send(ctx.message.author.mention + "G7's Fristr.lower(inp2)timetable is:")
                     for period in FriTT:
                         await ctx.send(period)
                 elif str.lower(inp2) == "sat" or str.lower(inp2) == "saturday" or str.lower(inp2) == "sun" or str.lower(inp2) == "sunday":
@@ -971,7 +1007,7 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138", inp3="11
                         for period in FriTT:
                             await ctx.send(period)
                 else:
-                    await ctx.send("That is not the correct usage of that command.\n**.tt day G D**  -  Displays the timetable of the specified day   **G** = Grade    **D** = Day\nIf no grade is inputted, your grade will be used. If no day is inputted, the current day will be used. Use 'x' to force the default value")
+                    await ctx.send("That is not the correct usage of that command.\n**.tt str.lower(inp2)G D**  -  Displays the timetable of the specified str.lower(inp2)  **G** = Grade    **D** = Day\nIf no grade is inputted, your grade will be used. If no str.lower(inp2)is inputted, the current str.lower(inp2)will be used. Use 'x' to force the default value")
         elif mode == "config":
             if inp1 == "11381138":
                 await ctx.send("*User configuartion*\n"
@@ -1067,6 +1103,111 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138", inp3="11
                         with open("users7.txt", "a") as file:
                             file.write(str(ctx.message.author.id) + "\n")
                         await ctx.send(ctx.message.author.mention + "  |  You have been set as Grade 7")
+        elif mode == "club":
+            if str.lower(inp1) == "set":
+                if str.lower(inp2) == "mon" or str.lower(inp2) == "monday":
+                    if ctx.message.author.id in club_BND_MON or ctx.message.author.id in club_LGA_MON or ctx.message.author.id in club_TTR_MON:
+                        await ctx.set(str(ctx.message.author.mention) + "  |  " + "You are already in a club on Monday. Remove that club first if you want to add this one")
+                    elif str.lower(inp3) in id_BND:
+                        with open("club_BND_MON", "a") as file:
+                            file.write(str(ctx.message.author.id) + "\n")
+                            await ctx.set(str(ctx.message.author.mention) + "  |  Your club on Monday has been set to " + club_BND)
+
+                    elif str.lower(inp3) in id_LGA:
+                        with open("club_LGA_MON", "a") as file:
+                            file.write(str(ctx.message.author.id) + "\n")
+                        await ctx.set(str(ctx.message.author.mention) + "  |  Your club on Monday has been set to " + club_LGA)
+                    elif str.lower(inp3) in id_TTR:
+                        with open("club_TTR_MON", "a") as file:
+                            file.write(str(ctx.message.author.id) + "\n")
+                        await ctx.set(str(ctx.message.author.mention) + "  |  Your club on Monday has been set to " + club_TTR)
+                    else:
+                        await ctx.set(str(ctx.message.author.mention) + "  |  " + "That is not a valid club name")
+                elif str.lower(inp2) == "tue" or str.lower(inp2) == "tuesday":
+                    if ctx.message.author.id in club_TTR_TUE or ctx.message.author.id in club_CAL_TUE or ctx.message.author.id in club_CHI_TUE:
+                        await ctx.set(str(ctx.message.author.mention) + "  |  " + "You are already in a club on Tuesday. Remove that club first if you want to add this one")
+                    elif str.lower(inp3) in id_TTR:
+                        with open("club_TTR_TUE", "a") as file:
+                            file.write(str(ctx.message.author.id) + "\n")
+                        await ctx.set(str(ctx.message.author.mention) + "  |  Your club on Tuesday has been set to " + club_TTR)
+                    elif str.lower(inp3) in id_CAL:
+                        with open("club_CAL_TUE", "a") as file:
+                            file.write(str(ctx.message.author.id) + "\n")
+                        await ctx.set(str(ctx.message.author.mention) + "  |  Your club on Tuesday has been set to " + club_CAL)
+                    elif str.lower(inp3) in id_CHI:
+                        with open("club_CHI_TUE", "a") as file:
+                            file.write(str(ctx.message.author.id) + "\n")
+                        await ctx.set(str(ctx.message.author.mention) + "  |  Your club on Tuesday has been set to " + club_CHI)
+                    else:
+                        await ctx.set(str(ctx.message.author.mention) + "  |  " + "That is not a valid club name")
+                elif str.lower(inp2) == "wed" or str.lower(inp2) == "wednesday":
+                    if ctx.message.author.id in club_FTY_WED:
+                        await ctx.set(str(ctx.message.author.mention) + "  |  " + "You are already in a club on Wednesday. Remove that club first if you want to add this one")
+                    elif str.lower(inp3) in id_FTY:
+                        with open("club_FTY_WED", "a") as file:
+                            file.write(str(ctx.message.author.id) + "\n")
+                        await ctx.set(str(ctx.message.author.mention) + "  |  Your club on Wednesday has been set to " + club_FTY)
+                    else:
+                        await ctx.set(str(ctx.message.author.mention) + "  |  " + "That is not a valid club name")
+                elif str.lower(inp2) == "thu" or str.lower(inp2) == "thursday" or str.lower(inp2) == "thur" or str.lower(inp2) == "thurs":
+                    if ctx.message.author.id in club_TTR_THU or ctx.message.author.id in club_IMP_THU or ctx.message.author.id in club_MKC_THU or ctx.message.author.id in club_MUS_THU or ctx.message.author.id in club_R20_THU:
+                        await ctx.set(str(ctx.message.author.mention) + "  |  " + "You are already in a club on Thursday. Remove that club first if you want to add this one")
+                    elif str.lower(inp3) in id_TTR:
+                        with open("club_TTR_THU", "a") as file:
+                            file.write(str(ctx.message.author.id) + "\n")
+                        await ctx.set(str(ctx.message.author.mention) + "  |  Your club on Thursday has been set to " + club_TTR)
+                    elif str.lower(inp3) in id_IMP:
+                        with open("club_IMP_THU", "a") as file:
+                            file.write(str(ctx.message.author.id) + "\n")
+                        await ctx.set(str(ctx.message.author.mention) + "  |  Your club on Thursday has been set to " + club_IMP)
+                    elif str.lower(inp3) in id_MKC:
+                        with open("club_MKC_THU", "a") as file:
+                            file.write(str(ctx.message.author.id) + "\n")
+                        await ctx.set(str(ctx.message.author.mention) + "  |  Your club on Thursday has been set to " + club_MKC)
+                    elif str.lower(inp3) in id_MUS:
+                        with open("club_MUS_THU", "a") as file:
+                            file.write(str(ctx.message.author.id) + "\n")
+                        await ctx.set(str(ctx.message.author.mention) + "  |  Your club on Thursday has been set to " + club_MUS)
+                    elif str.lower(inp3) in id_R20:
+                        with open("club_R20_THU", "a") as file:
+                            file.write(str(ctx.message.author.id) + "\n")
+                        await ctx.set(str(ctx.message.author.mention) + "  |  Your club on Thursday has been set to " + club_R20)
+                    else:
+                        await ctx.set(str(ctx.message.author.mention) + "  |  " + "That is not a valid club name")
+                elif str.lower(inp2) == "fri" or str.lower(inp2) == "friday":
+                    if ctx.message.author.id in club_TTR_FRI or ctx.message.author.id in club_CHI_FRI or ctx.message.author.id in club_IKE_FRI or ctx.message.author.id in club_BSK_FRI or ctx.message.author.id in club_MSS_FRI:
+                        await ctx.set(str(ctx.message.author.mention) + "  |  " + "You are already in a club on Friday. Remove that club first if you want to add this one")
+                    elif str.lower(inp3) in id_TTR:
+                        with open("club_TTR_FRI", "a") as file:
+                            file.write(str(ctx.message.author.id) + "\n")
+                        await ctx.set(str(ctx.message.author.mention) + "  |  Your club on Friday has been set to " + club_TTR)
+                    elif str.lower(inp3) in id_CHI:
+                        with open("club_CHI_FRI", "a") as file:
+                            file.write(str(ctx.message.author.id) + "\n")
+                        await ctx.set(str(ctx.message.author.mention) + "  |  Your club on Friday has been set to " + club_CHI)
+                    elif str.lower(inp3) in id_IKE:
+                        with open("club_IKE_FRI", "a") as file:
+                            file.write(str(ctx.message.author.id) + "\n")
+                        await ctx.set(str(ctx.message.author.mention) + "  |  Your club on Friday has been set to " + club_IKE)
+                    elif str.lower(inp3) in id_BSK:
+                        with open("club_BSK_FRI", "a") as file:
+                            file.write(str(ctx.message.author.id) + "\n")
+                        await ctx.set(str(ctx.message.author.mention) + "  |  Your club on Friday has been set to " + club_BSK)
+                    elif str.lower(inp3) in id_MSS:
+                        with open("club_MSS_FRI", "a") as file:
+                            file.write(str(ctx.message.author.id) + "\n")
+                        await ctx.set(str(ctx.message.author.mention) + "  |  Your club on Friday has been set to " + club_MSS)
+                    else:
+                        await ctx.set(str(ctx.message.author.mention) + "  |  " + "That is not a valid club name")
+                
+
+
+
+
+
+
+
+
 
 
 
