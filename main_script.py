@@ -474,23 +474,6 @@ def SetCurrentPeriod(grade):
                 time.localtime()[3] == 14 and time.localtime()[4] < 45):
             CurrentPeriod = WedTT[3]
 
-        #  2:30 to 2:45
-        elif time.localtime()[3] == 14 and 30 <= time.localtime()[4] > 45:
-            CurrentPeriod = sp_PMRE
-
-        #  2:45 to 3:45
-        elif (time.localtime()[3] == 14 and time.localtime()[4] >= 45) or (
-                time.localtime()[3] == 15 and time.localtime()[4] < 45):
-            CurrentPeriod = WedTT[4]
-
-        #  3:45 to 4:00
-        elif time.localtime()[3] == 15 and time.localtime()[4] >= 45:
-            CurrentPeriod = sp_HMRM
-
-        #  4:15 to 5:00
-        elif time.localtime()[3] == 16 and time.localtime()[4] >= 15:
-            CurrentPeriod = WedTT[5]
-
         #  Else
         else:
             CurrentPeriod = sp_NULL
