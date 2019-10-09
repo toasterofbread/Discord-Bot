@@ -818,19 +818,19 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138", inp3="11
         if mode == "11381138":
             if str(ctx.message.author.id) in userdata9:
                 if SetCurrentPeriod("9") == sp_NULL or SetCurrentPeriod("9") == sp_NUCL:
-                    await ctx.send(ctx.message.author.mention + "  (G9)  |  Tostr.lower(inp2)is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nThere is nothing scheduled for your current period\nYour next sceduled period is " + SetNextPeriod("9"))
+                    await ctx.send(ctx.message.author.mention + "  (G9)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nThere is nothing scheduled for your current period\nYour next sceduled period is " + SetNextPeriod("9"))
                 else:
-                    await ctx.send(ctx.message.author.mention + "  (G9)  |  Tostr.lower(inp2)is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nYour current period is " + SetCurrentPeriod("9") + "\nYour next sceduled period is " + SetNextPeriod("9"))
+                    await ctx.send(ctx.message.author.mention + "  (G9)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nYour current period is " + SetCurrentPeriod("9") + "\nYour next sceduled period is " + SetNextPeriod("9"))
             elif str(ctx.message.author.id) in userdata8:
                 if SetCurrentPeriod("8") == sp_NULL or SetCurrentPeriod("8") == sp_NUCL:
-                    await ctx.send(ctx.message.author.mention + "  (G8)  |  Tostr.lower(inp2)is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nThere is nothing scheduled for your current period\nYour next sceduled period is " + SetNextPeriod("8"))
+                    await ctx.send(ctx.message.author.mention + "  (G8)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nThere is nothing scheduled for your current period\nYour next sceduled period is " + SetNextPeriod("8"))
                 else:
-                    await ctx.send(ctx.message.author.mention + "  (G8)  |  Tostr.lower(inp2)is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nYour current period is " + SetCurrentPeriod("8") + "\nYour next sceduled period is " + SetNextPeriod("8"))
+                    await ctx.send(ctx.message.author.mention + "  (G8)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nYour current period is " + SetCurrentPeriod("8") + "\nYour next sceduled period is " + SetNextPeriod("8"))
             elif str(ctx.message.author.id) in userdata7:
                 if SetCurrentPeriod("7") == sp_NULL or SetCurrentPeriod("7") == sp_NUCL:
-                    await ctx.send(ctx.message.author.mention + "  (G7)  |  Tostr.lower(inp2)is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nThere is nothing scheduled for your current period\nYour next sceduled period is " + SetNextPeriod("7"))
+                    await ctx.send(ctx.message.author.mention + "  (G7)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nThere is nothing scheduled for your current period\nYour next sceduled period is " + SetNextPeriod("7"))
                 else:
-                    await ctx.send(ctx.message.author.mention + "  (G7)  |  Tostr.lower(inp2)is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nYour current period is " + SetCurrentPeriod("7") + "\nYour next sceduled period is " + SetNextPeriod("7"))
+                    await ctx.send(ctx.message.author.mention + "  (G7)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nYour current period is " + SetCurrentPeriod("7") + "\nYour next sceduled period is " + SetNextPeriod("7"))
 
         elif mode == "help" or mode == "?":
             await ctx.send(ctx.message.author.mention + "  |  **Command List:**\n \n"
@@ -1104,8 +1104,11 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138", inp3="11
                             file.write(str(ctx.message.author.id) + "\n")
                         await ctx.send(ctx.message.author.mention + "  |  You have been set as Grade 7")
         elif mode == "club":
+            await ctx.send("club")
             if str.lower(inp1) == "set":
+                await ctx.send("set")
                 if str.lower(inp2) == "mon" or str.lower(inp2) == "monday":
+                    await ctx.send("monday")
                     if ctx.message.author.id in club_BND_MON or ctx.message.author.id in club_LGA_MON or ctx.message.author.id in club_TTR_MON:
                         await ctx.set(str(ctx.message.author.mention) + "  |  " + "You are already in a club on Monday. Remove that club first if you want to add this one")
                     elif str.lower(inp3) in id_BND:
