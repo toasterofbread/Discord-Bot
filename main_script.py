@@ -756,6 +756,9 @@ async def on_ready():
     print("TimeTableBot is now running")
     await client.change_presence(activity=discord.Game("Use **.tt ?** for info"))
 
+@client.command()
+async def creeper(ctx):
+    await ctx.send("Aw, man")
 
 
 @client.command(pass_context=True)
