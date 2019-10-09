@@ -2,6 +2,9 @@ import time
 import discord
 from discord.ext import commands, tasks
 
+days = ("monday", "tuesday", "wednesday", "thursday", "friday")
+
+
 club_CHI = "MYP Chilled Out Zone"
 club_IMP = "Imperial Assault campaign club"
 club_TTR = "Tinker Thinker Reader"
@@ -768,11 +771,12 @@ with open("users7.txt", "r") as file:
 @client.event
 async def on_ready():
     print("TimeTableBot is now running")
+    await client.change_presence(activity=discord.Game("Use **.tt ?** for info"))
 
 
 
 @client.command(pass_context=True)
-async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138"):
+async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138", inp3="11381138"):
     with open("users9.txt", "r") as file:
         userdata9 = file.read()
     with open("users8.txt", "r") as file:
@@ -1077,6 +1081,9 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138"):
                         with open("users7.txt", "a") as file:
                             file.write(str(ctx.message.author.id) + "\n")
                         await ctx.send(ctx.message.author.mention + "  |  You have been set as Grade 7")
+
+
+
     else:
         if mode == "setgrade":
             if inp1 == "7" or inp1 == "8" or inp1 == "9":
@@ -1095,13 +1102,5 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138"):
                 await ctx.send(ctx.message.author.mention + "  |  Please set your grade by typing **.tt setgrade X**, where **X** is your grade number.")
         else:
             await ctx.send("Hello " + ctx.message.author.mention + ". You have not yet been registered in my database\nPlease tell me what grade you are in by typing **.tt setgrade X**, where **X** is your grade number\n*(You can always change this later if needed by using **.tt config**)*")
-
-from itertools import cycle
-status = ["Creeper?", "Aw Man!"]
-
-
-@tasks.loop(seconds=5)
-async def statusloop():
-    await client.change_presence(activity=discord.Game(next(status)))
 
 client.run("NjI3MDk5ODk3MjIwNDMxODcy.XY3v5Q.Q19bNJrTqvFa1eDTPEmfJjvd4HE")
