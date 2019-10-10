@@ -379,7 +379,7 @@ def SetCurrentPeriod(grade):
             CurrentPeriod = MonTT[3]
 
         #  2:30 to 2:45
-        elif time.localtime()[3] == 14 and 30 <= time.localtime()[4] > 45:
+        elif time.localtime()[3] == 14 and 30 < time.localtime()[4] > 45:
             CurrentPeriod = sp_PMRE
 
         #  2:45 to 3:45
@@ -437,7 +437,7 @@ def SetCurrentPeriod(grade):
             CurrentPeriod = TueTT[3]
 
         #  2:30 to 2:45
-        elif time.localtime()[3] == 14 and 30 <= time.localtime()[4] > 45:
+        elif time.localtime()[3] == 14 and 30 < time.localtime()[4] > 45:
             CurrentPeriod = sp_PMRE
 
         #  2:45 to 3:45
@@ -536,7 +536,7 @@ def SetCurrentPeriod(grade):
             CurrentPeriod = ThuTT[3]
 
         #  2:30 to 2:45
-        elif time.localtime()[3] == 14 and 30 <= time.localtime()[4] > 45:
+        elif time.localtime()[3] == 14 and 30 < time.localtime()[4] > 45:
             CurrentPeriod = sp_PMRE
 
         #  2:45 to 3:45
@@ -594,7 +594,7 @@ def SetCurrentPeriod(grade):
             CurrentPeriod = FriTT[3]
 
         #  2:30 to 2:45
-        elif time.localtime()[3] == 14 and 30 <= time.localtime()[4] > 45:
+        elif time.localtime()[3] == 14 and 30 < time.localtime()[4] > 45:
             CurrentPeriod = sp_PMRE
 
         #  2:45 to 3:45
