@@ -832,9 +832,7 @@ async def ttadmin(ctx, mode="11381138", var1="11381138"):
             await ctx.send(ctx.message.author.mention + "  |  **Admin command list**\n \n"
                                                         "**.ttadmin help**  -  Gives information on admin functions\n \n"
                                                         "**.ttadmin userids X**  -  Lists ids contained in specified database *(use **all** to list all grades)*\n \n"
-                                                        "**.ttadmin stats X**  -  Displays bot statistics\n"
-
-
+                                                        "**.ttadmin stats X**  -  Displays bot statistics\n")
     else:
         await ctx.send(ctx.message.author.mention + "  |  You do not have permission to use admin commands")
 
