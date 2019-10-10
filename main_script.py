@@ -770,8 +770,9 @@ with open("users7.txt", "r") as file:
 
 
 @client.event
-async def on_ready():
+async def on_ready(ctx):
     print("TimeTableBot is now running")
+    await ctx.author.send("TimeTableBot is now running")
     await client.change_presence(activity=discord.Game("Use '.tt ?' for info"))
 
 
