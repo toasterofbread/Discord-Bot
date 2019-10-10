@@ -2,13 +2,7 @@ import time
 import discord
 from discord.ext import commands, tasks
 
-days = ("monday", "tuesday", "wednesday", "thursday", "friday")
-
-
-
-
-
-
+admin_ids = ("402344993391640578")
 
 club_CHI = "MYP Chilled Out Zone"
 club_IMP = "Imperial Assault campaign club"
@@ -24,8 +18,6 @@ club_IKE = "Ikebana"
 club_MSS = "Modern Survival Skills"
 club_BSK = "Basketball"
 
-
-
 sp_NULL = "No class"
 sp_NUCL = "No club"
 sp_HMRM = "Homeroom"
@@ -35,13 +27,6 @@ sp_LNRE = "Lunch recess"
 sp_PMRE = "Afternoon recess"
 CurrentPeriod = "customerror"
 NextPeriod = "customerror"
-
-
-
-
-
-
-
 
 id_CHI = ("chi", "myp chill out club", "myp chill out", "chill", "chill out", "chill out club", "chill club", "myp chill club")
 id_IMP = ("imp", "imperial assault", "star wars imperial assault", "star wars: imperial assault")
@@ -96,10 +81,6 @@ with open("club_BSK_FRI", "r") as file:
     club_BSK_FRI = file.read()
 with open("club_MSS_FRI", "r") as file:
     club_MSS_FRI = file.read()
-
-
-
-
 
 def SetNextPeriod(grade):
     if grade == "9":
@@ -639,9 +620,6 @@ def SetCurrentPeriod(grade):
 
     return CurrentPeriod
 
-
-
-
 def ViewPeriod():
     with open("9MonFT.txt", "r") as file:
         MonTT = eval(file.readline())
@@ -704,7 +682,6 @@ def ViewPeriod():
         print("There is no school during the weekend.")
     else:
         print("Invalid input")
-
 
 def Time():
     if len(str(time.localtime()[3])) == 1:
@@ -789,18 +766,77 @@ with open("users8.txt", "r") as file:
 with open("users7.txt", "r") as file:
     userdata7 = file.read()
 
+def datalength(parameter):
+    with open("users9.txt", "r") as file:
+        userdata9 = file.read()
+    with open("users8.txt", "r") as file:
+        userdata8 = file.read()
+    with open("users7.txt", "r") as file:
+        userdata7 = file.read()
+    if parameter == userdata9:
+        with open("users9.txt", "r") as file:
+            userdata9 = file.readlines()
+        return str(userdata9.__len__() - 1)
+    elif parameter == userdata8:
+        with open("users8.txt", "r") as file:
+            userdata8 = file.readlines()
+        return str(userdata8.__len__() - 1)
+    elif parameter == userdata7:
+        with open("users7.txt", "r") as file:
+            userdata7 = file.readlines()
+        return str(userdata7.__len__() - 1)
+    with open("users9.txt", "r") as file:
+        userdata9 = file.read()
+    with open("users8.txt", "r") as file:
+        userdata8 = file.read()
+    with open("users7.txt", "r") as file:
+        userdata7 = file.read()
+
 
 @client.event
 async def on_ready():
     print("TimeTableBot is now running")
     await client.change_presence(activity=discord.Game("Use '.tt ?' for info"))
 
+@client.event
+async def on_message(message):
+    if message.content.startswith("#whatever you want it to be"):
+        await client.send_message(message.author, "#The message")
+
 @client.command(pass_context=True)
-async def ttdebug(ctx, mode="11381138"):
-    if str(ctx.message.author.id) == "402344993391640578":
-        await ctx.send("Heyo")
+async def ttadmin(ctx, mode="11381138", var1="11381138"):
+    if str(ctx.message.author.id) in admin_ids:
+        if str.lower(mode) == "userids":
+            with open("users9.txt", "r") as file:
+                userdata9 = file.read()
+            with open("users8.txt", "r") as file:
+                userdata8 = file.read()
+            with open("users7.txt", "r") as file:
+                userdata7 = file.read()
+            if str.lower(var1) == "9":
+                await ctx.send(ctx.message.author.mention + "  |  Grade 9 user id list (" + datalength(userdata9) + " entries)\n" + userdata9)
+            elif str.lower(var1) == "8":
+                await ctx.send(ctx.message.author.mention + "  |  Grade 8 user id list (" + datalength(userdata8) + " entries)\n" + userdata8)
+            elif str.lower(var1) == "7":
+                await ctx.send(ctx.message.author.mention + "  |  Grade 7 user id list (" + datalength(userdata7) + " entries)\n" + userdata7)
+            elif str.lower(var1) == "all":
+                await ctx.send(ctx.message.author.mention + "  |  Grade 9 user id list (" + datalength(userdata9) + " entries)\n" + userdata9)
+                time.sleep(1)
+                await ctx.send(ctx.message.author.mention + "  |  Grade 8 user id list (" + datalength(userdata8) + " entries)\n" + userdata8)
+                time.sleep(1)
+                await ctx.send(ctx.message.author.mention + "  |  Grade 7 user id list (" + datalength(userdata7) + " entries)\n" + userdata7)
+        elif str.lower(mode) == "stats":
+            with open("stats.txt", "r") as file:
+                statslist = file.readlines()
+        elif str.lower(mode) == "?" or str.lower(mode) == "help":
+            await ctx.send(ctx.message.author.mention + "  |  **Admin command list**\n \n"
+                                                        "**.ttadmin help**  -  Gives information on admin functions\n \n"
+                                                        "**.ttadmin userids X**  -  Lists ids contained in specified database *(use **all** to list all grades)*\n \n"
+                                                        "**.ttadmin stats X**  -  Displays bot statistics\n"
+
+
     else:
-        await ctx.send(ctx.message.author.mention + "  |  You do not have permission to use debug commands")
+        await ctx.send(ctx.message.author.mention + "  |  You do not have permission to use admin commands")
 
 @client.command(pass_context=True)
 async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138", inp3="11381138"):
