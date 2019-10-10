@@ -766,31 +766,7 @@ with open("users8.txt", "r") as file:
 with open("users7.txt", "r") as file:
     userdata7 = file.read()
 
-def datalength(parameter):
-    with open("users9.txt", "r") as file:
-        userdata9 = file.read()
-    with open("users8.txt", "r") as file:
-        userdata8 = file.read()
-    with open("users7.txt", "r") as file:
-        userdata7 = file.read()
-    if parameter == userdata9:
-        with open("users9.txt", "r") as file:
-            userdata9 = file.readlines()
-        return str(userdata9.__len__() - 1)
-    elif parameter == userdata8:
-        with open("users8.txt", "r") as file:
-            userdata8 = file.readlines()
-        return str(userdata8.__len__() - 1)
-    elif parameter == userdata7:
-        with open("users7.txt", "r") as file:
-            userdata7 = file.readlines()
-        return str(userdata7.__len__() - 1)
-    with open("users9.txt", "r") as file:
-        userdata9 = file.read()
-    with open("users8.txt", "r") as file:
-        userdata8 = file.read()
-    with open("users7.txt", "r") as file:
-        userdata7 = file.read()
+
 
 
 @client.event
@@ -811,22 +787,25 @@ async def ttadmin(ctx, mode="11381138", var1="11381138"):
             with open("users7.txt", "r") as file:
                 userdata7 = file.read()
             if str.lower(var1) == "9":
-                await ctx.send(ctx.message.author.mention + "  |  Grade 9 user id list (" + datalength(userdata9) + " entries)\n" + userdata9)
+                await ctx.send(ctx.message.author.mention + "  |  A DM has been sent to you")
+                await ctx.author.send(ctx.message.author.mention + "  |  Grade 9 user id list\n" + userdata9)
             elif str.lower(var1) == "8":
-                await ctx.send(ctx.message.author.mention + "  |  Grade 8 user id list (" + datalength(userdata8) + " entries)\n" + userdata8)
+                await ctx.send(ctx.message.author.mention + "  |  A DM has been sent to you")
+                await ctx.author.send(ctx.message.author.mention + "  |  Grade 8 user id list\n" + userdata8)
             elif str.lower(var1) == "7":
-                await ctx.send(ctx.message.author.mention + "  |  Grade 7 user id list (" + datalength(userdata7) + " entries)\n" + userdata7)
+                await ctx.send(ctx.message.author.mention + "  |  A DM has been sent to you")
+                await ctx.author.send(ctx.message.author.mention + "  |  Grade 7 user id list\n" + userdata7)
             elif str.lower(var1) == "all":
-                await ctx.send(ctx.message.author.mention + "  |  Grade 9 user id list (" + datalength(userdata9) + " entries)\n" + userdata9)
-                time.sleep(1)
-                await ctx.send(ctx.message.author.mention + "  |  Grade 8 user id list (" + datalength(userdata8) + " entries)\n" + userdata8)
-                time.sleep(1)
-                await ctx.send(ctx.message.author.mention + "  |  Grade 7 user id list (" + datalength(userdata7) + " entries)\n" + userdata7)
+                await ctx.author.send(ctx.message.author.mention + "  |  Grade 9 user id list\n" + userdata9)
+                await ctx.author.send(ctx.message.author.mention + "  |  Grade 8 user id list\n" + userdata8)
+                await ctx.author.send(ctx.message.author.mention + "  |  Grade 7 user id list\n" + userdata7)
+                await ctx.send(ctx.message.author.mention + "  |  A DM has been sent to you")
         elif str.lower(mode) == "stats":
             with open("stats.txt", "r") as file:
                 statslist = file.readlines()
         elif str.lower(mode) == "?" or str.lower(mode) == "help":
-            await ctx.send(ctx.message.author.mention + "  |  **Admin command list**\n \n"
+            await ctx.send(ctx.message.author.mention + "  |  A DM has been sent to you")
+            await ctx.author.send(ctx.message.author.mention + "  |  **Admin command list**\n \n"
                                                         "**.ttadmin help**  -  Gives information on admin functions\n \n"
                                                         "**.ttadmin userids X**  -  Lists ids contained in specified database *(use **all** to list all grades)*\n \n"
                                                         "**.ttadmin stats X**  -  Displays bot statistics\n")
