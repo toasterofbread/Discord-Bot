@@ -140,7 +140,7 @@ def SetNextPeriod(grade):
 
         #  1:30 to 2:30
         elif (time.localtime()[3] == 13 and time.localtime()[4] >= 30) or (
-                time.localtime()[3] == 14 and time.localtime()[4] < 45):
+                time.localtime()[3] == 14 and time.localtime()[4] < 30):
             NextPeriod = MonTT[4]
 
         #  2:45 to 3:45
@@ -179,7 +179,7 @@ def SetNextPeriod(grade):
 
         #  1:30 to 2:30
         elif (time.localtime()[3] == 13 and time.localtime()[4] >= 30) or (
-                time.localtime()[3] == 14 and time.localtime()[4] < 45):
+                time.localtime()[3] == 14 and time.localtime()[4] < 30):
             NextPeriod = TueTT[4]
 
         #  2:45 to 3:45
@@ -245,7 +245,7 @@ def SetNextPeriod(grade):
 
         #  1:30 to 2:30
         elif (time.localtime()[3] == 13 and time.localtime()[4] >= 30) or (
-                time.localtime()[3] == 14 and time.localtime()[4] < 45):
+                time.localtime()[3] == 14 and time.localtime()[4] < 30):
             NextPeriod = ThuTT[4]
 
         #  2:45 to 3:45
@@ -284,7 +284,7 @@ def SetNextPeriod(grade):
 
         #  1:30 to 2:30
         elif (time.localtime()[3] == 13 and time.localtime()[4] >= 30) or (
-                time.localtime()[3] == 14 and time.localtime()[4] < 45):
+                time.localtime()[3] == 14 and time.localtime()[4] < 30):
             NextPeriod = FriTT[4]
 
         #  2:45 to 3:45
@@ -375,7 +375,7 @@ def SetCurrentPeriod(grade):
 
         #  1:30 to 2:30
         elif (time.localtime()[3] == 13 and time.localtime()[4] >= 30) or (
-                time.localtime()[3] == 14 and time.localtime()[4] < 45):
+                time.localtime()[3] == 14 and time.localtime()[4] < 30):
             CurrentPeriod = MonTT[3]
 
         #  2:30 to 2:45
@@ -433,7 +433,7 @@ def SetCurrentPeriod(grade):
 
         #  1:30 to 2:30
         elif (time.localtime()[3] == 13 and time.localtime()[4] >= 30) or (
-                time.localtime()[3] == 14 and time.localtime()[4] < 45):
+                time.localtime()[3] == 14 and time.localtime()[4] < 30):
             CurrentPeriod = TueTT[3]
 
         #  2:30 to 2:45
@@ -491,7 +491,7 @@ def SetCurrentPeriod(grade):
 
         #  1:30 to 2:30
         elif (time.localtime()[3] == 13 and time.localtime()[4] >= 30) or (
-                time.localtime()[3] == 14 and time.localtime()[4] < 45):
+                time.localtime()[3] == 14 and time.localtime()[4] < 30):
             CurrentPeriod = WedTT[3]
 
         #  Else
@@ -532,7 +532,7 @@ def SetCurrentPeriod(grade):
 
         #  1:30 to 2:30
         elif (time.localtime()[3] == 13 and time.localtime()[4] >= 30) or (
-                time.localtime()[3] == 14 and time.localtime()[4] < 45):
+                time.localtime()[3] == 14 and time.localtime()[4] < 30):
             CurrentPeriod = ThuTT[3]
 
         #  2:30 to 2:45
@@ -590,7 +590,7 @@ def SetCurrentPeriod(grade):
 
         #  1:30 to 2:30
         elif (time.localtime()[3] == 13 and time.localtime()[4] >= 30) or (
-                time.localtime()[3] == 14 and time.localtime()[4] < 45):
+                time.localtime()[3] == 14 and time.localtime()[4] < 30):
             CurrentPeriod = FriTT[3]
 
         #  2:30 to 2:45
