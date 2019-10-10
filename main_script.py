@@ -798,10 +798,7 @@ async def on_ready():
     print("TimeTableBot is now running")
     await client.change_presence(activity=discord.Game("WORKING"))
 
-@client.event
-async def on_message(message):
-    if message.content.startswith("#whatever you want it to be"):
-        await client.send_message(message.author, "#The message")
+
 
 @client.command(pass_context=True)
 async def ttadmin(ctx, mode="11381138", var1="11381138"):
