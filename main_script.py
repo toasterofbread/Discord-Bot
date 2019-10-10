@@ -796,7 +796,7 @@ def datalength(parameter):
 @client.event
 async def on_ready():
     print("TimeTableBot is now running")
-    await client.change_presence(activity=discord.Game("WORKING"))
+    await client.change_presence(activity=discord.Game("Use '.tt ?' for info"))
 
 
 
@@ -835,7 +835,6 @@ async def ttadmin(ctx, mode="11381138", var1="11381138"):
 
 @client.command(pass_context=True)
 async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138", inp3="11381138"):
-    await ctx.send("YEs")
     with open("users9.txt", "r") as file:
         userdata9 = file.read()
     with open("users8.txt", "r") as file:
