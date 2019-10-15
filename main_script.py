@@ -1,6 +1,6 @@
 import time
 import discord
-from discord.ext import commands, tasks
+from discord.ext import commands
 
 bot_name = "TimeTableBot"
 
@@ -1298,44 +1298,75 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138", inp3="11
                         FriTT = eval(file.readline())
                     if str.lower(inp2) == "mon" or str.lower(inp2) == "monday":
                         AddStats(str(ctx.message.author.id), stat_mon)
-                        await ctx.send(ctx.message.author.mention + "  |  The G9 Monday timetable is:\n \n" + str(MonTT[0]) + "\n" + str(MonTT[1]) + "\n" + str(MonTT[2]) + "\n" + str(MonTT[3]) + "\n" + str(MonTT[4]))
+                        if ViewClub("monday", str(ctx.message.author.id)) == "null":
+                            await ctx.send(ctx.message.author.mention + "  |  The G9 Monday timetable is:\n \n" + str(MonTT[0]) + "\n" + str(MonTT[1]) + "\n" + str(MonTT[2]) + "\n" + str(MonTT[3]) + "\n" + str(MonTT[4]) + "\n \nYou do not have a club on this day")
+                        else:
+                            await ctx.send(ctx.message.author.mention + "  |  The G9 Monday timetable is:\n \n" + str(MonTT[0]) + "\n" + str(MonTT[1]) + "\n" + str(MonTT[2]) + "\n" + str(MonTT[3]) + "\n" + str(MonTT[4]) + "\n \nYour club on this day is " + ViewClub("monday", str(ctx.message.author.id)))
+                    
                     elif str.lower(inp2) == "tue" or str.lower(inp2) == "tues" or str.lower(inp2) == "tuesday":
                         AddStats(str(ctx.message.author.id), stat_tue)
-                        await ctx.send(ctx.message.author.mention + "  |  The G9 Tuesday timetable is:\n \n" + str(TueTT[0]) + "\n" + str(TueTT[1]) + "\n" + str(TueTT[2]) + "\n" + str(TueTT[3]) + "\n" + str(TueTT[4]))
+                        if ViewClub("tuesday", str(ctx.message.author.id)) == "null":
+                            await ctx.send(ctx.message.author.mention + "  |  The G9 Tuesday timetable is:\n \n" + str(TueTT[0]) + "\n" + str(TueTT[1]) + "\n" + str(TueTT[2]) + "\n" + str(TueTT[3]) + "\n" + str(TueTT[4]) + "\n \nYou do not have a club on this day")
+                        else:
+                            await ctx.send(ctx.message.author.mention + "  |  The G9 Tuesday timetable is:\n \n" + str(TueTT[0]) + "\n" + str(TueTT[1]) + "\n" + str(TueTT[2]) + "\n" + str(TueTT[3]) + "\n" + str(TueTT[4]) + "\n \nYour club on this day is " + ViewClub("tuesday", str(ctx.message.author.id)))
                     elif str.lower(inp2) == "wed" or str.lower(inp2) == "wednesday":
                         AddStats(str(ctx.message.author.id), stat_wed)
-                        await ctx.send(ctx.message.author.mention + "  |  The G9 Wednesday timetable is:\n \n" + str(WedTT[0]) + "\n" + str(WedTT[1]) + "\n" + str(WedTT[2]) + "\n" + str(WedTT[3]))
+                        if ViewClub("wednesday", str(ctx.message.author.id)) == "null":
+                            await ctx.send(ctx.message.author.mention + "  |  The G9 Wednesday timetable is:\n \n" + str(WedTT[0]) + "\n" + str(WedTT[1]) + "\n" + str(WedTT[2]) + "\n" + str(WedTT[3]) + "\n \nYou do not have a club on this day")
+                        else:
+                            await ctx.send(ctx.message.author.mention + "  |  The G9 Wednesday timetable is:\n \n" + str(WedTT[0]) + "\n" + str(WedTT[1]) + "\n" + str(WedTT[2]) + "\n" + str(WedTT[3]) + "\n \nYour club on this day is " + ViewClub("Wednesday", str(ctx.message.author.id)))
                     elif str.lower(inp2) == "thu" or str.lower(inp2) == "thur" or str.lower(inp2) == "thurs" or str.lower(inp2) == "thursday":
                         AddStats(str(ctx.message.author.id), stat_thu)
-                        await ctx.send(ctx.message.author.mention + "  |  The G9 Thursday timetable is:\n \n" + str(ThuTT[0]) + "\n" + str(ThuTT[1]) + "\n" + str(ThuTT[2]) + "\n" + str(ThuTT[3]) + "\n" + str(ThuTT[4]))
+                        if ViewClub("thursday", str(ctx.message.author.id)) == "null":
+                            await ctx.send(ctx.message.author.mention + "  |  The G9 Thursday timetable is:\n \n" + str(ThuTT[0]) + "\n" + str(ThuTT[1]) + "\n" + str(ThuTT[2]) + "\n" + str(ThuTT[3]) + "\n" + str(ThuTT[4]) + "\n \nYou do not have a club on this day")
+                        else:
+                            await ctx.send(ctx.message.author.mention + "  |  The G9 Thursday timetable is:\n \n" + str(ThuTT[0]) + "\n" + str(ThuTT[1]) + "\n" + str(ThuTT[2]) + "\n" + str(ThuTT[3]) + "\n" + str(ThuTT[4]) + "\n \nYour club on this day is " + ViewClub("thursday", str(ctx.message.author.id)))
                     elif str.lower(inp2) == "fri" or str.lower(inp2) == "friday":
                         AddStats(str(ctx.message.author.id), stat_fri)
-                        await ctx.send(ctx.message.author.mention + "  |  The G9 Friday timetable is:\n \n" + str(FriTT[0]) + "\n" + str(FriTT[1]) + "\n" + str(FriTT[2]) + "\n" + str(FriTT[3]) + "\n" + str(FriTT[4]))
+                        if ViewClub("friday", str(ctx.message.author.id)) == "null":
+                            await ctx.send(ctx.message.author.mention + "  |  The G9 Friday timetable is:\n \n" + str(FriTT[0]) + "\n" + str(FriTT[1]) + "\n" + str(FriTT[2]) + "\n" + str(FriTT[3]) + "\n" + str(FriTT[4]) + "\n \nYou do not have a club on this day")
+                        else:
+                            await ctx.send(ctx.message.author.mention + "  |  The G9 Friday timetable is:\n \n" + str(FriTT[0]) + "\n" + str(FriTT[1]) + "\n" + str(FriTT[2]) + "\n" + str(FriTT[3]) + "\n" + str(FriTT[4]) + "\n \nYour club on this day is " + ViewClub("friday", str(ctx.message.author.id)))
                     elif str.lower(inp2) == "sat" or str.lower(inp2) == "saturday" or str.lower(inp2) == "sun" or str.lower(inp2) == "sunday":
                         if str.lower(inp2) == "sat" or str.lower(inp2) == "saturday":
                             AddStats(str(ctx.message.author.id), stat_sat)
                         else:
                             AddStats(str(ctx.message.author.id), stat_sun)
-                        await ctx.send(ctx.message.author.mention + "  |  There is no timetable set on the weekend")
+                        await ctx.send(ctx.message.author.mention + "  |  There is no school timetable on the weekend")
                     elif str.lower(inp2) == "x" or inp2 == "11381138":
                         if str.lower(Day()) == "monday":
                             AddStats(str(ctx.message.author.id), stat_mon)
-                            await ctx.send(ctx.message.author.mention + "  |  The G9 Monday timetable is:\n \n" + str(MonTT[0]) + "\n" + str(MonTT[1]) + "\n" + str(MonTT[2]) + "\n" + str(MonTT[3]) + "\n" + str(MonTT[4]))
+                            if ViewClub("monday", str(ctx.message.author.id)) == "null":
+                                await ctx.send(ctx.message.author.mention + "  |  The G9 Monday timetable is:\n \n" + str(MonTT[0]) + "\n" + str(MonTT[1]) + "\n" + str(MonTT[2]) + "\n" + str(MonTT[3]) + "\n" + str(MonTT[4]) + "\n \nYou do not have a club on this day")
+                            else:
+                                await ctx.send(ctx.message.author.mention + "  |  The G9 Monday timetable is:\n \n" + str(MonTT[0]) + "\n" + str(MonTT[1]) + "\n" + str(MonTT[2]) + "\n" + str(MonTT[3]) + "\n" + str(MonTT[4]) + "\n \nYour club on this day is " + ViewClub("monday", str(ctx.message.author.id)))
                         elif str.lower(Day()) == "tuesday":
                             AddStats(str(ctx.message.author.id), stat_tue)
-                            await ctx.send(ctx.message.author.mention + "  |  The G9 Tuesday timetable is:\n \n" + str(TueTT[0]) + "\n" + str(TueTT[1]) + "\n" + str(TueTT[2]) + "\n" + str(TueTT[3]) + "\n" + str(TueTT[4]))
+                            if ViewClub("tuesday", str(ctx.message.author.id)) == "null":
+                                await ctx.send(ctx.message.author.mention + "  |  The G9 Tuesday timetable is:\n \n" + str(TueTT[0]) + "\n" + str(TueTT[1]) + "\n" + str(TueTT[2]) + "\n" + str(TueTT[3]) + "\n" + str(TueTT[4]) + "\n \nYou do not have a club on this day")
+                            else:
+                                await ctx.send(ctx.message.author.mention + "  |  The G9 Tuesday timetable is:\n \n" + str(TueTT[0]) + "\n" + str(TueTT[1]) + "\n" + str(TueTT[2]) + "\n" + str(TueTT[3]) + "\n" + str(TueTT[4]) + "\n \nYour club on this day is " + ViewClub("tuesday", str(ctx.message.author.id)))
                         elif str.lower(Day()) == "wednesday":
                             AddStats(str(ctx.message.author.id), stat_wed)
-                            await ctx.send(ctx.message.author.mention + "  |  The G9 Wednesday timetable is:\n \n" + str(WedTT[0]) + "\n" + str(WedTT[1]) + "\n" + str(WedTT[2]) + "\n" + str(WedTT[3]))
+                            if ViewClub("monday", str(ctx.message.author.id)) == "null":
+                                await ctx.send(ctx.message.author.mention + "  |  The G9 Wednesday timetable is:\n \n" + str(WedTT[0]) + "\n" + str(WedTT[1]) + "\n" + str(WedTT[2]) + "\n" + str(WedTT[3]) + "\n \nYou do not have a club on this day")
+                            else:
+                                await ctx.send(ctx.message.author.mention + "  |  The G9 Wednesday timetable is:\n \n" + str(WedTT[0]) + "\n" + str(WedTT[1]) + "\n" + str(WedTT[2]) + "\n" + str(WedTT[3]) + "\n \nYour club on this day is " + ViewClub("wednesday", str(ctx.message.author.id)))
                         elif str.lower(Day()) == "thursday":
                             AddStats(str(ctx.message.author.id), stat_thu)
-                            await ctx.send(ctx.message.author.mention + "  |  The G9 Thursday timetable is:\n \n" + str(ThuTT[0]) + "\n" + str(ThuTT[1]) + "\n" + str(ThuTT[2]) + "\n" + str(ThuTT[3]) + "\n" + str(ThuTT[4]))
+                            if ViewClub("thursday", str(ctx.message.author.id)) == "null":
+                                await ctx.send(ctx.message.author.mention + "  |  The G9 Thursday timetable is:\n \n" + str(ThuTT[0]) + "\n" + str(ThuTT[1]) + "\n" + str(ThuTT[2]) + "\n" + str(ThuTT[3]) + "\n" + str(ThuTT[4]) + "\n \nYou do not have a club on this day")
+                            else:
+                                await ctx.send(ctx.message.author.mention + "  |  The G9 Thursday timetable is:\n \n" + str(ThuTT[0]) + "\n" + str(ThuTT[1]) + "\n" + str(ThuTT[2]) + "\n" + str(ThuTT[3]) + "\n" + str(ThuTT[4]) + "\n \nYour club on this day is " + ViewClub("thursday", str(ctx.message.author.id)))
                         elif str.lower(Day()) == "friday":
                             AddStats(str(ctx.message.author.id), stat_fri)
-                            await ctx.send(ctx.message.author.mention + "  |  The G9 Friday timetable is:\n \n" + str(FriTT[0]) + "\n" + str(FriTT[1]) + "\n" + str(FriTT[2]) + "\n" + str(FriTT[3]) + "\n" + str(FriTT[4]))
+                            if ViewClub("friday", str(ctx.message.author.id)) == "null":
+                                await ctx.send(ctx.message.author.mention + "  |  The G9 Friday timetable is:\n \n" + str(FriTT[0]) + "\n" + str(FriTT[1]) + "\n" + str(FriTT[2]) + "\n" + str(FriTT[3]) + "\n" + str(FriTT[4]) + "\n \nYou do not have a club on this day")
+                            else:
+                                await ctx.send(ctx.message.author.mention + "  |  The G9 Friday timetable is:\n \n" + str(FriTT[0]) + "\n" + str(FriTT[1]) + "\n" + str(FriTT[2]) + "\n" + str(FriTT[3]) + "\n" + str(FriTT[4]) + "\n \nYour club on this day is " + ViewClub("friday", str(ctx.message.author.id)))
                     else:
                         AddStats(str(ctx.message.author.id), stat_invalid_day)
-                        await ctx.send(ctx.message.author.mention + "  |  That is not the correct usage of that command.\n**.tt day G D**  -  Displays the timetable of the specified str.lower(inp2)  **G** = Grade    **D** = Day\nIf no grade is inputted, your grade will be used. If no day is inputted, the current day will be used. Use 'x' to force the default value")
+                        await ctx.send(ctx.message.author.mention + "  |  That is not the correct usage of this command. Use **.tt help** for help")
                 elif inp1 == "8" or (inp1 == "11381138" and str(ctx.message.author.id) in userdata8) or (str.lower(inp1) == "x" and str(ctx.message.author.id) in userdata8):
                     with open("8MonFT.txt", "r") as file:
                         MonTT = eval(file.readline())
@@ -1349,44 +1380,74 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138", inp3="11
                         FriTT = eval(file.readline())
                     if str.lower(inp2) == "mon" or str.lower(inp2) == "monday":
                         AddStats(str(ctx.message.author.id), stat_mon)
-                        await ctx.send(ctx.message.author.mention + "  |  The G8 Monday timetable is:\n \n" + str(MonTT[0]) + "\n" + str(MonTT[1]) + "\n" + str(MonTT[2]) + "\n" + str(MonTT[3]) + "\n" + str(MonTT[4]))
+                        if ViewClub("monday", str(ctx.message.author.id)) == "null":
+                            await ctx.send(ctx.message.author.mention + "  |  The G8 Monday timetable is:\n \n" + str(MonTT[0]) + "\n" + str(MonTT[1]) + "\n" + str(MonTT[2]) + "\n" + str(MonTT[3]) + "\n" + str(MonTT[4]) + "\n \nYou do not have a club on this day")
+                        else:
+                            await ctx.send(ctx.message.author.mention + "  |  The G8 Monday timetable is:\n \n" + str(MonTT[0]) + "\n" + str(MonTT[1]) + "\n" + str(MonTT[2]) + "\n" + str(MonTT[3]) + "\n" + str(MonTT[4]) + "\n \nYour club on this day is " + ViewClub("monday", str(ctx.message.author.id)))
                     elif str.lower(inp2) == "tue" or str.lower(inp2) == "tues" or str.lower(inp2) == "tuesday":
                         AddStats(str(ctx.message.author.id), stat_tue)
-                        await ctx.send(ctx.message.author.mention + "  |  The G8 Tuesday timetable is:\n \n" + str(TueTT[0]) + "\n" + str(TueTT[1]) + "\n" + str(TueTT[2]) + "\n" + str(TueTT[3]) + "\n" + str(TueTT[4]))
+                        if ViewClub("tuesday", str(ctx.message.author.id)) == "null":
+                            await ctx.send(ctx.message.author.mention + "  |  The G8 Tuesday timetable is:\n \n" + str(TueTT[0]) + "\n" + str(TueTT[1]) + "\n" + str(TueTT[2]) + "\n" + str(TueTT[3]) + "\n" + str(TueTT[4]) + "\n \nYou do not have a club on this day")
+                        else:
+                            await ctx.send(ctx.message.author.mention + "  |  The G8 Tuesday timetable is:\n \n" + str(TueTT[0]) + "\n" + str(TueTT[1]) + "\n" + str(TueTT[2]) + "\n" + str(TueTT[3]) + "\n" + str(TueTT[4]) + "\n \nYour club on this day is " + ViewClub("tuesday", str(ctx.message.author.id)))
                     elif str.lower(inp2) == "wed" or str.lower(inp2) == "wednesday":
                         AddStats(str(ctx.message.author.id), stat_wed)
-                        await ctx.send(ctx.message.author.mention + "  |  The G8 Wednesday timetable is:\n \n" + str(WedTT[0]) + "\n" + str(WedTT[1]) + "\n" + str(WedTT[2]) + "\n" + str(WedTT[3]))
+                        if ViewClub("wednesday", str(ctx.message.author.id)) == "null":
+                            await ctx.send(ctx.message.author.mention + "  |  The G8 Wednesday timetable is:\n \n" + str(WedTT[0]) + "\n" + str(WedTT[1]) + "\n" + str(WedTT[2]) + "\n" + str(WedTT[3]) + "\n \nYou do not have a club on this day")
+                        else:
+                            await ctx.send(ctx.message.author.mention + "  |  The G8 Wednesday timetable is:\n \n" + str(WedTT[0]) + "\n" + str(WedTT[1]) + "\n" + str(WedTT[2]) + "\n" + str(WedTT[3]) + "\n \nYour club on this day is " + ViewClub("wednesday", str(ctx.message.author.id)))
                     elif str.lower(inp2) == "thu" or str.lower(inp2) == "thur" or str.lower(inp2) == "thurs" or str.lower(inp2) == "thursday":
                         AddStats(str(ctx.message.author.id), stat_thu)
-                        await ctx.send(ctx.message.author.mention + "  |  The G8 Thursday timetable is:\n \n" + str(ThuTT[0]) + "\n" + str(ThuTT[1]) + "\n" + str(ThuTT[2]) + "\n" + str(ThuTT[3]) + "\n" + str(ThuTT[4]))
+                        if ViewClub("thursday", str(ctx.message.author.id)) == "null":
+                            await ctx.send(ctx.message.author.mention + "  |  The G8 Thursday timetable is:\n \n" + str(ThuTT[0]) + "\n" + str(ThuTT[1]) + "\n" + str(ThuTT[2]) + "\n" + str(ThuTT[3]) + "\n" + str(ThuTT[4]) + "\n \nYou do not have a club on this day")
+                        else:
+                            await ctx.send(ctx.message.author.mention + "  |  The G8 Thursday timetable is:\n \n" + str(ThuTT[0]) + "\n" + str(ThuTT[1]) + "\n" + str(ThuTT[2]) + "\n" + str(ThuTT[3]) + "\n" + str(ThuTT[4]) + "\n \nYour club on this day is " + ViewClub("thursday", str(ctx.message.author.id)))
                     elif str.lower(inp2) == "fri" or str.lower(inp2) == "friday":
                         AddStats(str(ctx.message.author.id), stat_fri)
-                        await ctx.send(ctx.message.author.mention + "  |  The G8 Friday timetable is:\n \n" + str(FriTT[0]) + "\n" + str(FriTT[1]) + "\n" + str(FriTT[2]) + "\n" + str(FriTT[3]) + "\n" + str(FriTT[4]))
+                        if ViewClub("monday", str(ctx.message.author.id)) == "null":
+                            await ctx.send(ctx.message.author.mention + "  |  The G8 Friday timetable is:\n \n" + str(FriTT[0]) + "\n" + str(FriTT[1]) + "\n" + str(FriTT[2]) + "\n" + str(FriTT[3]) + "\n" + str(FriTT[4]) + "\n \nYou do not have a club on this day")
+                        else:
+                            await ctx.send(ctx.message.author.mention + "  |  The G8 Friday timetable is:\n \n" + str(FriTT[0]) + "\n" + str(FriTT[1]) + "\n" + str(FriTT[2]) + "\n" + str(FriTT[3]) + "\n" + str(FriTT[4]) + "\n \nYour club on this day is " + ViewClub("friday", str(ctx.message.author.id)))
                     elif str.lower(inp2) == "sat" or str.lower(inp2) == "saturday" or str.lower(inp2) == "sun" or str.lower(inp2) == "sunday":
                         if str.lower(inp2) == "sat" or str.lower(inp2) == "saturday":
                             AddStats(str(ctx.message.author.id), stat_sat)
                         else:
                             AddStats(str(ctx.message.author.id), stat_sun)
-                        await ctx.send(ctx.message.author.mention + "  |  There is no timetable set on the weekend")
+                        await ctx.send(ctx.message.author.mention + "  |  There is no school timetable on the weekend")
                     elif str.lower(inp2) == "x" or inp2 == "11381138":
                         if str.lower(Day()) == "monday":
                             AddStats(str(ctx.message.author.id), stat_mon)
-                            await ctx.send(ctx.message.author.mention + "  |  The G8 Monday timetable is:\n \n" + str(MonTT[0]) + "\n" + str(MonTT[1]) + "\n" + str(MonTT[2]) + "\n" + str(MonTT[3]) + "\n" + str(MonTT[4]))
+                            if ViewClub("monday", str(ctx.message.author.id)) == "null":
+                                await ctx.send(ctx.message.author.mention + "  |  The G8 Monday timetable is:\n \n" + str(MonTT[0]) + "\n" + str(MonTT[1]) + "\n" + str(MonTT[2]) + "\n" + str(MonTT[3]) + "\n" + str(MonTT[4]) + "\n \nYou do not have a club on this day")
+                            else:
+                                await ctx.send(ctx.message.author.mention + "  |  The G8 Monday timetable is:\n \n" + str(MonTT[0]) + "\n" + str(MonTT[1]) + "\n" + str(MonTT[2]) + "\n" + str(MonTT[3]) + "\n" + str(MonTT[4]) + "\n \nYour club on this day is " + ViewClub("monday", str(ctx.message.author.id)))
                         elif str.lower(Day()) == "tuesday":
                             AddStats(str(ctx.message.author.id), stat_tue)
-                            await ctx.send(ctx.message.author.mention + "  |  The G8 Tuesday timetable is:\n \n" + str(TueTT[0]) + "\n" + str(TueTT[1]) + "\n" + str(TueTT[2]) + "\n" + str(TueTT[3]) + "\n" + str(TueTT[4]))
+                            if ViewClub("tuesday", str(ctx.message.author.id)) == "null":
+                                await ctx.send(ctx.message.author.mention + "  |  The G8 Tuesday timetable is:\n \n" + str(TueTT[0]) + "\n" + str(TueTT[1]) + "\n" + str(TueTT[2]) + "\n" + str(TueTT[3]) + "\n" + str(TueTT[4]) + "\n \nYou do not have a club on this day")
+                            else:
+                                await ctx.send(ctx.message.author.mention + "  |  The G8 Tuesday timetable is:\n \n" + str(TueTT[0]) + "\n" + str(TueTT[1]) + "\n" + str(TueTT[2]) + "\n" + str(TueTT[3]) + "\n" + str(TueTT[4]) + "\n \nYour club on this day is " + ViewClub("tuesday", str(ctx.message.author.id)))
                         elif str.lower(Day()) == "wednesday":
                             AddStats(str(ctx.message.author.id), stat_wed)
-                            await ctx.send(ctx.message.author.mention + "  |  The G8 Wednesday timetable is:\n \n" + str(WedTT[0]) + "\n" + str(WedTT[1]) + "\n" + str(WedTT[2]) + "\n" + str(WedTT[3]))
+                            if ViewClub("wednesday", str(ctx.message.author.id)) == "null":
+                                await ctx.send(ctx.message.author.mention + "  |  The G8 Wednesday timetable is:\n \n" + str(WedTT[0]) + "\n" + str(WedTT[1]) + "\n" + str(WedTT[2]) + "\n" + str(WedTT[3]) + "\n \nYou do not have a club on this day")
+                            else:
+                                await ctx.send(ctx.message.author.mention + "  |  The G8 Wednesday timetable is:\n \n" + str(WedTT[0]) + "\n" + str(WedTT[1]) + "\n" + str(WedTT[2]) + "\n" + str(WedTT[3]) + "\n \nYour club on this day is " + ViewClub("wednesday", str(ctx.message.author.id)))
                         elif str.lower(Day()) == "thursday":
                             AddStats(str(ctx.message.author.id), stat_thu)
-                            await ctx.send(ctx.message.author.mention + "  |  The G8 Thursday timetable is:\n \n" + str(ThuTT[0]) + "\n" + str(ThuTT[1]) + "\n" + str(ThuTT[2]) + "\n" + str(ThuTT[3]) + "\n" + str(ThuTT[4]))
+                            if ViewClub("thursday", str(ctx.message.author.id)) == "null":
+                                await ctx.send(ctx.message.author.mention + "  |  The G8 Thursday timetable is:\n \n" + str(ThuTT[0]) + "\n" + str(ThuTT[1]) + "\n" + str(ThuTT[2]) + "\n" + str(ThuTT[3]) + "\n" + str(ThuTT[4]) + "\n \nYou do not have a club on this day")
+                            else:
+                                await ctx.send(ctx.message.author.mention + "  |  The G8 Thursday timetable is:\n \n" + str(ThuTT[0]) + "\n" + str(ThuTT[1]) + "\n" + str(ThuTT[2]) + "\n" + str(ThuTT[3]) + "\n" + str(ThuTT[4]) + "\n \nYour club on this day is " + ViewClub("thursday", str(ctx.message.author.id)))
                         elif str.lower(Day()) == "friday":
                             AddStats(str(ctx.message.author.id), stat_fri)
-                            await ctx.send(ctx.message.author.mention + "  |  The G8 Friday timetable is:\n \n" + str(FriTT[0]) + "\n" + str(FriTT[1]) + "\n" + str(FriTT[2]) + "\n" + str(FriTT[3]) + "\n" + str(FriTT[4]))
+                            if ViewClub("friday", str(ctx.message.author.id)) == "null":
+                                await ctx.send(ctx.message.author.mention + "  |  The G8 Friday timetable is:\n \n" + str(FriTT[0]) + "\n" + str(FriTT[1]) + "\n" + str(FriTT[2]) + "\n" + str(FriTT[3]) + "\n" + str(FriTT[4]) + "\n \nYou do not have a club on this day")
+                            else:
+                                await ctx.send(ctx.message.author.mention + "  |  The G8 Friday timetable is:\n \n" + str(FriTT[0]) + "\n" + str(FriTT[1]) + "\n" + str(FriTT[2]) + "\n" + str(FriTT[3]) + "\n" + str(FriTT[4]) + "\n \nYour club on this day is " + ViewClub("friday", str(ctx.message.author.id)))
                     else:
                         AddStats(str(ctx.message.author.id), stat_invalid_day)
-                        await ctx.send("That is not the correct usage of that command.\n**.tt day G D**  -  Displays the timetable of the specified str.lower(inp2)  **G** = Grade    **D** = Day\nIf no grade is inputted, your grade will be used. If no day is inputted, the current day will be used. Use 'x' to force the default value")
+                        await ctx.send(ctx.message.author.mention + "  |  That is not the correct usage of this command. Use **.tt help** for help")
                 elif inp1 == "7" or (inp1 == "11381138" and str(ctx.message.author.id) in userdata7) or (str.lower(inp1) == "x" and str(ctx.message.author.id) in userdata7):
                     with open("7MonFT.txt", "r") as file:
                         MonTT = eval(file.readline())
@@ -1400,44 +1461,74 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138", inp3="11
                         FriTT = eval(file.readline())
                     if str.lower(inp2) == "mon" or str.lower(inp2) == "monday":
                         AddStats(str(ctx.message.author.id), stat_mon)
-                        await ctx.send(ctx.message.author.mention + "  |  The G7 Monday timetable is:\n \n" + str(MonTT[0]) + "\n" + str(MonTT[1]) + "\n" + str(MonTT[2]) + "\n" + str(MonTT[3]) + "\n" + str(MonTT[4]))
+                        if ViewClub("monday", str(ctx.message.author.id)) == "null":
+                            await ctx.send(ctx.message.author.mention + "  |  The G7 Monday timetable is:\n \n" + str(MonTT[0]) + "\n" + str(MonTT[1]) + "\n" + str(MonTT[2]) + "\n" + str(MonTT[3]) + "\n" + str(MonTT[4]) + "\n \nYou do not have a club on this day")
+                        else:
+                            await ctx.send(ctx.message.author.mention + "  |  The G7 Monday timetable is:\n \n" + str(MonTT[0]) + "\n" + str(MonTT[1]) + "\n" + str(MonTT[2]) + "\n" + str(MonTT[3]) + "\n" + str(MonTT[4]) + "\n \nYour club on this day is " + ViewClub("monday", str(ctx.message.author.id)))
                     elif str.lower(inp2) == "tue" or str.lower(inp2) == "tues" or str.lower(inp2) == "tuesday":
                         AddStats(str(ctx.message.author.id), stat_tue)
-                        await ctx.send(ctx.message.author.mention + "  |  The G7 Tuesday timetable is:\n \n" + str(TueTT[0]) + "\n" + str(TueTT[1]) + "\n" + str(TueTT[2]) + "\n" + str(TueTT[3]) + "\n" + str(TueTT[4]))
+                        if ViewClub("tuesday", str(ctx.message.author.id)) == "null":
+                            await ctx.send(ctx.message.author.mention + "  |  The G7 Tuesday timetable is:\n \n" + str(TueTT[0]) + "\n" + str(TueTT[1]) + "\n" + str(TueTT[2]) + "\n" + str(TueTT[3]) + "\n" + str(TueTT[4]) + "\n \nYou do not have a club on this day")
+                        else:
+                            await ctx.send(ctx.message.author.mention + "  |  The G7 Tuesday timetable is:\n \n" + str(TueTT[0]) + "\n" + str(TueTT[1]) + "\n" + str(TueTT[2]) + "\n" + str(TueTT[3]) + "\n" + str(TueTT[4]) + "\n \nYour club on this day is " + ViewClub("tuesday", str(ctx.message.author.id)))
                     elif str.lower(inp2) == "wed" or str.lower(inp2) == "wednesday":
                         AddStats(str(ctx.message.author.id), stat_wed)
-                        await ctx.send(ctx.message.author.mention + "  |  The G7 Wednesday timetable is:\n \n" + str(WedTT[0]) + "\n" + str(WedTT[1]) + "\n" + str(WedTT[2]) + "\n" + str(WedTT[3]))
+                        if ViewClub("wednesday", str(ctx.message.author.id)) == "null":
+                            await ctx.send(ctx.message.author.mention + "  |  The G7 Wednesday timetable is:\n \n" + str(WedTT[0]) + "\n" + str(WedTT[1]) + "\n" + str(WedTT[2]) + "\n" + str(WedTT[3]) + "\n \nYou do not have a club on this day")
+                        else:
+                            await ctx.send(ctx.message.author.mention + "  |  The G7 Wednesday timetable is:\n \n" + str(WedTT[0]) + "\n" + str(WedTT[1]) + "\n" + str(WedTT[2]) + "\n" + str(WedTT[3]) + "\n \nYour club on this day is " + ViewClub("wednesday", str(ctx.message.author.id)))
                     elif str.lower(inp2) == "thu" or str.lower(inp2) == "thur" or str.lower(inp2) == "thurs" or str.lower(inp2) == "thursday":
                         AddStats(str(ctx.message.author.id), stat_thu)
-                        await ctx.send(ctx.message.author.mention + "  |  The G7 Thursday timetable is:\n \n" + str(ThuTT[0]) + "\n" + str(ThuTT[1]) + "\n" + str(ThuTT[2]) + "\n" + str(ThuTT[3]) + "\n" + str(ThuTT[4]))
+                        if ViewClub("thursday", str(ctx.message.author.id)) == "null":
+                            await ctx.send(ctx.message.author.mention + "  |  The G7 Thursday timetable is:\n \n" + str(ThuTT[0]) + "\n" + str(ThuTT[1]) + "\n" + str(ThuTT[2]) + "\n" + str(ThuTT[3]) + "\n" + str(ThuTT[4]) + "\n \nYou do not have a club on this day")
+                        else:
+                            await ctx.send(ctx.message.author.mention + "  |  The G7 Thursday timetable is:\n \n" + str(ThuTT[0]) + "\n" + str(ThuTT[1]) + "\n" + str(ThuTT[2]) + "\n" + str(ThuTT[3]) + "\n" + str(ThuTT[4]) + "\n \nYour club on this day is " + ViewClub("thursday", str(ctx.message.author.id)))
                     elif str.lower(inp2) == "fri" or str.lower(inp2) == "friday":
                         AddStats(str(ctx.message.author.id), stat_fri)
-                        await ctx.send(ctx.message.author.mention + "  |  The G7 Friday timetable is:\n \n" + str(FriTT[0]) + "\n" + str(FriTT[1]) + "\n" + str(FriTT[2]) + "\n" + str(FriTT[3]) + "\n" + str(FriTT[4]))
+                        if ViewClub("friday", str(ctx.message.author.id)) == "null":
+                            await ctx.send(ctx.message.author.mention + "  |  The G7 Friday timetable is:\n \n" + str(FriTT[0]) + "\n" + str(FriTT[1]) + "\n" + str(FriTT[2]) + "\n" + str(FriTT[3]) + "\n" + str(FriTT[4]) + "\n \nYou do not have a club on this day")
+                        else:
+                            await ctx.send(ctx.message.author.mention + "  |  The G7 Friday timetable is:\n \n" + str(FriTT[0]) + "\n" + str(FriTT[1]) + "\n" + str(FriTT[2]) + "\n" + str(FriTT[3]) + "\n" + str(FriTT[4]) + "\n \nYour club on this day is " + ViewClub("friday", str(ctx.message.author.id)))
                     elif str.lower(inp2) == "sat" or str.lower(inp2) == "saturday" or str.lower(inp2) == "sun" or str.lower(inp2) == "sunday":
                         if str.lower(inp2) == "sat" or str.lower(inp2) == "saturday":
                             AddStats(str(ctx.message.author.id), stat_sat)
                         else:
                             AddStats(str(ctx.message.author.id), stat_sun)
-                        await ctx.send(ctx.message.author.mention + "  |  There is no timetable set on the weekend")
+                        await ctx.send(ctx.message.author.mention + "  |  There is no school timetable on the weekend")
                     elif str.lower(inp2) == "x" or inp2 == "11381138":
                         if str.lower(Day()) == "monday":
                             AddStats(str(ctx.message.author.id), stat_mon)
-                            await ctx.send(ctx.message.author.mention + "  |  The G7 Monday timetable is:\n \n" + str(MonTT[0]) + "\n" + str(MonTT[1]) + "\n" + str(MonTT[2]) + "\n" + str(MonTT[3]) + "\n" + str(MonTT[4]))
+                            if ViewClub("monday", str(ctx.message.author.id)) == "null":
+                                await ctx.send(ctx.message.author.mention + "  |  The G7 Monday timetable is:\n \n" + str(MonTT[0]) + "\n" + str(MonTT[1]) + "\n" + str(MonTT[2]) + "\n" + str(MonTT[3]) + "\n" + str(MonTT[4]) + "\n \nYou do not have a club on this day")
+                            else:
+                                await ctx.send(ctx.message.author.mention + "  |  The G7 Monday timetable is:\n \n" + str(MonTT[0]) + "\n" + str(MonTT[1]) + "\n" + str(MonTT[2]) + "\n" + str(MonTT[3]) + "\n" + str(MonTT[4]) + "\n \nYour club on this day is " + ViewClub("monday", str(ctx.message.author.id)))
                         elif str.lower(Day()) == "tuesday":
                             AddStats(str(ctx.message.author.id), stat_tue)
-                            await ctx.send(ctx.message.author.mention + "  |  The G7 Tuesday timetable is:\n \n" + str(TueTT[0]) + "\n" + str(TueTT[1]) + "\n" + str(TueTT[2]) + "\n" + str(TueTT[3]) + "\n" + str(TueTT[4]))
+                            if ViewClub("tuesday", str(ctx.message.author.id)) == "null":
+                                await ctx.send(ctx.message.author.mention + "  |  The G7 Tuesday timetable is:\n \n" + str(TueTT[0]) + "\n" + str(TueTT[1]) + "\n" + str(TueTT[2]) + "\n" + str(TueTT[3]) + "\n" + str(TueTT[4]) + "\n \nYou do not have a club on this day")
+                            else:
+                                await ctx.send(ctx.message.author.mention + "  |  The G7 Tuesday timetable is:\n \n" + str(TueTT[0]) + "\n" + str(TueTT[1]) + "\n" + str(TueTT[2]) + "\n" + str(TueTT[3]) + "\n" + str(TueTT[4]) + "\n \nYour club on this day is " + ViewClub("tuesday", str(ctx.message.author.id)))
                         elif str.lower(Day()) == "wednesday":
                             AddStats(str(ctx.message.author.id), stat_wed)
-                            await ctx.send(ctx.message.author.mention + "  |  The G7 Wednesday timetable is:\n \n" + str(WedTT[0]) + "\n" + str(WedTT[1]) + "\n" + str(WedTT[2]) + "\n" + str(WedTT[3]))
+                            if ViewClub("wednesday", str(ctx.message.author.id)) == "null":
+                                await ctx.send(ctx.message.author.mention + "  |  The G7 Wednesday timetable is:\n \n" + str(WedTT[0]) + "\n" + str(WedTT[1]) + "\n" + str(WedTT[2]) + "\n" + str(WedTT[3]) + "\n \nYou do not have a club on this day")
+                            else:
+                                await ctx.send(ctx.message.author.mention + "  |  The G7 Wednesday timetable is:\n \n" + str(WedTT[0]) + "\n" + str(WedTT[1]) + "\n" + str(WedTT[2]) + "\n" + str(WedTT[3]) + "\n \nYour club on this day is " + ViewClub("wednesday", str(ctx.message.author.id)))
                         elif str.lower(Day()) == "thursday":
                             AddStats(str(ctx.message.author.id), stat_thu)
-                            await ctx.send(ctx.message.author.mention + "  |  The G7 Thursday timetable is:\n \n" + str(ThuTT[0]) + "\n" + str(ThuTT[1]) + "\n" + str(ThuTT[2]) + "\n" + str(ThuTT[3]) + "\n" + str(ThuTT[4]))
+                            if ViewClub("thursday", str(ctx.message.author.id)) == "null":
+                                await ctx.send(ctx.message.author.mention + "  |  The G7 Thursday timetable is:\n \n" + str(ThuTT[0]) + "\n" + str(ThuTT[1]) + "\n" + str(ThuTT[2]) + "\n" + str(ThuTT[3]) + "\n" + str(ThuTT[4]) + "\n \nYou do not have a club on this day")
+                            else:
+                                await ctx.send(ctx.message.author.mention + "  |  The G7 Thursday timetable is:\n \n" + str(ThuTT[0]) + "\n" + str(ThuTT[1]) + "\n" + str(ThuTT[2]) + "\n" + str(ThuTT[3]) + "\n" + str(ThuTT[4]) + "\n \nYour club on this day is " + ViewClub("thursday", str(ctx.message.author.id)))
                         elif str.lower(Day()) == "friday":
                             AddStats(str(ctx.message.author.id), stat_fri)
-                            await ctx.send(ctx.message.author.mention + "  |  The G7 Friday timetable is:\n \n" + str(FriTT[0]) + "\n" + str(FriTT[1]) + "\n" + str(FriTT[2]) + "\n" + str(FriTT[3]) + "\n" + str(FriTT[4]))
+                            if ViewClub("friday", str(ctx.message.author.id)) == "null":
+                                await ctx.send(ctx.message.author.mention + "  |  The G7 Friday timetable is:\n \n" + str(FriTT[0]) + "\n" + str(FriTT[1]) + "\n" + str(FriTT[2]) + "\n" + str(FriTT[3]) + "\n" + str(FriTT[4]) + "\n \nYou do not have a club on this day")
+                            else:
+                                await ctx.send(ctx.message.author.mention + "  |  The G7 Friday timetable is:\n \n" + str(FriTT[0]) + "\n" + str(FriTT[1]) + "\n" + str(FriTT[2]) + "\n" + str(FriTT[3]) + "\n" + str(FriTT[4]) + "\n \nYour club on this day is " + ViewClub("friday", str(ctx.message.author.id)))
                     else:
                         AddStats(str(ctx.message.author.id), stat_invalid_day)
-                        await ctx.send("That is not the correct usage of that command.\n**.tt day G D**  -  Displays the timetable of the specified str.lower(inp2)  **G** = Grade    **D** = Day\nIf no grade is inputted, your grade will be used. If no day is inputted, the current day will be used. Use 'x' to force the default value")
+                        await ctx.send(ctx.message.author.mention + "  |  That is not the correct usage of this command. Use **.tt help** for help")
             elif mode == "setgrade":
                     AddStats(str(ctx.message.author.id), stat_grade)
                     with open("users9.txt", "r") as file:
