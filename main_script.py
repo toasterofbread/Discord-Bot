@@ -1273,16 +1273,6 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138", inp3="11
                                                             "**.tt setgrade *grade***  -  Allows you to change the grade you are in if you set it incorrectly\n \n"
                                                             "**.tt report *message*** - Allows you to report an issue, bug, or suggestion about the bot directly to the owner")
 
-            elif mode == "setgrade":
-                if str(ctx.message.author.id) in userdata9:
-                    await ctx.send(str(
-                        ctx.message.author.mention) + "  |  Your grade has already been set to 9. Use **.tt config** to change it.")
-                elif str(ctx.message.author.id) in userdata8:
-                    await ctx.send(str(
-                        ctx.message.author.mention) + "  |  Your grade has already been set to 8. Use **.tt config** to change it.")
-                elif str(ctx.message.author.id) in userdata7:
-                    await ctx.send(str(
-                        ctx.message.author.mention) + "  |  Your grade has already been set to 7. Use **.tt config** to change it.")
             elif mode == "day":
                 AddStats(str(ctx.message.author.id), stat_valid_day)
                 if inp1 == "9" or (inp1 == "11381138" and str(ctx.message.author.id) in userdata9) or (str.lower(inp1) == "x" and str(ctx.message.author.id) in userdata9):
@@ -1868,7 +1858,7 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138", inp3="11
                 else:
                     await ctx.send(ctx.message.author.mention + "  |  Your report has been sent! Thank you for the feedback")
                     with open("reports.txt", "a") as file:
-                    file.write(str(inp1) + "\n")
+                        file.write(str(inp1) + "\n")
         else:
             if mode == "setgrade":
                 if inp1 == "7" or inp1 == "8" or inp1 == "9":
