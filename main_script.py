@@ -1876,7 +1876,7 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138", inp3="11
                 else:
                     await ctx.send(ctx.message.author.mention + "  |  Please set your grade by typing **.tt setgrade X**, where **X** is your grade number.")
             else:
-                await ctx.send("Hello " + ctx.message.author.mention + ". You have not yet been registered in my database\nPlease tell me what grade you are in by typing **.tt setgrade X**, where **X** is your grade number\n*(You can always change this later if needed by using **.tt config**)*")
+                await ctx.send("Hello " + ctx.message.author.mention + ". You have not yet been registered in my database\nPlease tell me what grade you are in by typing **.tt setgrade X**, where **X** is your grade number\n*(You can always change this later if needed)*")
 
 @client.command(pass_context=True)
 async def reports(ctx, inp1="11381138"):
