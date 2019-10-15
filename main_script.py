@@ -4,6 +4,8 @@ from discord.ext import commands, tasks
 
 bot_name = "TimeTableBot"
 
+bot_owner_id = "402344993391640578"
+
 club_CHI = "MYP Chilled Out Zone"
 club_IMP = "Imperial Assault campaign club"
 club_TTR = "Tinker Thinker Reader"
@@ -82,7 +84,7 @@ with open("club_MSS_FRI", "r") as file:
     club_MSS_FRI = file.read()
 
 
-def SetNextPeriod(grade):
+def SetNextPeriod(grade, idvar="11381138"):
     if grade == "9":
         with open("9MonFT.txt", "r") as file:
             MonTT = eval(file.readline())
@@ -150,10 +152,10 @@ def SetNextPeriod(grade):
         #  3:45 to 4:15
         elif (time.localtime()[3] == 15 and time.localtime()[4] >= 45) or (
                 time.localtime()[3] == 16 and time.localtime()[4] < 15):
-            if MonTT[5] == sp_NUCL:
+            if ViewClub("Monday", str(idvar)) == "null":
                 NextPeriod = TueTT[0]
             else:
-                NextPeriod = MonTT[5]
+                NextPeriod = ViewClub("Monday", str(idvar))
         else:
             NextPeriod = TueTT[0]
 
@@ -189,10 +191,10 @@ def SetNextPeriod(grade):
         #  3:45 to 4:15
         elif (time.localtime()[3] == 15 and time.localtime()[4] >= 45) or (
                 time.localtime()[3] == 16 and time.localtime()[4] < 15):
-            if TueTT[5] == sp_NUCL:
+            if ViewClub("Tuesday", str(idvar)) == "null":
                 NextPeriod = WedTT[0]
             else:
-                NextPeriod = WedTT[4]
+                NextPeriod = ViewClub("Tuesday", str(idvar))
         else:
             NextPeriod = WedTT[0]
 
@@ -216,10 +218,10 @@ def SetNextPeriod(grade):
             NextPeriod = WedTT[3]
         #  12:30 to 2:30
         elif (time.localtime()[3] == 12 and time.localtime()[4] >= 30) or (time.localtime()[3] == 14 and time.localtime()[4] < 30) or time.localtime()[3] == 13:
-            if WedTT[4] == sp_NUCL:
+            if ViewClub("Wednesday", str(idvar)) == "null":
                 NextPeriod = ThuTT[0]
             else:
-                NextPeriod = WedTT[5]
+                NextPeriod = ViewClub("Wednesday", str(idvar))
         else:
             NextPeriod = ThuTT[0]
 
@@ -255,10 +257,10 @@ def SetNextPeriod(grade):
         #  3:45 to 4:15
         elif (time.localtime()[3] == 15 and time.localtime()[4] >= 45) or (
                 time.localtime()[3] == 16 and time.localtime()[4] < 15):
-            if ThuTT[5] == sp_NUCL:
+            if ViewClub("Thursday", str(idvar)) == "null":
                 NextPeriod = FriTT[0]
             else:
-                NextPeriod = ThuTT[5]
+                NextPeriod = ViewClub("Thursday", str(idvar))
         else:
             NextPeriod = FriTT[0]
 
@@ -294,10 +296,10 @@ def SetNextPeriod(grade):
         #  3:45 to 4:15
         elif (time.localtime()[3] == 15 and time.localtime()[4] >= 45) or (
                 time.localtime()[3] == 16 and time.localtime()[4] < 15):
-            if FriTT[5] == sp_NUCL:
+            if ViewClub("Friday", str(idvar)) == "null":
                 NextPeriod = MonTT[0]
             else:
-                NextPeriod = FriTT[5]
+                NextPeriod = ViewClub("Friday", str(idvar))
         else:
             NextPeriod = MonTT[0]
     else:
@@ -305,7 +307,7 @@ def SetNextPeriod(grade):
     return NextPeriod
 
 
-def SetCurrentPeriod(grade):
+def SetCurrentPeriod(grade, idvar="11381138"):
     if grade == "9":
         with open("9MonFT.txt", "r") as file:
             MonTT = eval(file.readline())
@@ -393,7 +395,7 @@ def SetCurrentPeriod(grade):
 
         #  4:15 to 5:00
         elif time.localtime()[3] == 16 and time.localtime()[4] >= 15:
-            CurrentPeriod = MonTT[5]
+            CurrentPeriod = ViewClub(Day(), str(idvar))
 
         #  Else
         else:
@@ -451,7 +453,7 @@ def SetCurrentPeriod(grade):
 
         #  4:15 to 5:00
         elif time.localtime()[3] == 16 and time.localtime()[4] >= 15:
-            CurrentPeriod = TueTT[5]
+            CurrentPeriod = ViewClub(Day(), str(idvar))
 
         #  Else
         else:
@@ -493,6 +495,10 @@ def SetCurrentPeriod(grade):
         elif (time.localtime()[3] == 13 and time.localtime()[4] >= 30) or (
                 time.localtime()[3] == 14 and time.localtime()[4] < 30):
             CurrentPeriod = WedTT[3]
+
+        #  2:30 to 3:30
+        elif (time.localtime()[3] == 14 and time.localtime()[4] >= 30) or (time.localtime()[3] == 15 and time.localtime()[4] < 30):
+            CurrentPeriod = ViewClub(Day(), str(idvar))
 
         #  Else
         else:
@@ -550,7 +556,7 @@ def SetCurrentPeriod(grade):
 
         #  4:15 to 5:00
         elif time.localtime()[3] == 16 and time.localtime()[4] >= 15:
-            CurrentPeriod = ThuTT[5]
+            CurrentPeriod = ViewClub(Day(), str(idvar))
 
         #  Else
         else:
@@ -608,7 +614,7 @@ def SetCurrentPeriod(grade):
 
         #  4:15 to 5:00
         elif time.localtime()[3] == 16 and time.localtime()[4] >= 15:
-            CurrentPeriod = FriTT[5]
+            CurrentPeriod = ViewClub(Day(), str(idvar))
 
         #  Else
         else:
@@ -619,71 +625,6 @@ def SetCurrentPeriod(grade):
         CurrentPeriod = sp_NULL
 
     return CurrentPeriod
-
-
-def ViewPeriod():
-    with open("9MonFT.txt", "r") as file:
-        MonTT = eval(file.readline())
-    with open("9TueFT.txt", "r") as file:
-        TueTT = eval(file.readline())
-    with open("9WedFT.txt", "r") as file:
-        WedTT = eval(file.readline())
-    with open("9ThuFT.txt", "r") as file:
-        ThuTT = eval(file.readline())
-    with open("9FriFT.txt", "r") as file:
-        FriTT = eval(file.readline())
-
-    PDayToView = str.lower(input("\nInput day to view a period of:  "))
-    if PDayToView == "monday" or PDayToView == "mon":
-        PeriodToView = str.lower(input("Select the period to view:  "))
-        if PeriodToView == "1" or PeriodToView == "2" or PeriodToView == "3" or PeriodToView == "4" or PeriodToView == "5":
-            print("\nPeriod " + str(PeriodToView) + " of Monday is: " + MonTT[int(PeriodToView) - 1])
-        elif PeriodToView == "club" or "6":
-            if MonTT[5] == sp_NUCL:
-                print("\nThere is no club on Monday")
-            else:
-                print("\nMonday's club is: " + MonTT[5])
-    elif PDayToView == "tuesday" or PDayToView == "tue":
-        PeriodToView = str.lower(input("Select the period to view:  "))
-        if PeriodToView == "1" or PeriodToView == "2" or PeriodToView == "3" or PeriodToView == "4" or PeriodToView == "5":
-            print("\nPeriod " + str(PeriodToView) + " of Tuesday is: " + TueTT[int(PeriodToView) - 1])
-        elif PeriodToView == "club" or "6":
-            if TueTT[5] == sp_NUCL:
-                print("\nThere is no club on Tuesday")
-            else:
-                print("\nTuesday's club is: " + TueTT[5])
-    elif PDayToView == "wednesday" or PDayToView == "wed":
-        PeriodToView = str.lower(input("Select the period to view:  "))
-        if PeriodToView == "1" or PeriodToView == "2" or PeriodToView == "3" or PeriodToView == "4":
-            print("\nPeriod " + str(PeriodToView) + " of Wednesday is: " + WedTT[int(PeriodToView) - 1])
-        elif PeriodToView == "club" or "5":
-            if WedTT[4] == sp_NUCL:
-                print("\nThere is no club on Wednesdau")
-            else:
-                print("\nWednesday's club is: " + WedTT[4])
-    elif PDayToView == "thursday" or PDayToView == "thu":
-        PeriodToView = str.lower(input("Select the period to view:  "))
-        if PeriodToView == "1" or PeriodToView == "2" or PeriodToView == "3" or PeriodToView == "4" or PeriodToView == "5":
-            print("\nPeriod " + str(PeriodToView) + " of Thursday is: " + ThuTT[int(PeriodToView) - 1])
-        elif PeriodToView == "club" or "6":
-            if ThuTT[5] == sp_NUCL:
-                print("\nThere is no club on Thursday")
-            else:
-                print("\nThursday's club is: " + ThuTT[5])
-    elif PDayToView == "friday" or PDayToView == "fri":
-        PeriodToView = str.lower(input("Select the period to view:  "))
-        if PeriodToView == "1" or PeriodToView == "2" or PeriodToView == "3" or PeriodToView == "4" or PeriodToView == "5":
-            print("\nPeriod " + str(PeriodToView) + " of Friday is: " + FriTT[int(PeriodToView) - 1])
-        elif PeriodToView == "club" or "6":
-            if FriTT[5] == sp_NUCL:
-                print("\nThere is no club on Friday")
-            else:
-                print("\nFriday's club is: " + FriTT[5])
-    elif PDayToView == "saturday" or PDayToView == "sat" or PDayToView == "sunday" or PDayToView == "sun":
-        print("There is no school during the weekend.")
-    else:
-        print("Invalid input")
-
 
 def Time():
     if len(str(time.localtime()[3])) == 1:
@@ -764,6 +705,15 @@ def Month():
     elif str(time.localtime()[1]) == "12":
         return "December"
 
+def Remove_Club(id, club_filename):
+    with open(club_filename, "r") as file:
+        tempdata = file.readlines()
+    with open(club_filename, "w") as file:
+        file.write("\n")
+    for value in tempdata:
+        if str(id) not in str(value):
+            with open(club_filename, "a") as file:
+                file.write(str(value))
 
 client = commands.Bot(command_prefix=".")
 
@@ -1024,6 +974,8 @@ def ViewClub(dayinp, idinp):
             return club_MSS
         else:
             return "null"
+    else:
+        return "null"
 
 
 stat_tt = "tt"
@@ -1060,7 +1012,7 @@ async def on_ready():
     await client.change_presence(activity=discord.Game("Use '.tt ?' for info"))
 
 @client.command(pass_context=True)
-async def debug(ctx, mode="11381138", var1="11381138", var2="11381138", var3="11381138", *, note=" "):
+async def debug(ctx, mode="11381138", var1="11381138", var2="11381138", *, note=" "):
     with open("debugpermissions.txt", "r") as file:
         debug_ids = file.read()
     if str(ctx.message.author.id) in debug_ids:
@@ -1197,13 +1149,16 @@ async def debug(ctx, mode="11381138", var1="11381138", var2="11381138", var3="11
             else:
                 await ctx.send(ctx.message.author.mention + "  |  That is not the correct use of this command. Use **.debug help** for info")
         elif str.lower(mode) == "lock":
-            with open("lock_parameters.txt", "r") as file:
-                global_variables = eval(file.readline())
-            global_variables[0] = 1
-            global_variables[1] = str(note)
-            with open("lock_parameters.txt", "w") as file:
-                file.write(str(global_variables))
-            await ctx.send(ctx.message.author.mention + "  |  " + bot_name + " has been locked")
+            if str(ctx.message.author.id) == bot_owner_id:
+                with open("lock_parameters.txt", "r") as file:
+                    global_variables = eval(file.readline())
+                global_variables[0] = 1
+                global_variables[1] = " " + str(var1) + " " + str(var2) + " " + str(note)
+                with open("lock_parameters.txt", "w") as file:
+                    file.write(str(global_variables))
+                await ctx.send(ctx.message.author.mention + "  |  " + bot_name + " has been locked")
+            else:
+                await ctx.send(ctx.message.author.mention + "  |  Only the bot owner has permission to use that command")
         elif str.lower(mode) == "unlock":
             with open("lock_parameters.txt", "r") as file:
                 global_variables = eval(file.readline())
@@ -1216,38 +1171,31 @@ async def debug(ctx, mode="11381138", var1="11381138", var2="11381138", var3="11
                 with open("debugpermissions.txt", "a") as file:
                     file.write(str(var2))
             elif str.lower(var1) == "remove":
-                with open("users9.txt", "r") as file:
+                with open("debugpermissions.txt", "r") as file:
                     tempdata = file.readlines()
-                with open("users9.txt", "w") as file:
+                with open("debugpermissions.txt", "w") as file:
                     file.write("\n")
                 for value in tempdata:
-                    if str(ctx.message.author.id) not in str(value):
+                    if str(var2) not in str(value):
                         with open("debugpermissions.txt", "a") as file:
                             file.write(str(value))
                 with open("users8.txt", "a") as file:
                     file.write(str(ctx.message.author.id) + "\n")
-        elif str.lower(mode) == "editfile":
-            if str(ctx.message.author.id) == "402344993391640578":
-                if str.lower(var1) in valid_filenames:
-                    if (str.lower(var2) == "a" or str.lower(var2) == "append") and str.lower(var2) != "11381138":
-                        print("dunno lol")
-                else:
-                    await ctx.send(ctx.message.author.mention + "  |  That is not a valid filename. The list of valid filenames can be viewed using **.debug help filenames**")
-
-            else:
-                await ctx.send(ctx.message.author.mention + "  |  Only the bot owner has permission to use this debug function")
         elif str.lower(mode) == "?" or str.lower(mode) == "help":
             AddStats(str(ctx.message.author.id), stat_help)
-            if str.lower(var1) == "filenames":
-                await ctx.send(ctx.message.author.mention + "  |  All valid " + bot_name + " filenames:\n \n" + ("7MonFT.txt\n7TueFT.txt\n7WedFT.txt\n7ThuFT.txt\n7FriFT.txt\n8MonFT.txt\n8TueFT.txt\n8WedFT.txt\n8ThuFT.txt\n8FriFT.txt\n9MonFT.txt\n9TueFT.txt\n9WedFT.txt\n9ThuFT.txt\n9FriFT.txt\n \nclub_BND_MON\nclub_BSK_FRI\nclub_CAL_TUE\nclub_CHI_FRI" +
-                                                                                                                 "\nclub_CHI_TUE\nclub_FTY_WED\nclub_IKE_FRI\nclub_IMP_THU\nclub_LGA_MON\nclub_MKC_THU\nclub_MSS_FRI\nclub_MUS_THU\nclub_R20_THU\nclub_TTR_FRI\nclub_TTR_MON\nclub_TTR_THU\nclub_TTR_TUE" +
-                                                                                                                 "\n \nstats7.txt\nstats8.txt\nstats9.txt\n \nusers7.txt\nusers8.txt\nusers9.txt"))
-            elif str.lower(var1) == "11381138":
+            if str.lower(var1) == "dm":
                 await ctx.send(ctx.message.author.mention + "  |  A DM has been sent to you")
                 await ctx.author.send("**Debug command list**\n \n"
-                                      "**.debug help**  -  Gives information on admin functions\n \n"
-                                      "**.debug userids X Y**  -  Lists ids contained in specified database *(use **all** to list all grades)*\n \n"
-                                      "**.debug stats X Y**  -  Displays bot statistics ***X** = 9, 8, 7, or ALL*\n")
+                                      "**.debug help dm/here**  -  Gives information on admin functions\n \n"
+                                      "**.debug userids X dm/here**  -  Lists ids contained in the specified database ***X** = 9, 8, 7, or ALL*\n \n"
+                                      "**.debug stats X dm/here**  -  Displays bot statistics ***X** = 9, 8, 7, or ALL*\n")
+
+            elif str.lower(var1) == "here":
+                await ctx.send(ctx.message.author.mention + "  |  **Debug command list**\n \n"
+                                      "**.debug help dm/here**  -  Gives information on admin functions\n \n"
+                                      "**.debug userids X dm/here**  -  Lists ids contained in specified database ***X** = 9, 8, 7, or ALL*\n \n"
+                                      "**.debug stats X dm/here**  -  Displays bot statistics ***X** = 9, 8, 7, or ALL*\n")
+
             else:
                 await ctx.send(ctx.message.author.mention + "  |  That is not the correct use of this command. Use **.debug help** for info")
     else:
@@ -1282,47 +1230,49 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138", inp3="11
                 AddStats(str(ctx.message.author.id), stat_tt_overview)
                 if str(ctx.message.author.id) in userdata9:
                     if SetCurrentPeriod("9") == sp_NULL or SetCurrentPeriod("9") == sp_NUCL:
-                        if ViewClub(Day(), "ctx.message.author.id") == "null":
-                            await ctx.send(ctx.message.author.mention + "  (G9)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nThere is nothing scheduled for your current period\nYour next sceduled period is " + SetNextPeriod("9") + "\n \nYou don't have a club today")
+                        if ViewClub(Day(), str(ctx.message.author.id)) == "null":
+                            await ctx.send(ctx.message.author.mention + "  (G9)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nThere is nothing scheduled for your current period\nYour next sceduled period is " + SetNextPeriod("9", str(ctx.message.author.id)) + "\n \nYou don't have a club today")
                         else:
-                            await ctx.send(ctx.message.author.mention + "  (G9)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nThere is nothing scheduled for your current period\nYour next sceduled period is " + SetNextPeriod("9") + "\n \nYour club today is " + ViewClub(Day(), "ctx.message.author.id"))
+                            await ctx.send(ctx.message.author.mention + "  (G9)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nThere is nothing scheduled for your current period\nYour next sceduled period is " + SetNextPeriod("9", str(ctx.message.author.id)) + "\n \nYour club today is " + ViewClub(Day(), str(ctx.message.author.id)))
                     else:
-                        if ViewClub(Day(), "ctx.message.author.id") == "null":
-                            await ctx.send(ctx.message.author.mention + "  (G9)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nYour current period is " + SetCurrentPeriod("9") + "\nYour next sceduled period is " + SetNextPeriod("9") + "\n \nYou don't have a club today")
+                        if ViewClub(Day(), str(ctx.message.author.id)) == "null":
+                            await ctx.send(ctx.message.author.mention + "  (G9)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nYour current period is " + SetCurrentPeriod("9", str(ctx.message.author.id)) + "\nYour next sceduled period is " + SetNextPeriod("9", str(ctx.message.author.id)) + "\n \nYou don't have a club today")
                         else:
-                            await ctx.send(ctx.message.author.mention + "  (G9)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nYour current period is " + SetCurrentPeriod("9") + "\nYour next sceduled period is " + SetNextPeriod("9") + "\n \nYour club today is " + ViewClub(Day(), "ctx.message.author.id"))
+                            await ctx.send(ctx.message.author.mention + "  (G9)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nYour current period is " + SetCurrentPeriod("9", str(ctx.message.author.id)) + "\nYour next sceduled period is " + SetNextPeriod("9", str(ctx.message.author.id)) + "\n \nYour club today is " + ViewClub(Day(), str(ctx.message.author.id)))
                 elif str(ctx.message.author.id) in userdata8:
                     if SetCurrentPeriod("8") == sp_NULL or SetCurrentPeriod("8") == sp_NUCL:
-                        if ViewClub(Day(), "ctx.message.author.id") == "null":
-                            await ctx.send(ctx.message.author.mention + "  (G8)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nThere is nothing scheduled for your current period\nYour next sceduled period is " + SetNextPeriod("8") + "\n \nYou don't have a club today")
+                        if ViewClub(Day(), str(ctx.message.author.id)) == "null":
+                            await ctx.send(ctx.message.author.mention + "  (G8)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nThere is nothing scheduled for your current period\nYour next sceduled period is " + SetNextPeriod("8", str(ctx.message.author.id)) + "\n \nYou don't have a club today")
                         else:
-                            await ctx.send(ctx.message.author.mention + "  (G8)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nThere is nothing scheduled for your current period\nYour next sceduled period is " + SetNextPeriod("8") + "\n \nYour club today is " + ViewClub(Day(), "ctx.message.author.id"))
+                            await ctx.send(ctx.message.author.mention + "  (G8)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nThere is nothing scheduled for your current period\nYour next sceduled period is " + SetNextPeriod("8", str(ctx.message.author.id)) + "\n \nYour club today is " + ViewClub(Day(), str(ctx.message.author.id)))
                     else:
-                        if ViewClub(Day(), "ctx.message.author.id") == "null":
-                            await ctx.send(ctx.message.author.mention + "  (G8)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nYour current period is " + SetCurrentPeriod("8") + "\nYour next sceduled period is " + SetNextPeriod("8") + "\n \nYou don't have a club today")
+                        if ViewClub(Day(), str(ctx.message.author.id)) == "null":
+                            await ctx.send(ctx.message.author.mention + "  (G8)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nYour current period is " + SetCurrentPeriod("8", str(ctx.message.author.id)) + "\nYour next sceduled period is " + SetNextPeriod("8", str(ctx.message.author.id)) + "\n \nYou don't have a club today")
                         else:
-                            await ctx.send(ctx.message.author.mention + "  (G8)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nYour current period is " + SetCurrentPeriod("8") + "\nYour next sceduled period is " + SetNextPeriod("8") + "\n \nYour club today is " + ViewClub(Day(), "ctx.message.author.id"))
+                            await ctx.send(ctx.message.author.mention + "  (G8)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nYour current period is " + SetCurrentPeriod("8", str(ctx.message.author.id)) + "\nYour next sceduled period is " + SetNextPeriod("8", str(ctx.message.author.id)) + "\n \nYour club today is " + ViewClub(Day(), str(ctx.message.author.id)))
                 elif str(ctx.message.author.id) in userdata7:
                     if SetCurrentPeriod("7") == sp_NULL or SetCurrentPeriod("7") == sp_NUCL:
-                        if ViewClub(Day(), "ctx.message.author.id") == "null":
-                            await ctx.send(ctx.message.author.mention + "  (G7)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nThere is nothing scheduled for your current period\nYour next sceduled period is " + SetNextPeriod("7") + "\n \nYou don't have a club today")
+                        if ViewClub(Day(), str(ctx.message.author.id)) == "null":
+                            await ctx.send(ctx.message.author.mention + "  (G7)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nThere is nothing scheduled for your current period\nYour next sceduled period is " + SetNextPeriod("7", str(ctx.message.author.id)) + "\n \nYou don't have a club today")
                         else:
-                            await ctx.send(ctx.message.author.mention + "  (G7)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nThere is nothing scheduled for your current period\nYour next sceduled period is " + SetNextPeriod("7") + "\n \nYour club today is " + ViewClub(Day(), "ctx.message.author.id"))
+                            await ctx.send(ctx.message.author.mention + "  (G7)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nThere is nothing scheduled for your current period\nYour next sceduled period is " + SetNextPeriod("7", str(ctx.message.author.id)) + "\n \nYour club today is " + ViewClub(Day(), str(ctx.message.author.id)))
                     else:
-                        if ViewClub(Day(), "ctx.message.author.id") == "null":
-                            await ctx.send(ctx.message.author.mention + "  (G7)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nYour current period is " + SetCurrentPeriod("7") + "\nYour next sceduled period is " + SetNextPeriod("7") + "\n \nYou don't have a club today")
+                        if ViewClub(Day(), str(ctx.message.author.id)) == "null":
+                            await ctx.send(ctx.message.author.mention + "  (G7)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nYour current period is " + SetCurrentPeriod("7", str(ctx.message.author.id)) + "\nYour next sceduled period is " + SetNextPeriod("7", str(ctx.message.author.id)) + "\n \nYou don't have a club today")
                         else:
-                            await ctx.send(ctx.message.author.mention + "  (G7)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nYour current period is " + SetCurrentPeriod("7") + "\nYour next sceduled period is " + SetNextPeriod("7") + "\n \nYour club today is " + ViewClub(Day(), "ctx.message.author.id"))
+                            await ctx.send(ctx.message.author.mention + "  (G7)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nYour current period is " + SetCurrentPeriod("7", str(ctx.message.author.id)) + "\nYour next sceduled period is " + SetNextPeriod("7", str(ctx.message.author.id)) + "\n \nYour club today is " + ViewClub(Day(), str(ctx.message.author.id)))
 
             elif mode == "help" or mode == "?":
                 await ctx.send(ctx.message.author.mention + "  |  **Command List:**\n \n"
                                                             "**.tt**  -  Provides key information about current and upcoming periods, etc.\n \n"
                                                             "**.tt help**  -  Gives information on bot functions\n \n"
-                                                            "**.tt config**  -  Allows you to configure various user settings for this bot\n \n"
-                                                            "**.tt day G D**  -  Displays the timetable of the specified day  **G** = Grade    **D** = Day\n"
+                                                            "**.tt day *grade day***  -  Displays the timetable of the specified day\n"
                                                             "If no grade is inputted, your grade will be used. If no day is inputted, the current day will be used. Use 'x' to force the default value\n \n"
-                                                            "**.tt period P D G**  -  Displays a specified period of a specified day  **P** = Period number   **D** = Day   **G** = Grade\n"
-                                                            "If no day or period is specified, the current ones will be used. If no grade is inputted, your grade will be used. Use 'x' to force the default value\n")
+                                                            "**.tt club set *day club***  -  Allows you to set a school club on the specified day\n \n"
+                                                            "**.tt club remove *day***  -  Removes you from your club on the specified day\n \n"  
+                                                            "**.tt setgrade *grade***  -  Allows you to change the grade you are in if you set it incorrectly\n \n"
+                                                            "**.tt report *message*** - Allows you to report an issue, bug, or suggestion about the bot directly to the owner")
+
             elif mode == "setgrade":
                 if str(ctx.message.author.id) in userdata9:
                     await ctx.send(str(
@@ -1488,15 +1438,7 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138", inp3="11
                     else:
                         AddStats(str(ctx.message.author.id), stat_invalid_day)
                         await ctx.send("That is not the correct usage of that command.\n**.tt day G D**  -  Displays the timetable of the specified str.lower(inp2)  **G** = Grade    **D** = Day\nIf no grade is inputted, your grade will be used. If no day is inputted, the current day will be used. Use 'x' to force the default value")
-            elif mode == "config":
-                AddStats(str(ctx.message.author.id), stat_valid_config)
-                if inp1 == "11381138":
-                    await ctx.send("*User configuartion*\n"
-                                   "**.tt config clubs**  -  Allows you to view, set, and edit school clubs\n"
-                                   "**.tt config grade X** Allows you to change your grade if you set it incorrectly  X = The grade you want to be set as\n"
-                                   "**.tt config reset** Resets all of your settings to their default values\n"
-                                   "**.tt config reset all** Completely resets your settings, and also removes your ID from this bot's database (debug, not recommended)")
-                elif inp1 == "grade":
+            elif mode == "setgrade":
                     AddStats(str(ctx.message.author.id), stat_grade)
                     with open("users9.txt", "r") as file:
                         userdata9 = file.read()
@@ -1504,7 +1446,7 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138", inp3="11
                         userdata8 = file.read()
                     with open("users7.txt", "r") as file:
                         userdata7 = file.read()
-                    if inp2 == "9":
+                    if str(inp1) == "9":
                         if str(ctx.message.author.id) in userdata9:
                             await ctx.send(ctx.message.author.mention + "  |  You are already set as Grade 9")
                         elif str(ctx.message.author.id) in userdata8:
@@ -1531,7 +1473,7 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138", inp3="11
                             with open("users9.txt", "a") as file:
                                 file.write(str(ctx.message.author.id) + "\n")
                             await ctx.send(ctx.message.author.mention + "  |  You have been set as Grade 9")
-                    elif inp2 == "8":
+                    elif str(inp1) == "8":
                         if str(ctx.message.author.id) in userdata8:
                             await ctx.send(ctx.message.author.mention + "  |  You are already set as Grade 8")
                         elif str(ctx.message.author.id) in userdata9:
@@ -1558,7 +1500,7 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138", inp3="11
                             with open("users8.txt", "a") as file:
                                 file.write(str(ctx.message.author.id) + "\n")
                             await ctx.send(ctx.message.author.mention + "  |  You have been set as Grade 8")
-                    elif inp2 == "7":
+                    elif str(inp1) == "7":
                         if str(ctx.message.author.id) in userdata7:
                             await ctx.send(ctx.message.author.mention + "  |  You are already set as Grade 7")
                         elif str(ctx.message.author.id) in userdata8:
@@ -1722,6 +1664,116 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138", inp3="11
                             await ctx.send(str(ctx.message.author.mention) + "  |  " + "That is not a valid club name")
                     else:
                         await ctx.send(str(ctx.message.author.mention) + "  |  That is not a valid day name")
+                elif str.lower(inp1) == "remove":
+                    with open("club_BND_MON", "r") as file:
+                        club_BND_MON = file.read()
+                    with open("club_LGA_MON", "r") as file:
+                        club_LGA_MON = file.read()
+                    with open("club_TTR_MON", "r") as file:
+                        club_TTR_MON = file.read()
+
+                    with open("club_TTR_TUE", "r") as file:
+                        club_TTR_TUE = file.read()
+                    with open("club_CAL_TUE", "r") as file:
+                        club_CAL_TUE = file.read()
+                    with open("club_CHI_TUE", "r") as file:
+                        club_CHI_TUE = file.read()
+
+                    with open("club_FTY_WED", "r") as file:
+                        club_FTY_WED = file.read()
+
+                    with open("club_TTR_THU", "r") as file:
+                        club_TTR_THU = file.read()
+                    with open("club_IMP_THU", "r") as file:
+                        club_IMP_THU = file.read()
+                    with open("club_MKC_THU", "r") as file:
+                        club_MKC_THU = file.read()
+                    with open("club_MUS_THU", "r") as file:
+                        club_MUS_THU = file.read()
+                    with open("club_R20_THU", "r") as file:
+                        club_R20_THU = file.read()
+
+                    with open("club_TTR_FRI", "r") as file:
+                        club_TTR_FRI = file.read()
+                    with open("club_CHI_FRI", "r") as file:
+                        club_CHI_FRI = file.read()
+                    with open("club_IKE_FRI", "r") as file:
+                        club_IKE_FRI = file.read()
+                    with open("club_BSK_FRI", "r") as file:
+                        club_BSK_FRI = file.read()
+                    with open("club_MSS_FRI", "r") as file:
+                        club_MSS_FRI = file.read()
+                    if str.lower(inp2) == "mon" or str.lower(inp2) == "monday":
+                        if str(ctx.message.author.id) in club_BND_MON:
+                            Remove_Club(str(ctx.message.author.id), "club_BND_MON")
+                            await ctx.send(ctx.message.author.mention + "  |  You have been removed from " + club_BND + " on Monday")
+                        elif str(ctx.message.author.id) in club_LGA_MON:
+                            Remove_Club(str(ctx.message.author.id), "club_LGA_MON")
+                            await ctx.send(ctx.message.author.mention + "  |  You have been removed from " + club_LGA + " on Monday")
+                        elif str(ctx.message.author.id) in club_TTR_MON:
+                            Remove_Club(str(ctx.message.author.id), "club_TTR_MON")
+                            await ctx.send(ctx.message.author.mention + "  |  You have been removed from " + club_TTR + " on Monday")
+                        else:
+                            await ctx.send(ctx.message.author.mention + "  |  You are not in a club on Monday")
+                    elif str.lower(inp2) == "tue" or str.lower(inp2) == "tuesday":
+                        if str(ctx.message.author.id) in club_CAL_TUE:
+                            Remove_Club(str(ctx.message.author.id), "club_CAL_TUE")
+                            await ctx.send(ctx.message.author.mention + "  |  You have been removed from " + club_CAL + " on Tuesday")
+                        elif str(ctx.message.author.id) in club_CHI_TUE:
+                            Remove_Club(str(ctx.message.author.id), "club_CHI_TUE")
+                            await ctx.send(ctx.message.author.mention + "  |  You have been removed from " + club_CHI + " on Tuesday")
+                        elif str(ctx.message.author.id) in club_TTR_TUE:
+                            Remove_Club(str(ctx.message.author.id), "club_TTR_TUE")
+                            await ctx.send(ctx.message.author.mention + "  |  You have been removed from " + club_TTR + " on Tuesday")
+                        else:
+                            await ctx.send(ctx.message.author.mention + "  |  You are not in a club on Tuesday")
+                    elif str.lower(inp2) == "wed" or str.lower(inp2) == "wednesday":
+                        if str(ctx.message.author.id) in club_FTY_WED:
+                            Remove_Club(str(ctx.message.author.id), "club_FTY_WED")
+                            await ctx.send(ctx.message.author.mention + "  |  You have been removed from " + club_FTY + " on Wednesday")
+                        else:
+                            await ctx.send(ctx.message.author.mention + "  |  You are not in a club on Wednesday")
+                    elif str.lower(inp2) == "thu" or str.lower(inp2) == "thur" or str.lower(inp2) == "thurs" or str.lower(inp2) == "thursday":
+                        if str(ctx.message.author.id) in club_IMP_THU:
+                            Remove_Club(str(ctx.message.author.id), "club_IMP_THU")
+                            await ctx.send(ctx.message.author.mention + "  |  You have been removed from " + club_IMP + " on Thursday")
+                        elif str(ctx.message.author.id) in club_MKC_THU:
+                            Remove_Club(str(ctx.message.author.id), "club_MKC_THU")
+                            await ctx.send(ctx.message.author.mention + "  |  You have been removed from " + club_MKC + " on Thursday")
+                        elif str(ctx.message.author.id) in club_MUS_THU:
+                            Remove_Club(str(ctx.message.author.id), "club_MUS_THU")
+                            await ctx.send(ctx.message.author.mention + "  |  You have been removed from " + club_MUS + " on Thursday")
+                        elif str(ctx.message.author.id) in club_R20_THU:
+                            Remove_Club(str(ctx.message.author.id), "club_R20_THU")
+                            await ctx.send(ctx.message.author.mention + "  |  You have been removed from " + club_R20 + " on Thursday")
+                        elif str(ctx.message.author.id) in club_TTR_THU:
+                            Remove_Club(str(ctx.message.author.id), "club_TTR_THU")
+                            await ctx.send(ctx.message.author.mention + "  |  You have been removed from " + club_TTR + " on Thursday")
+                        else:
+                            await ctx.send(ctx.message.author.mention + "  |  You are not in a club on Thursday")
+                    elif str.lower(inp2) == "fri" or str.lower(inp2) == "friday":
+                        if str(ctx.message.author.id) in club_CHI_FRI:
+                            Remove_Club(str(ctx.message.author.id), "club_CHI_FRI")
+                            await ctx.send(ctx.message.author.mention + "  |  You have been removed from " + club_CHI + " on Friday")
+                        elif str(ctx.message.author.id) in club_BSK_FRI:
+                            Remove_Club(str(ctx.message.author.id), "club_BSK_FRI")
+                            await ctx.send(ctx.message.author.mention + "  |  You have been removed from " + club_BSK + " on Friday")
+                        elif str(ctx.message.author.id) in club_IKE_FRI:
+                            Remove_Club(str(ctx.message.author.id), "club_IKE_FRI")
+                            await ctx.send(ctx.message.author.mention + "  |  You have been removed from " + club_IKE + " on Friday")
+                        elif str(ctx.message.author.id) in club_MSS_FRI:
+                            Remove_Club(str(ctx.message.author.id), "club_MSS_FRI")
+                            await ctx.send(ctx.message.author.mention + "  |  You have been removed from " + club_MSS + " on Friday")
+                        elif str(ctx.message.author.id) in club_TTR_FRI:
+                            Remove_Club(str(ctx.message.author.id), "club_TTR_FRI")
+                            await ctx.send(ctx.message.author.mention + "  |  You have been removed from " + club_TTR + " on Friday")
+                        else:
+                            await ctx.send(ctx.message.author.mention + "  |  You are not in a club on Friday")
+                    else:
+                        await ctx.send(ctx.message.author.mention + "  |  That is not a valid day name. For information on this command, use **.tt help**")
+            elif mode == "report":
+                with open("reports.txt", "a") as file:
+                    file.write(str(inp1) + "\n")
         else:
             if mode == "setgrade":
                 if inp1 == "7" or inp1 == "8" or inp1 == "9":
@@ -1740,6 +1792,17 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138", inp3="11
                     await ctx.send(ctx.message.author.mention + "  |  Please set your grade by typing **.tt setgrade X**, where **X** is your grade number.")
             else:
                 await ctx.send("Hello " + ctx.message.author.mention + ". You have not yet been registered in my database\nPlease tell me what grade you are in by typing **.tt setgrade X**, where **X** is your grade number\n*(You can always change this later if needed by using **.tt config**)*")
+
+@client.command(pass_context=True)
+async def reports(ctx, inp1="11381138"):
+    if str(ctx.message.author.id) == bot_owner_id:
+        if str.lower(inp1) == "show":
+            with open("reports.txt", "r") as file:
+                reports = file.read()
+            await ctx.author.send(str(reports))
+        elif str.lower(inp1) == "delete":
+            with open("reports.txt", "w") as file:
+                file.write("\n")
 
 
 client.run("NjI3MDk5ODk3MjIwNDMxODcy.XY3v5Q.Q19bNJrTqvFa1eDTPEmfJjvd4HE")
