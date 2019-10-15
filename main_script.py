@@ -1863,7 +1863,11 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138", inp3="11
                     else:
                         await ctx.send(ctx.message.author.mention + "  |  That is not a valid day name. For information on this command, use **.tt help**")
             elif mode == "report":
-                with open("reports.txt", "a") as file:
+                if str(inp1) == "11381138":
+                    await ctx.send(ctx.message.author.mention + "  |  To send a report, please add a message explaining your report or suggestion after the command, like this:  **.tt report *please add cats***")
+                else:
+                    await ctx.send(ctx.message.author.mention + "  |  Your report has been sent! Thank you for the feedback")
+                    with open("reports.txt", "a") as file:
                     file.write(str(inp1) + "\n")
         else:
             if mode == "setgrade":
