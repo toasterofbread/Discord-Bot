@@ -31,7 +31,7 @@ CurrentPeriod = "customerror"
 NextPeriod = "customerror"
 
 id_CHI = ("chi", "myp chill out club", "myp chill out", "chill", "chill out", "chill out club", "chill club", "myp chill club")
-id_IMP = ("imp", "imperial assault", "star wars imperial assault", "star wars: imperial assault")
+id_IMP = ("imp", "imperial assault", "star wars imperial assault", "star wars: imperial assault", "star wars", "star wars imperial assault")
 id_TTR = ("ttr", "tinker", "thinker", "reader", "homework", "hw", "tinker thinker", "tinker thinker reader")
 id_BND = ("bnd", "band", "advanced band", "adv", "adv band")
 id_LGA = ("lga", "let's get active", "active", "get active")
@@ -42,7 +42,7 @@ id_MUS = ("mus", "music video", "music video club")
 id_MKC = ("mkc", "mdl", "model", "model kit", "kit construction", "model kit construction", "kit", "model construction", "construction")
 id_IKE = ("ike", "ikebana", "ikebana club")
 id_MSS = ("mss", "survival", "survival skills", "modern survival", "modern survival skills")
-id_BSK = ("bsk", "basketball", "basketball club")
+id_BSK = ("bsk", "basketball", "basketball club", "basket")
 
 with open("club_BND_MON", "r") as file:
     club_BND_MON = file.read()
@@ -57,6 +57,8 @@ with open("club_CAL_TUE", "r") as file:
     club_CAL_TUE = file.read()
 with open("club_CHI_TUE", "r") as file:
     club_CHI_TUE = file.read()
+with open("club_BSK_TUE", "r") as file:
+    club_BSK_TUE = file.read()
 
 with open("club_FTY_WED", "r") as file:
     club_FTY_WED = file.read()
@@ -900,6 +902,8 @@ def ViewClub(dayinp, idinp):
         club_CAL_TUE = file.read()
     with open("club_CHI_TUE", "r") as file:
         club_CHI_TUE = file.read()
+    with open("club_BSK_TUE", "r") as file:
+        club_BSK_TUE = file.read()
 
     with open("club_FTY_WED", "r") as file:
         club_FTY_WED = file.read()
@@ -1001,9 +1005,6 @@ stat_help = "help"
 stat_reset_normal = "reset_normal"
 stat_reset_full = "reset_full"
 
-valid_filenames = ("7MonFT.txt", "7TueFT.txt", "7WedFT.txt", "7ThuFT.txt", "7FriFT.txt", "8MonFT.txt", "8TueFT.txt", "8WedFT.txt", "8ThuFT.txt", "8FriFT.txt", "9MonFT.txt", "9TueFT.txt", "9WedFT.txt", "9ThuFT.txt", "9FriFT.txt", "club_BND_MON", "club_BSK_FRI", "club_CAL_TUE", "club_CHI_FRI"
-                   , "club_CHI_TUE", "club_FTY_WED", "club_IKE_FRI", "club_IMP_THU", "club_LGA_MON", "club_MKC_THU", "club_MSS_FRI", "club_MUS_THU", "club_R20_THU", "club_TTR_FRI", "club_TTR_MON", "club_TTR_THU", "club_TTR_TUE"
-                   , "stats7.txt", "stats8.txt", "stats9.txt", "users7.txt", "users8.txt", "users9.txt")
 
 
 @client.event
@@ -1204,7 +1205,7 @@ async def debug(ctx, mode="11381138", var1="11381138", var2="11381138", *, note=
 
 
 @client.command(pass_context=True)
-async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138", inp3="11381138"):
+async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138", *, inp3="11381138"):
     with open("lock_parameters.txt", "r") as file:
         global_variables = eval(file.readline())
     if global_variables[0] == 1:
@@ -1623,6 +1624,8 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138", inp3="11
                     club_CAL_TUE = file.read()
                 with open("club_CHI_TUE", "r") as file:
                     club_CHI_TUE = file.read()
+                with open("club_BSK_TUE", "r") as file:
+                    club_BSK_TUE = file.read()
 
                 with open("club_FTY_WED", "r") as file:
                     club_FTY_WED = file.read()
@@ -1670,6 +1673,10 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138", inp3="11
                     elif str.lower(inp2) == "tue" or str.lower(inp2) == "tuesday":
                         if str(ctx.message.author.id) in club_TTR_TUE or str(ctx.message.author.id) in club_CAL_TUE or str(ctx.message.author.id) in club_CHI_TUE:
                             await ctx.send(str(ctx.message.author.mention) + "  |  " + "You are already in a club on Tuesday. Remove that club first if you want to add this one")
+                        elif str.lower(inp3) in id_BSK:
+                            with open("club_BSK_TUE", "a") as file:
+                                file.write(str(str(ctx.message.author.id)) + "\n")
+                            await ctx.send(str(ctx.message.author.mention) + "  |  Your club on Tuesday has been set to " + club_BSK)
                         elif str.lower(inp3) in id_TTR:
                             with open("club_TTR_TUE", "a") as file:
                                 file.write(str(str(ctx.message.author.id)) + "\n")
@@ -1742,9 +1749,9 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138", inp3="11
                                 file.write(str(str(ctx.message.author.id)) + "\n")
                             await ctx.send(str(ctx.message.author.mention) + "  |  Your club on Friday has been set to " + club_MSS)
                         else:
-                            await ctx.send(str(ctx.message.author.mention) + "  |  " + "That is not a valid club name")
+                            await ctx.send(ctx.message.author.mention + "  |  That is not a valid club name. For information on this command, use **.tt help**")
                     else:
-                        await ctx.send(str(ctx.message.author.mention) + "  |  That is not a valid day name")
+                        await ctx.send(ctx.message.author.mention + "  |  That is not a valid day name. For information on this command, use **.tt help**")
                 elif str.lower(inp1) == "remove":
                     with open("club_BND_MON", "r") as file:
                         club_BND_MON = file.read()
@@ -1759,6 +1766,8 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138", inp3="11
                         club_CAL_TUE = file.read()
                     with open("club_CHI_TUE", "r") as file:
                         club_CHI_TUE = file.read()
+                    with open("club_BSK_TUE", "r") as file:
+                        club_BSK_TUE = file.read()
 
                     with open("club_FTY_WED", "r") as file:
                         club_FTY_WED = file.read()
@@ -1800,6 +1809,9 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138", inp3="11
                         if str(ctx.message.author.id) in club_CAL_TUE:
                             Remove_Club(str(ctx.message.author.id), "club_CAL_TUE")
                             await ctx.send(ctx.message.author.mention + "  |  You have been removed from " + club_CAL + " on Tuesday")
+                        elif str(ctx.message.author.id) in club_BSK_TUE:
+                            Remove_Club(str(ctx.message.author.id), "club_BSK_TUE")
+                            await ctx.send(ctx.message.author.mention + "  |  You have been removed from " + club_BSK + " on Tuesday")
                         elif str(ctx.message.author.id) in club_CHI_TUE:
                             Remove_Club(str(ctx.message.author.id), "club_CHI_TUE")
                             await ctx.send(ctx.message.author.mention + "  |  You have been removed from " + club_CHI + " on Tuesday")
@@ -1856,9 +1868,11 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138", inp3="11
                 if str(inp1) == "11381138":
                     await ctx.send(ctx.message.author.mention + "  |  To send a report, please add a message explaining your report or suggestion after the command, like this:  **.tt report *please add cats***")
                 else:
-                    await ctx.send(ctx.message.author.mention + "  |  Your report has been sent! Thank you for the feedback")
+                    await ctx.send(ctx.message.author.mentionc + "  |  Your report has been sent! Thank you for the feedback")
                     with open("reports.txt", "a") as file:
                         file.write(str(inp1) + "\n")
+            else:
+                await ctx.send(ctx.message.author.mention + "  |  That is not a valid command. For information on commands, use **.tt help**")
         else:
             if mode == "setgrade":
                 if inp1 == "7" or inp1 == "8" or inp1 == "9":
