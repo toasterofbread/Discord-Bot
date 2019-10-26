@@ -1,6 +1,7 @@
 import time
-import discord
-from discord.ext import commands
+import discord, asyncio
+from discord.ext import commands, tasks
+from discord.ext.tasks import loop
 
 bot_name = "TimeTableBot"
 
@@ -1005,12 +1006,20 @@ stat_help = "help"
 stat_reset_normal = "reset_normal"
 stat_reset_full = "reset_full"
 
-
+tick = 0
 
 @client.event
 async def on_ready():
     print(bot_name + " is now running")
     await client.change_presence(activity=discord.Game("Use '.tt ?' for info"))
+
+@loop(seconds=5)
+async def time_loop():
+    global tick
+    print("tick " + str(tick))
+    tick += 1
+
+
 
 @client.command(pass_context=True)
 async def debug(ctx, mode="11381138", var1="11381138", var2="11381138", *, note=" "):
@@ -1206,6 +1215,7 @@ async def debug(ctx, mode="11381138", var1="11381138", var2="11381138", *, note=
 
 @client.command(pass_context=True)
 async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138", *, inp3="11381138"):
+    print(".tt")
     with open("lock_parameters.txt", "r") as file:
         global_variables = eval(file.readline())
     if global_variables[0] == 1:
@@ -1904,4 +1914,6 @@ async def reports(ctx, inp1="11381138"):
                 file.write("\n")
 
 
+
+time_loop.start()
 client.run("NjI3MDk5ODk3MjIwNDMxODcy.XY3v5Q.Q19bNJrTqvFa1eDTPEmfJjvd4HE")
