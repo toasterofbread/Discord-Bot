@@ -1,9 +1,9 @@
-import time
-import discord, asyncio
-from discord.ext import commands, tasks
-from discord.ext.tasks import loop
+import time, discord, datetime, pytz
+from discord.ext import commands
 
-bot_name = "TimeTableBot"
+tz = pytz.timezone('Asia/Tokyo')
+
+bot_name = "TimeTable Bot"
 
 bot_owner_id = "402344993391640578"
 
@@ -124,37 +124,37 @@ def SetNextPeriod(grade, idvar="11381138"):
 
     global NextPeriod
     #   Monday
-    if time.localtime()[6] == 0:
+    if datetime.date.weekday(datetime.datetime.now(tz)) == 0:
 
         #  0:00 to 8:00
-        if 0 <= time.localtime()[3] <= 8:
+        if 0 <= datetime.datetime.now(tz).hour <= 8:
             NextPeriod = MonTT[0]
 
         #  9:00 to 10:00
-        elif time.localtime()[3] == 9:
+        elif datetime.datetime.now(tz).hour == 9:
             NextPeriod = MonTT[1]
 
         #  10:00 to 11:30
-        elif time.localtime()[3] == 10 or (time.localtime()[3] == 11 and time.localtime()[4] < 30):
+        elif datetime.datetime.now(tz).hour == 10 or (datetime.datetime.now(tz).hour == 11 and datetime.datetime.now(tz).minute < 30):
             NextPeriod = MonTT[2]
 
         #  11:00 to 12:30
-        elif (time.localtime()[3] == 11 and time.localtime()[4] >= 30) or (
-                time.localtime()[3] == 13 and time.localtime()[4] < 30) or time.localtime()[3] == 12:
+        elif (datetime.datetime.now(tz).hour == 11 and datetime.datetime.now(tz).minute >= 30) or (
+                datetime.datetime.now(tz).hour == 13 and datetime.datetime.now(tz).minute < 30) or datetime.datetime.now(tz).hour == 12:
             NextPeriod = MonTT[3]
 
         #  1:30 to 2:30
-        elif (time.localtime()[3] == 13 and time.localtime()[4] >= 30) or (
-                time.localtime()[3] == 14 and time.localtime()[4] < 30):
+        elif (datetime.datetime.now(tz).hour == 13 and datetime.datetime.now(tz).minute >= 30) or (
+                datetime.datetime.now(tz).hour == 14 and datetime.datetime.now(tz).minute < 30):
             NextPeriod = MonTT[4]
 
         #  2:45 to 3:45
-        elif (time.localtime()[3] == 14 and time.localtime()[4] >= 45) or (
-                time.localtime()[3] == 15 and time.localtime()[4] < 45):
+        elif (datetime.datetime.now(tz).hour == 14 and datetime.datetime.now(tz).minute >= 45) or (
+                datetime.datetime.now(tz).hour == 15 and datetime.datetime.now(tz).minute < 45):
             NextPeriod = sp_HMRM
         #  3:45 to 4:15
-        elif (time.localtime()[3] == 15 and time.localtime()[4] >= 45) or (
-                time.localtime()[3] == 16 and time.localtime()[4] < 15):
+        elif (datetime.datetime.now(tz).hour == 15 and datetime.datetime.now(tz).minute >= 45) or (
+                datetime.datetime.now(tz).hour == 16 and datetime.datetime.now(tz).minute < 15):
             if ViewClub("Monday", str(idvar)) == sp_NUCL:
                 NextPeriod = TueTT[0]
             else:
@@ -163,37 +163,37 @@ def SetNextPeriod(grade, idvar="11381138"):
             NextPeriod = TueTT[0]
 
     #   Tuesday
-    elif time.localtime()[6] == 1:
+    elif datetime.date.weekday(datetime.datetime.now(tz)) == 1:
 
         #  0:00 to 8:00
-        if 0 <= time.localtime()[3] <= 8:
+        if 0 <= datetime.datetime.now(tz).hour <= 8:
             NextPeriod = TueTT[0]
 
         #  9:00 to 10:00
-        elif time.localtime()[3] == 9:
+        elif datetime.datetime.now(tz).hour == 9:
             NextPeriod = TueTT[1]
 
         #  10:00 to 11:30
-        elif time.localtime()[3] == 10 or (time.localtime()[3] == 11 and time.localtime()[4] < 30):
+        elif datetime.datetime.now(tz).hour == 10 or (datetime.datetime.now(tz).hour == 11 and datetime.datetime.now(tz).minute < 30):
             NextPeriod = TueTT[2]
 
         #  11:00 to 12:30
-        elif (time.localtime()[3] == 11 and time.localtime()[4] >= 30) or (
-                time.localtime()[3] == 13 and time.localtime()[4] < 30) or time.localtime()[3] == 12:
+        elif (datetime.datetime.now(tz).hour == 11 and datetime.datetime.now(tz).minute >= 30) or (
+                datetime.datetime.now(tz).hour == 13 and datetime.datetime.now(tz).minute < 30) or datetime.datetime.now(tz).hour == 12:
             NextPeriod = TueTT[3]
 
         #  1:30 to 2:30
-        elif (time.localtime()[3] == 13 and time.localtime()[4] >= 30) or (
-                time.localtime()[3] == 14 and time.localtime()[4] < 30):
+        elif (datetime.datetime.now(tz).hour == 13 and datetime.datetime.now(tz).minute >= 30) or (
+                datetime.datetime.now(tz).hour == 14 and datetime.datetime.now(tz).minute < 30):
             NextPeriod = TueTT[4]
 
         #  2:45 to 3:45
-        elif (time.localtime()[3] == 14 and time.localtime()[4] >= 45) or (
-                time.localtime()[3] == 15 and time.localtime()[4] < 45):
+        elif (datetime.datetime.now(tz).hour == 14 and datetime.datetime.now(tz).minute >= 45) or (
+                datetime.datetime.now(tz).hour == 15 and datetime.datetime.now(tz).minute < 45):
             NextPeriod = sp_HMRM
         #  3:45 to 4:15
-        elif (time.localtime()[3] == 15 and time.localtime()[4] >= 45) or (
-                time.localtime()[3] == 16 and time.localtime()[4] < 15):
+        elif (datetime.datetime.now(tz).hour == 15 and datetime.datetime.now(tz).minute >= 45) or (
+                datetime.datetime.now(tz).hour == 16 and datetime.datetime.now(tz).minute < 15):
             if ViewClub("Tuesday", str(idvar)) == sp_NUCL:
                 NextPeriod = WedTT[0]
             else:
@@ -202,25 +202,25 @@ def SetNextPeriod(grade, idvar="11381138"):
             NextPeriod = WedTT[0]
 
     #   Wednesday
-    elif time.localtime()[6] == 2:
+    elif datetime.date.weekday(datetime.datetime.now(tz)) == 2:
         #  0:00 to 8:00
-        if 0 <= time.localtime()[3] <= 8:
+        if 0 <= datetime.datetime.now(tz).hour <= 8:
             NextPeriod = WedTT[0]
 
         #  9:00 to 10:00
-        elif time.localtime()[3] == 9:
+        elif datetime.datetime.now(tz).hour == 9:
             NextPeriod = WedTT[1]
 
         #  10:00 to 11:30
-        elif time.localtime()[3] == 10 or (time.localtime()[3] == 11 and time.localtime()[4] < 30):
+        elif datetime.datetime.now(tz).hour == 10 or (datetime.datetime.now(tz).hour == 11 and datetime.datetime.now(tz).minute < 30):
             NextPeriod = WedTT[2]
 
         #  11:00 to 12:30
-        elif (time.localtime()[3] == 11 and time.localtime()[4] >= 30) or (
-                time.localtime()[3] == 13 and time.localtime()[4] < 30) or time.localtime()[3] == 12:
+        elif (datetime.datetime.now(tz).hour == 11 and datetime.datetime.now(tz).minute >= 30) or (
+                datetime.datetime.now(tz).hour == 13 and datetime.datetime.now(tz).minute < 30) or datetime.datetime.now(tz).hour == 12:
             NextPeriod = WedTT[3]
         #  12:30 to 2:30
-        elif (time.localtime()[3] == 12 and time.localtime()[4] >= 30) or (time.localtime()[3] == 14 and time.localtime()[4] < 30) or time.localtime()[3] == 13:
+        elif (datetime.datetime.now(tz).hour == 12 and datetime.datetime.now(tz).minute >= 30) or (datetime.datetime.now(tz).hour == 14 and datetime.datetime.now(tz).minute < 30) or datetime.datetime.now(tz).hour == 13:
             if ViewClub("Wednesday", str(idvar)) == sp_NUCL:
                 NextPeriod = ThuTT[0]
             else:
@@ -229,37 +229,37 @@ def SetNextPeriod(grade, idvar="11381138"):
             NextPeriod = ThuTT[0]
 
     #   Thursday
-    elif time.localtime()[6] == 3:
+    elif datetime.date.weekday(datetime.datetime.now(tz)) == 3:
 
         #  0:00 to 8:00
-        if 0 <= time.localtime()[3] <= 8:
+        if 0 <= datetime.datetime.now(tz).hour <= 8:
             NextPeriod = ThuTT[0]
 
         #  9:00 to 10:00
-        elif time.localtime()[3] == 9:
+        elif datetime.datetime.now(tz).hour == 9:
             NextPeriod = ThuTT[1]
 
         #  10:00 to 11:30
-        elif time.localtime()[3] == 10 or (time.localtime()[3] == 11 and time.localtime()[4] < 30):
+        elif datetime.datetime.now(tz).hour == 10 or (datetime.datetime.now(tz).hour == 11 and datetime.datetime.now(tz).minute < 30):
             NextPeriod = ThuTT[2]
 
         #  11:00 to 12:30
-        elif (time.localtime()[3] == 11 and time.localtime()[4] >= 30) or (
-                time.localtime()[3] == 13 and time.localtime()[4] < 30) or time.localtime()[3] == 12:
+        elif (datetime.datetime.now(tz).hour == 11 and datetime.datetime.now(tz).minute >= 30) or (
+                datetime.datetime.now(tz).hour == 13 and datetime.datetime.now(tz).minute < 30) or datetime.datetime.now(tz).hour == 12:
             NextPeriod = ThuTT[3]
 
         #  1:30 to 2:30
-        elif (time.localtime()[3] == 13 and time.localtime()[4] >= 30) or (
-                time.localtime()[3] == 14 and time.localtime()[4] < 30):
+        elif (datetime.datetime.now(tz).hour == 13 and datetime.datetime.now(tz).minute >= 30) or (
+                datetime.datetime.now(tz).hour == 14 and datetime.datetime.now(tz).minute < 30):
             NextPeriod = ThuTT[4]
 
         #  2:45 to 3:45
-        elif (time.localtime()[3] == 14 and time.localtime()[4] >= 45) or (
-                time.localtime()[3] == 15 and time.localtime()[4] < 45):
+        elif (datetime.datetime.now(tz).hour == 14 and datetime.datetime.now(tz).minute >= 45) or (
+                datetime.datetime.now(tz).hour == 15 and datetime.datetime.now(tz).minute < 45):
             NextPeriod = sp_HMRM
         #  3:45 to 4:15
-        elif (time.localtime()[3] == 15 and time.localtime()[4] >= 45) or (
-                time.localtime()[3] == 16 and time.localtime()[4] < 15):
+        elif (datetime.datetime.now(tz).hour == 15 and datetime.datetime.now(tz).minute >= 45) or (
+                datetime.datetime.now(tz).hour == 16 and datetime.datetime.now(tz).minute < 15):
             if ViewClub("Thursday", str(idvar)) == sp_NUCL:
                 NextPeriod = FriTT[0]
             else:
@@ -268,37 +268,37 @@ def SetNextPeriod(grade, idvar="11381138"):
             NextPeriod = FriTT[0]
 
     #   Friday
-    elif time.localtime()[6] == 4:
+    elif datetime.date.weekday(datetime.datetime.now(tz)) == 4:
 
         #  0:00 to 8:00
-        if 0 <= time.localtime()[3] <= 8:
+        if 0 <= datetime.datetime.now(tz).hour <= 8:
             NextPeriod = FriTT[0]
 
         #  9:00 to 10:00
-        elif time.localtime()[3] == 9:
+        elif datetime.datetime.now(tz).hour == 9:
             NextPeriod = FriTT[1]
 
         #  10:00 to 11:30
-        elif time.localtime()[3] == 10 or (time.localtime()[3] == 11 and time.localtime()[4] < 30):
+        elif datetime.datetime.now(tz).hour == 10 or (datetime.datetime.now(tz).hour == 11 and datetime.datetime.now(tz).minute < 30):
             NextPeriod = FriTT[2]
 
         #  11:00 to 12:30
-        elif (time.localtime()[3] == 11 and time.localtime()[4] >= 30) or (
-                time.localtime()[3] == 13 and time.localtime()[4] < 30) or time.localtime()[3] == 12:
+        elif (datetime.datetime.now(tz).hour == 11 and datetime.datetime.now(tz).minute >= 30) or (
+                datetime.datetime.now(tz).hour == 13 and datetime.datetime.now(tz).minute < 30) or datetime.datetime.now(tz).hour == 12:
             NextPeriod = FriTT[3]
 
         #  1:30 to 2:30
-        elif (time.localtime()[3] == 13 and time.localtime()[4] >= 30) or (
-                time.localtime()[3] == 14 and time.localtime()[4] < 30):
+        elif (datetime.datetime.now(tz).hour == 13 and datetime.datetime.now(tz).minute >= 30) or (
+                datetime.datetime.now(tz).hour == 14 and datetime.datetime.now(tz).minute < 30):
             NextPeriod = FriTT[4]
 
         #  2:45 to 3:45
-        elif (time.localtime()[3] == 14 and time.localtime()[4] >= 45) or (
-                time.localtime()[3] == 15 and time.localtime()[4] < 45):
+        elif (datetime.datetime.now(tz).hour == 14 and datetime.datetime.now(tz).minute >= 45) or (
+                datetime.datetime.now(tz).hour == 15 and datetime.datetime.now(tz).minute < 45):
             NextPeriod = sp_HMRM
         #  3:45 to 4:15
-        elif (time.localtime()[3] == 15 and time.localtime()[4] >= 45) or (
-                time.localtime()[3] == 16 and time.localtime()[4] < 15):
+        elif (datetime.datetime.now(tz).hour == 15 and datetime.datetime.now(tz).minute >= 45) or (
+                datetime.datetime.now(tz).hour == 16 and datetime.datetime.now(tz).minute < 15):
             if ViewClub("Friday", str(idvar)) == sp_NUCL:
                 NextPeriod = MonTT[0]
             else:
@@ -347,57 +347,57 @@ def SetCurrentPeriod(grade, idvar="11381138"):
 
     global CurrentPeriod
     #   Monday
-    if time.localtime()[6] == 0:
+    if datetime.date.weekday(datetime.datetime.now(tz)) == 0:
 
         #  00:00 to 09:00
-        if time.localtime()[3] < 9:
+        if datetime.datetime.now(tz).hour < 9:
             CurrentPeriod = sp_NULL
 
         #  09:00 to 10:00
-        elif time.localtime()[3] == 9:
+        elif datetime.datetime.now(tz).hour == 9:
             CurrentPeriod = MonTT[0]
 
         #  10:00 to 11:00
-        elif time.localtime()[3] == 10:
+        elif datetime.datetime.now(tz).hour == 10:
             CurrentPeriod = MonTT[1]
 
         #  11:00 to 11:30
-        elif time.localtime()[3] == 11 and time.localtime()[4] < 30:
+        elif datetime.datetime.now(tz).hour == 11 and datetime.datetime.now(tz).minute < 30:
             CurrentPeriod = sp_AMRE
 
         #  11:30 to 12:30
-        elif (time.localtime()[3] == 11 and time.localtime()[4] >= 30) or (
-                time.localtime()[3] == 12 and time.localtime()[4] < 30):
+        elif (datetime.datetime.now(tz).hour == 11 and datetime.datetime.now(tz).minute >= 30) or (
+                datetime.datetime.now(tz).hour == 12 and datetime.datetime.now(tz).minute < 30):
             CurrentPeriod = MonTT[2]
 
         #  12:30 to 1:00
-        elif time.localtime()[3] == 12 and time.localtime()[4] >= 30:
+        elif datetime.datetime.now(tz).hour == 12 and datetime.datetime.now(tz).minute >= 30:
             CurrentPeriod = sp_LNCH
 
         #  1:00 to 1:30
-        elif time.localtime()[3] == 13 and time.localtime()[4] < 30:
+        elif datetime.datetime.now(tz).hour == 13 and datetime.datetime.now(tz).minute < 30:
             CurrentPeriod = sp_LNRE
 
         #  1:30 to 2:30
-        elif (time.localtime()[3] == 13 and time.localtime()[4] >= 30) or (
-                time.localtime()[3] == 14 and time.localtime()[4] < 30):
+        elif (datetime.datetime.now(tz).hour == 13 and datetime.datetime.now(tz).minute >= 30) or (
+                datetime.datetime.now(tz).hour == 14 and datetime.datetime.now(tz).minute < 30):
             CurrentPeriod = MonTT[3]
 
         #  2:30 to 2:45
-        elif time.localtime()[3] == 14 and 30 < time.localtime()[4] > 45:
+        elif datetime.datetime.now(tz).hour == 14 and 30 < datetime.datetime.now(tz).minute > 45:
             CurrentPeriod = sp_PMRE
 
         #  2:45 to 3:45
-        elif (time.localtime()[3] == 14 and time.localtime()[4] >= 45) or (
-                time.localtime()[3] == 15 and time.localtime()[4] < 45):
+        elif (datetime.datetime.now(tz).hour == 14 and datetime.datetime.now(tz).minute >= 45) or (
+                datetime.datetime.now(tz).hour == 15 and datetime.datetime.now(tz).minute < 45):
             CurrentPeriod = MonTT[4]
 
         #  3:45 to 4:00
-        elif time.localtime()[3] == 15 and time.localtime()[4] >= 45:
+        elif datetime.datetime.now(tz).hour == 15 and datetime.datetime.now(tz).minute >= 45:
             CurrentPeriod = sp_HMRM
 
         #  4:15 to 5:00
-        elif time.localtime()[3] == 16 and time.localtime()[4] >= 15:
+        elif datetime.datetime.now(tz).hour == 16 and datetime.datetime.now(tz).minute >= 15:
             CurrentPeriod = ViewClub(Day(), str(idvar))
 
         #  Else
@@ -405,57 +405,57 @@ def SetCurrentPeriod(grade, idvar="11381138"):
             CurrentPeriod = sp_NULL
 
     #   Tuesday
-    elif time.localtime()[6] == 1:
+    elif datetime.date.weekday(datetime.datetime.now(tz)) == 1:
 
         #  00:00 to 09:00
-        if time.localtime()[3] < 9:
+        if datetime.datetime.now(tz).hour < 9:
             CurrentPeriod = sp_NULL
 
         #  09:00 to 10:00
-        elif time.localtime()[3] == 9:
+        elif datetime.datetime.now(tz).hour == 9:
             CurrentPeriod = TueTT[0]
 
         #  10:00 to 11:00
-        elif time.localtime()[3] == 10:
+        elif datetime.datetime.now(tz).hour == 10:
             CurrentPeriod = TueTT[1]
 
         #  11:00 to 11:30
-        elif time.localtime()[3] == 11 and time.localtime()[4] < 30:
+        elif datetime.datetime.now(tz).hour == 11 and datetime.datetime.now(tz).minute < 30:
             CurrentPeriod = sp_AMRE
 
         #  11:30 to 12:30
-        elif (time.localtime()[3] == 11 and time.localtime()[4] >= 30) or (
-                time.localtime()[3] == 12 and time.localtime()[4] < 30):
+        elif (datetime.datetime.now(tz).hour == 11 and datetime.datetime.now(tz).minute >= 30) or (
+                datetime.datetime.now(tz).hour == 12 and datetime.datetime.now(tz).minute < 30):
             CurrentPeriod = TueTT[2]
 
         #  12:30 to 1:00
-        elif time.localtime()[3] == 12 and time.localtime()[4] >= 30:
+        elif datetime.datetime.now(tz).hour == 12 and datetime.datetime.now(tz).minute >= 30:
             CurrentPeriod = sp_LNCH
 
         #  1:00 to 1:30
-        elif time.localtime()[3] == 13 and time.localtime()[4] < 30:
+        elif datetime.datetime.now(tz).hour == 13 and datetime.datetime.now(tz).minute < 30:
             CurrentPeriod = sp_LNRE
 
         #  1:30 to 2:30
-        elif (time.localtime()[3] == 13 and time.localtime()[4] >= 30) or (
-                time.localtime()[3] == 14 and time.localtime()[4] < 30):
+        elif (datetime.datetime.now(tz).hour == 13 and datetime.datetime.now(tz).minute >= 30) or (
+                datetime.datetime.now(tz).hour == 14 and datetime.datetime.now(tz).minute < 30):
             CurrentPeriod = TueTT[3]
 
         #  2:30 to 2:45
-        elif time.localtime()[3] == 14 and 30 < time.localtime()[4] > 45:
+        elif datetime.datetime.now(tz).hour == 14 and 30 < datetime.datetime.now(tz).minute > 45:
             CurrentPeriod = sp_PMRE
 
         #  2:45 to 3:45
-        elif (time.localtime()[3] == 14 and time.localtime()[4] >= 45) or (
-                time.localtime()[3] == 15 and time.localtime()[4] < 45):
+        elif (datetime.datetime.now(tz).hour == 14 and datetime.datetime.now(tz).minute >= 45) or (
+                datetime.datetime.now(tz).hour == 15 and datetime.datetime.now(tz).minute < 45):
             CurrentPeriod = TueTT[4]
 
         #  3:45 to 4:00
-        elif time.localtime()[3] == 15 and time.localtime()[4] >= 45:
+        elif datetime.datetime.now(tz).hour == 15 and datetime.datetime.now(tz).minute >= 45:
             CurrentPeriod = sp_HMRM
 
         #  4:15 to 5:00
-        elif time.localtime()[3] == 16 and time.localtime()[4] >= 15:
+        elif datetime.datetime.now(tz).hour == 16 and datetime.datetime.now(tz).minute >= 15:
             CurrentPeriod = ViewClub(Day(), str(idvar))
 
         #  Else
@@ -463,44 +463,44 @@ def SetCurrentPeriod(grade, idvar="11381138"):
             CurrentPeriod = sp_NULL
 
     #   Wednesday
-    elif time.localtime()[6] == 2:
+    elif datetime.date.weekday(datetime.datetime.now(tz)) == 2:
 
         #  00:00 to 09:00
-        if time.localtime()[3] < 9:
+        if datetime.datetime.now(tz).hour < 9:
             CurrentPeriod = sp_NULL
 
         #  09:00 to 10:00
-        elif time.localtime()[3] == 9:
+        elif datetime.datetime.now(tz).hour == 9:
             CurrentPeriod = WedTT[0]
 
         #  10:00 to 11:00
-        elif time.localtime()[3] == 10:
+        elif datetime.datetime.now(tz).hour == 10:
             CurrentPeriod = WedTT[1]
 
         #  11:00 to 11:30
-        elif time.localtime()[3] == 11 and time.localtime()[4] < 30:
+        elif datetime.datetime.now(tz).hour == 11 and datetime.datetime.now(tz).minute < 30:
             CurrentPeriod = sp_AMRE
 
         #  11:30 to 12:30
-        elif (time.localtime()[3] == 11 and time.localtime()[4] >= 30) or (
-                time.localtime()[3] == 12 and time.localtime()[4] < 30):
+        elif (datetime.datetime.now(tz).hour == 11 and datetime.datetime.now(tz).minute >= 30) or (
+                datetime.datetime.now(tz).hour == 12 and datetime.datetime.now(tz).minute < 30):
             CurrentPeriod = WedTT[2]
 
         #  12:30 to 1:00
-        elif time.localtime()[3] == 12 and time.localtime()[4] >= 30:
+        elif datetime.datetime.now(tz).hour == 12 and datetime.datetime.now(tz).minute >= 30:
             CurrentPeriod = sp_LNCH
 
         #  1:00 to 1:30
-        elif time.localtime()[3] == 13 and time.localtime()[4] < 30:
+        elif datetime.datetime.now(tz).hour == 13 and datetime.datetime.now(tz).minute < 30:
             CurrentPeriod = sp_LNRE
 
         #  1:30 to 2:30
-        elif (time.localtime()[3] == 13 and time.localtime()[4] >= 30) or (
-                time.localtime()[3] == 14 and time.localtime()[4] < 30):
+        elif (datetime.datetime.now(tz).hour == 13 and datetime.datetime.now(tz).minute >= 30) or (
+                datetime.datetime.now(tz).hour == 14 and datetime.datetime.now(tz).minute < 30):
             CurrentPeriod = WedTT[3]
 
         #  2:30 to 3:30
-        elif (time.localtime()[3] == 14 and time.localtime()[4] >= 30) or (time.localtime()[3] == 15 and time.localtime()[4] < 30):
+        elif (datetime.datetime.now(tz).hour == 14 and datetime.datetime.now(tz).minute >= 30) or (datetime.datetime.now(tz).hour == 15 and datetime.datetime.now(tz).minute < 30):
             CurrentPeriod = ViewClub(Day(), str(idvar))
 
         #  Else
@@ -508,57 +508,57 @@ def SetCurrentPeriod(grade, idvar="11381138"):
             CurrentPeriod = sp_NULL
 
     #   Thursday
-    elif time.localtime()[6] == 3:
+    elif datetime.date.weekday(datetime.datetime.now(tz)) == 3:
 
         #  00:00 to 09:00
-        if time.localtime()[3] < 9:
+        if datetime.datetime.now(tz).hour < 9:
             CurrentPeriod = sp_NULL
 
         #  09:00 to 10:00
-        elif time.localtime()[3] == 9:
+        elif datetime.datetime.now(tz).hour == 9:
             CurrentPeriod = ThuTT[0]
 
         #  10:00 to 11:00
-        elif time.localtime()[3] == 10:
+        elif datetime.datetime.now(tz).hour == 10:
             CurrentPeriod = ThuTT[1]
 
         #  11:00 to 11:30
-        elif time.localtime()[3] == 11 and time.localtime()[4] < 30:
+        elif datetime.datetime.now(tz).hour == 11 and datetime.datetime.now(tz).minute < 30:
             CurrentPeriod = sp_AMRE
 
         #  11:30 to 12:30
-        elif (time.localtime()[3] == 11 and time.localtime()[4] >= 30) or (
-                time.localtime()[3] == 12 and time.localtime()[4] < 30):
+        elif (datetime.datetime.now(tz).hour == 11 and datetime.datetime.now(tz).minute >= 30) or (
+                datetime.datetime.now(tz).hour == 12 and datetime.datetime.now(tz).minute < 30):
             CurrentPeriod = ThuTT[2]
 
         #  12:30 to 1:00
-        elif time.localtime()[3] == 12 and time.localtime()[4] >= 30:
+        elif datetime.datetime.now(tz).hour == 12 and datetime.datetime.now(tz).minute >= 30:
             CurrentPeriod = sp_LNCH
 
         #  1:00 to 1:30
-        elif time.localtime()[3] == 13 and time.localtime()[4] < 30:
+        elif datetime.datetime.now(tz).hour == 13 and datetime.datetime.now(tz).minute < 30:
             CurrentPeriod = sp_LNRE
 
         #  1:30 to 2:30
-        elif (time.localtime()[3] == 13 and time.localtime()[4] >= 30) or (
-                time.localtime()[3] == 14 and time.localtime()[4] < 30):
+        elif (datetime.datetime.now(tz).hour == 13 and datetime.datetime.now(tz).minute >= 30) or (
+                datetime.datetime.now(tz).hour == 14 and datetime.datetime.now(tz).minute < 30):
             CurrentPeriod = ThuTT[3]
 
         #  2:30 to 2:45
-        elif time.localtime()[3] == 14 and 30 < time.localtime()[4] > 45:
+        elif datetime.datetime.now(tz).hour == 14 and 30 < datetime.datetime.now(tz).minute > 45:
             CurrentPeriod = sp_PMRE
 
         #  2:45 to 3:45
-        elif (time.localtime()[3] == 14 and time.localtime()[4] >= 45) or (
-                time.localtime()[3] == 15 and time.localtime()[4] < 45):
+        elif (datetime.datetime.now(tz).hour == 14 and datetime.datetime.now(tz).minute >= 45) or (
+                datetime.datetime.now(tz).hour == 15 and datetime.datetime.now(tz).minute < 45):
             CurrentPeriod = ThuTT[4]
 
         #  3:45 to 4:00
-        elif time.localtime()[3] == 15 and time.localtime()[4] >= 45:
+        elif datetime.datetime.now(tz).hour == 15 and datetime.datetime.now(tz).minute >= 45:
             CurrentPeriod = sp_HMRM
 
         #  4:15 to 5:00
-        elif time.localtime()[3] == 16 and time.localtime()[4] >= 15:
+        elif datetime.datetime.now(tz).hour == 16 and datetime.datetime.now(tz).minute >= 15:
             CurrentPeriod = ViewClub(Day(), str(idvar))
 
         #  Else
@@ -566,57 +566,57 @@ def SetCurrentPeriod(grade, idvar="11381138"):
             CurrentPeriod = sp_NULL
 
     #   Friday
-    elif time.localtime()[6] == 4:
+    elif datetime.date.weekday(datetime.datetime.now(tz)) == 4:
 
         #  00:00 to 09:00
-        if time.localtime()[3] < 9:
+        if datetime.datetime.now(tz).hour < 9:
             CurrentPeriod = sp_NULL
 
         #  09:00 to 10:00
-        elif time.localtime()[3] == 9:
+        elif datetime.datetime.now(tz).hour == 9:
             CurrentPeriod = FriTT[0]
 
         #  10:00 to 11:00
-        elif time.localtime()[3] == 10:
+        elif datetime.datetime.now(tz).hour == 10:
             CurrentPeriod = FriTT[1]
 
         #  11:00 to 11:30
-        elif time.localtime()[3] == 11 and time.localtime()[4] < 30:
+        elif datetime.datetime.now(tz).hour == 11 and datetime.datetime.now(tz).minute < 30:
             CurrentPeriod = sp_AMRE
 
         #  11:30 to 12:30
-        elif (time.localtime()[3] == 11 and time.localtime()[4] >= 30) or (
-                time.localtime()[3] == 12 and time.localtime()[4] < 30):
+        elif (datetime.datetime.now(tz).hour == 11 and datetime.datetime.now(tz).minute >= 30) or (
+                datetime.datetime.now(tz).hour == 12 and datetime.datetime.now(tz).minute < 30):
             CurrentPeriod = FriTT[2]
 
         #  12:30 to 1:00
-        elif time.localtime()[3] == 12 and time.localtime()[4] >= 30:
+        elif datetime.datetime.now(tz).hour == 12 and datetime.datetime.now(tz).minute >= 30:
             CurrentPeriod = sp_LNCH
 
         #  1:00 to 1:30
-        elif time.localtime()[3] == 13 and time.localtime()[4] < 30:
+        elif datetime.datetime.now(tz).hour == 13 and datetime.datetime.now(tz).minute < 30:
             CurrentPeriod = sp_LNRE
 
         #  1:30 to 2:30
-        elif (time.localtime()[3] == 13 and time.localtime()[4] >= 30) or (
-                time.localtime()[3] == 14 and time.localtime()[4] < 30):
+        elif (datetime.datetime.now(tz).hour == 13 and datetime.datetime.now(tz).minute >= 30) or (
+                datetime.datetime.now(tz).hour == 14 and datetime.datetime.now(tz).minute < 30):
             CurrentPeriod = FriTT[3]
 
         #  2:30 to 2:45
-        elif time.localtime()[3] == 14 and 30 < time.localtime()[4] > 45:
+        elif datetime.datetime.now(tz).hour == 14 and 30 < datetime.datetime.now(tz).minute > 45:
             CurrentPeriod = sp_PMRE
 
         #  2:45 to 3:45
-        elif (time.localtime()[3] == 14 and time.localtime()[4] >= 45) or (
-                time.localtime()[3] == 15 and time.localtime()[4] < 45):
+        elif (datetime.datetime.now(tz).hour == 14 and datetime.datetime.now(tz).minute >= 45) or (
+                datetime.datetime.now(tz).hour == 15 and datetime.datetime.now(tz).minute < 45):
             CurrentPeriod = FriTT[4]
 
         #  3:45 to 4:00
-        elif time.localtime()[3] == 15 and time.localtime()[4] >= 45:
+        elif datetime.datetime.now(tz).hour == 15 and datetime.datetime.now(tz).minute >= 45:
             CurrentPeriod = sp_HMRM
 
         #  4:15 to 5:00
-        elif time.localtime()[3] == 16 and time.localtime()[4] >= 15:
+        elif datetime.datetime.now(tz).hour == 16 and datetime.datetime.now(tz).minute >= 15:
             CurrentPeriod = ViewClub(Day(), str(idvar))
 
         #  Else
@@ -630,82 +630,72 @@ def SetCurrentPeriod(grade, idvar="11381138"):
     return CurrentPeriod
 
 def Time():
-    if len(str(time.localtime()[3])) == 1:
-        if len(str(time.localtime()[4])) == 1:
-            return "0" + str(time.localtime()[3]) + ":0" + str(time.localtime()[4])
-        else:
-            return "0" + str(time.localtime()[3]) + ":" + str(time.localtime()[4])
-    else:
-        if len(str(time.localtime()[4])) == 1:
-            return str(time.localtime()[3]) + ":0" + str(time.localtime()[4])
-        else:
-            return str(time.localtime()[3]) + ":" + str(time.localtime()[4])
-
+    return str(datetime.datetime.now(tz))[11] + str(datetime.datetime.now(tz))[12] + str(datetime.datetime.now(tz))[13] + str(datetime.datetime.now(tz))[14] + str(datetime.datetime.now(tz))[15]
 
 def Day():
-    if time.localtime()[6] == 0:
+    if datetime.date.weekday(datetime.datetime.now(tz)) == 0:
         return "Monday"
-    elif time.localtime()[6] == 1:
+    elif datetime.date.weekday(datetime.datetime.now(tz)) == 1:
         return "Tuesday"
-    elif time.localtime()[6] == 2:
+    elif datetime.date.weekday(datetime.datetime.now(tz)) == 2:
         return "Wednesday"
-    elif time.localtime()[6] == 3:
+    elif datetime.date.weekday(datetime.datetime.now(tz)) == 3:
         return "Thursday"
-    elif time.localtime()[6] == 4:
+    elif datetime.date.weekday(datetime.datetime.now(tz)) == 4:
         return "Friday"
-    elif time.localtime()[6] == 5:
+    elif datetime.date.weekday(datetime.datetime.now(tz)) == 5:
         return "Saturday"
-    elif time.localtime()[6] == 6:
+    elif datetime.date.weekday(datetime.datetime.now(tz)) == 6:
         return "Sunday"
 
-
 def Date():
-    if len(str(time.localtime()[2])) == 2 and str(time.localtime()[2])[0] == "1":
-        return str(time.localtime()[2]) + "th"
-    elif len(str(time.localtime()[2])) == 2:
-        if str(time.localtime()[2])[1] == "1":
-            return str(time.localtime()[2]) + "st"
-        elif str(time.localtime()[2])[1] == "2":
-            return str(time.localtime()[2]) + "nd"
-        elif str(time.localtime()[2])[1] == "3":
-            return str(time.localtime()[2]) + "rd"
+    basedate = str(datetime.datetime.now(tz))[8] + str(datetime.datetime.now(tz))[9]
+    if len(basedate) == 2 and basedate[0] == "1":
+        return basedate + "th"
+    elif len(basedate) == 2:
+        if basedate[1] == "1":
+            return basedate + "st"
+        elif basedate[1] == "2":
+            return basedate + "nd"
+        elif basedate[1] == "3":
+            return basedate + "rd"
         else:
-            return str(time.localtime()[2]) + "th"
-    elif len(str(time.localtime()[2])) == 1:
-        if str(time.localtime()[2]) == "1":
-            return str(time.localtime()[2]) + "st"
-        elif str(time.localtime()[2]) == "2":
-            return str(time.localtime()[2]) + "nd"
-        elif str(time.localtime()[2]) == "3":
-            return str(time.localtime()[2]) + "rd"
+            return basedate + "th"
+    elif len(basedate) == 1:
+        if basedate == "1":
+            return basedate + "st"
+        elif basedate == "2":
+            return basedate + "nd"
+        elif basedate == "3":
+            return basedate + "rd"
         else:
-            return str(time.localtime()[2]) + "th"
-
+            return basedate + "th"
 
 def Month():
-    if str(time.localtime()[1]) == "1":
+    basemonth = str(datetime.datetime.now(tz))[5] + str(datetime.datetime.now(tz))[6]
+    if basemonth == "1":
         return "January"
-    elif str(time.localtime()[1]) == "2":
+    elif basemonth == "2":
         return "February"
-    elif str(time.localtime()[1]) == "3":
+    elif basemonth == "3":
         return "March"
-    elif str(time.localtime()[1]) == "4":
+    elif basemonth == "4":
         return "April"
-    elif str(time.localtime()[1]) == "5":
+    elif basemonth == "5":
         return "May"
-    elif str(time.localtime()[1]) == "6":
+    elif basemonth == "6":
         return "June"
-    elif str(time.localtime()[1]) == "7":
+    elif basemonth == "7":
         return "July"
-    elif str(time.localtime()[1]) == "8":
+    elif basemonth == "8":
         return "August"
-    elif str(time.localtime()[1]) == "9":
+    elif basemonth == "9":
         return "September"
-    elif str(time.localtime()[1]) == "10":
+    elif basemonth == "10":
         return "October"
-    elif str(time.localtime()[1]) == "11":
+    elif basemonth == "11":
         return "November"
-    elif str(time.localtime()[1]) == "12":
+    elif basemonth == "12":
         return "December"
 
 def Remove_Club(id, club_filename):
@@ -1006,20 +996,12 @@ stat_help = "help"
 stat_reset_normal = "reset_normal"
 stat_reset_full = "reset_full"
 
-tick = 0
+
 
 @client.event
 async def on_ready():
     print(bot_name + " is now running")
     await client.change_presence(activity=discord.Game("Use '.tt ?' for info"))
-
-@loop(seconds=5)
-async def time_loop():
-    global tick
-    print("tick " + str(tick))
-    tick += 1
-
-
 
 @client.command(pass_context=True)
 async def debug(ctx, mode="11381138", var1="11381138", var2="11381138", *, note=" "):
@@ -1207,7 +1189,7 @@ async def debug(ctx, mode="11381138", var1="11381138", var2="11381138", *, note=
                                       "**.debug stats X dm/here**  -  Displays bot statistics ***X** = 9, 8, 7, or ALL*\n")
 
             else:
-                await ctx.send(ctx.message.author.mention + "  |  That is not the correct use of this command. Use **.debug help** for info")
+                await ctx.send(ctx.message.author.mention + "  |  That is not the correct use of this command. Use **.debug help here/dm** for info")
     else:
         AddStats(str(ctx.message.author.id), stat_invalid_admin)
         await ctx.send(ctx.message.author.mention + "  |  You do not have permission to use debug commands")
@@ -1242,36 +1224,36 @@ async def tt(ctx, modeinp="11381138", inp1="11381138", inp2="11381138", *, inp3=
                 if str(ctx.message.author.id) in userdata9:
                     if SetCurrentPeriod("9") == sp_NULL or SetCurrentPeriod("9") == sp_NUCL:
                         if ViewClub(Day(), str(ctx.message.author.id)) == sp_NUCL:
-                            await ctx.send(ctx.message.author.mention + "  (G9)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nThere is nothing scheduled for your current period\nYour next sceduled period is " + SetNextPeriod("9", str(ctx.message.author.id)) + "\n \nYou don't have a club today")
+                            await ctx.send(ctx.message.author.mention + "  (G9)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(datetime.datetime.now(tz).year) + ". The time is " + str(Time()) + "\n \nThere is nothing scheduled for your current period\nYour next sceduled period is " + SetNextPeriod("9", str(ctx.message.author.id)) + "\n \nYou don't have a club today")
                         else:
-                            await ctx.send(ctx.message.author.mention + "  (G9)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nThere is nothing scheduled for your current period\nYour next sceduled period is " + SetNextPeriod("9", str(ctx.message.author.id)) + "\n \nYour club today is " + ViewClub(Day(), str(ctx.message.author.id)))
+                            await ctx.send(ctx.message.author.mention + "  (G9)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(datetime.datetime.now(tz).year) + ". The time is " + str(Time()) + "\n \nThere is nothing scheduled for your current period\nYour next sceduled period is " + SetNextPeriod("9", str(ctx.message.author.id)) + "\n \nYour club today is " + ViewClub(Day(), str(ctx.message.author.id)))
                     else:
                         if ViewClub(Day(), str(ctx.message.author.id)) == sp_NUCL:
-                            await ctx.send(ctx.message.author.mention + "  (G9)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nYour current period is " + SetCurrentPeriod("9", str(ctx.message.author.id)) + "\nYour next sceduled period is " + SetNextPeriod("9", str(ctx.message.author.id)) + "\n \nYou don't have a club today")
+                            await ctx.send(ctx.message.author.mention + "  (G9)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(datetime.datetime.now(tz).year) + ". The time is " + str(Time()) + "\n \nYour current period is " + SetCurrentPeriod("9", str(ctx.message.author.id)) + "\nYour next sceduled period is " + SetNextPeriod("9", str(ctx.message.author.id)) + "\n \nYou don't have a club today")
                         else:
-                            await ctx.send(ctx.message.author.mention + "  (G9)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nYour current period is " + SetCurrentPeriod("9", str(ctx.message.author.id)) + "\nYour next sceduled period is " + SetNextPeriod("9", str(ctx.message.author.id)) + "\n \nYour club today is " + ViewClub(Day(), str(ctx.message.author.id)))
+                            await ctx.send(ctx.message.author.mention + "  (G9)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(datetime.datetime.now(tz).year) + ". The time is " + str(Time()) + "\n \nYour current period is " + SetCurrentPeriod("9", str(ctx.message.author.id)) + "\nYour next sceduled period is " + SetNextPeriod("9", str(ctx.message.author.id)) + "\n \nYour club today is " + ViewClub(Day(), str(ctx.message.author.id)))
                 elif str(ctx.message.author.id) in userdata8:
                     if SetCurrentPeriod("8") == sp_NULL or SetCurrentPeriod("8") == sp_NUCL:
                         if ViewClub(Day(), str(ctx.message.author.id)) == sp_NUCL:
-                            await ctx.send(ctx.message.author.mention + "  (G8)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nThere is nothing scheduled for your current period\nYour next sceduled period is " + SetNextPeriod("8", str(ctx.message.author.id)) + "\n \nYou don't have a club today")
+                            await ctx.send(ctx.message.author.mention + "  (G8)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(datetime.datetime.now(tz).year) + ". The time is " + str(Time()) + "\n \nThere is nothing scheduled for your current period\nYour next sceduled period is " + SetNextPeriod("8", str(ctx.message.author.id)) + "\n \nYou don't have a club today")
                         else:
-                            await ctx.send(ctx.message.author.mention + "  (G8)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nThere is nothing scheduled for your current period\nYour next sceduled period is " + SetNextPeriod("8", str(ctx.message.author.id)) + "\n \nYour club today is " + ViewClub(Day(), str(ctx.message.author.id)))
+                            await ctx.send(ctx.message.author.mention + "  (G8)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(datetime.datetime.now(tz).year) + ". The time is " + str(Time()) + "\n \nThere is nothing scheduled for your current period\nYour next sceduled period is " + SetNextPeriod("8", str(ctx.message.author.id)) + "\n \nYour club today is " + ViewClub(Day(), str(ctx.message.author.id)))
                     else:
                         if ViewClub(Day(), str(ctx.message.author.id)) == sp_NUCL:
-                            await ctx.send(ctx.message.author.mention + "  (G8)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nYour current period is " + SetCurrentPeriod("8", str(ctx.message.author.id)) + "\nYour next sceduled period is " + SetNextPeriod("8", str(ctx.message.author.id)) + "\n \nYou don't have a club today")
+                            await ctx.send(ctx.message.author.mention + "  (G8)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(datetime.datetime.now(tz).year) + ". The time is " + str(Time()) + "\n \nYour current period is " + SetCurrentPeriod("8", str(ctx.message.author.id)) + "\nYour next sceduled period is " + SetNextPeriod("8", str(ctx.message.author.id)) + "\n \nYou don't have a club today")
                         else:
-                            await ctx.send(ctx.message.author.mention + "  (G8)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nYour current period is " + SetCurrentPeriod("8", str(ctx.message.author.id)) + "\nYour next sceduled period is " + SetNextPeriod("8", str(ctx.message.author.id)) + "\n \nYour club today is " + ViewClub(Day(), str(ctx.message.author.id)))
+                            await ctx.send(ctx.message.author.mention + "  (G8)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(datetime.datetime.now(tz).year) + ". The time is " + str(Time()) + "\n \nYour current period is " + SetCurrentPeriod("8", str(ctx.message.author.id)) + "\nYour next sceduled period is " + SetNextPeriod("8", str(ctx.message.author.id)) + "\n \nYour club today is " + ViewClub(Day(), str(ctx.message.author.id)))
                 elif str(ctx.message.author.id) in userdata7:
                     if SetCurrentPeriod("7") == sp_NULL or SetCurrentPeriod("7") == sp_NUCL:
                         if ViewClub(Day(), str(ctx.message.author.id)) == sp_NUCL:
-                            await ctx.send(ctx.message.author.mention + "  (G7)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nThere is nothing scheduled for your current period\nYour next sceduled period is " + SetNextPeriod("7", str(ctx.message.author.id)) + "\n \nYou don't have a club today")
+                            await ctx.send(ctx.message.author.mention + "  (G7)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(datetime.datetime.now(tz).year) + ". The time is " + str(Time()) + "\n \nThere is nothing scheduled for your current period\nYour next sceduled period is " + SetNextPeriod("7", str(ctx.message.author.id)) + "\n \nYou don't have a club today")
                         else:
-                            await ctx.send(ctx.message.author.mention + "  (G7)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nThere is nothing scheduled for your current period\nYour next sceduled period is " + SetNextPeriod("7", str(ctx.message.author.id)) + "\n \nYour club today is " + ViewClub(Day(), str(ctx.message.author.id)))
+                            await ctx.send(ctx.message.author.mention + "  (G7)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(datetime.datetime.now(tz).year) + ". The time is " + str(Time()) + "\n \nThere is nothing scheduled for your current period\nYour next sceduled period is " + SetNextPeriod("7", str(ctx.message.author.id)) + "\n \nYour club today is " + ViewClub(Day(), str(ctx.message.author.id)))
                     else:
                         if ViewClub(Day(), str(ctx.message.author.id)) == sp_NUCL:
-                            await ctx.send(ctx.message.author.mention + "  (G7)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nYour current period is " + SetCurrentPeriod("7", str(ctx.message.author.id)) + "\nYour next sceduled period is " + SetNextPeriod("7", str(ctx.message.author.id)) + "\n \nYou don't have a club today")
+                            await ctx.send(ctx.message.author.mention + "  (G7)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(datetime.datetime.now(tz).year) + ". The time is " + str(Time()) + "\n \nYour current period is " + SetCurrentPeriod("7", str(ctx.message.author.id)) + "\nYour next sceduled period is " + SetNextPeriod("7", str(ctx.message.author.id)) + "\n \nYou don't have a club today")
                         else:
-                            await ctx.send(ctx.message.author.mention + "  (G7)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(time.localtime()[0]) + ". The time is " + str(Time()) + "\n \nYour current period is " + SetCurrentPeriod("7", str(ctx.message.author.id)) + "\nYour next sceduled period is " + SetNextPeriod("7", str(ctx.message.author.id)) + "\n \nYour club today is " + ViewClub(Day(), str(ctx.message.author.id)))
+                            await ctx.send(ctx.message.author.mention + "  (G7)  |  Today is " + str(Day()) + " the " + str(Date()) + " of " + str(Month()) + " " + str(datetime.datetime.now(tz).year) + ". The time is " + str(Time()) + "\n \nYour current period is " + SetCurrentPeriod("7", str(ctx.message.author.id)) + "\nYour next sceduled period is " + SetNextPeriod("7", str(ctx.message.author.id)) + "\n \nYour club today is " + ViewClub(Day(), str(ctx.message.author.id)))
 
             elif mode == "help" or mode == "?":
                 await ctx.send(ctx.message.author.mention + "  |  **Command List:**\n \n"
@@ -1914,6 +1896,4 @@ async def reports(ctx, inp1="11381138"):
                 file.write("\n")
 
 
-
-time_loop.start()
 client.run("NjI3MDk5ODk3MjIwNDMxODcy.XY3v5Q.Q19bNJrTqvFa1eDTPEmfJjvd4HE")
